@@ -30,3 +30,4 @@ hs_err_pid*
 /Servers
 /AIproject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 /AIproject/target/m2e-wtp/web-resources/META-INF/maven/com.project/biz/pom.properties
+*.properties
