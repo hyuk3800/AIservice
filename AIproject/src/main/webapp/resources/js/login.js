@@ -1,14 +1,18 @@
-let container = document.getElementById('container')
+//let container = document.getElementById('container')
 
-<<<<<<< HEAD
-toggle = () => {
-  container.classList.toggle('sign-in')
-  container.classList.toggle('sign-up')
-}
-setTimeout(() => {
-  container.classList.add('sign-in')
-}, 200)
-=======
+const userid = document.querySelector("#loginID");
+const userPassword = document.querySelector("#loginPassword");
+const loginBTN = document.querySelector("#loginBTN")
+
+//toggle = () => {
+//  container.classList.toggle('sign-in')
+//  container.classList.toggle('sign-up')
+//}
+//setTimeout(() => {
+//  container.classList.add('sign-in')
+//}, 200)
+
+
 
 const postreq = () => {
 	console.log("클릭")
@@ -30,8 +34,8 @@ const postreq = () => {
 			}
 		}
 	}
-	const id = userId.value;
-	const pwd = password.value;
+	const id = userid.value;
+	const pwd = userPassword.value;
 	xhr.open("POST", "/biz/login.do", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	let user = {
@@ -45,4 +49,3 @@ const postreq = () => {
 };
 
 loginBTN.addEventListener('click', postreq);
->>>>>>> a090a16f92a2536dc934f067bc6339e113abb9bf
