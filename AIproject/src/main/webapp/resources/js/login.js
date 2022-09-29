@@ -44,6 +44,7 @@ const postreq = () => {
 	};
 
 	// console.log(user);
+	//
 	xhr.send(JSON.stringify(user));
 	
 };
