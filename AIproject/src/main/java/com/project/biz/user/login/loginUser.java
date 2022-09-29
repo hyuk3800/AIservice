@@ -48,11 +48,11 @@ public class loginUser {
 			session.setAttribute("user", user);
 			System.out.println("로그인");
 //			model.addAllAttributes();
-			return "home";
+			return "home.do";
 		}
 		else {
 			System.out.println("실패");
-			return "login";			
+			return "login.do";			
 		}
 	}
 //	@ResponseBody
