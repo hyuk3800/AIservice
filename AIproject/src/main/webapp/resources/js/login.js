@@ -1,7 +1,14 @@
-const userId = document.querySelector("#ID");
-const password = document.querySelector("#Password")
-const loginBTN = document.querySelector("#loginBTN")
+let container = document.getElementById('container')
 
+<<<<<<< HEAD
+toggle = () => {
+  container.classList.toggle('sign-in')
+  container.classList.toggle('sign-up')
+}
+setTimeout(() => {
+  container.classList.add('sign-in')
+}, 200)
+=======
 
 const postreq = () => {
 	console.log("클릭")
@@ -38,3 +45,4 @@ const postreq = () => {
 };
 
 loginBTN.addEventListener('click', postreq);
+>>>>>>> a090a16f92a2536dc934f067bc6339e113abb9bf
