@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-   
+   	<script defer src="resources/js/login.js"></script>
 </head>
 <body>
 
@@ -59,13 +60,13 @@
           <div class="form sign-in">
             <div class="input-group">
               <i class='bx bxs-user'></i>
-              <input type="text" placeholder="Username">
+              <input type="text" id="loginID" placeholder="Username">
             </div>
             <div class="input-group">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Password">
+              <input type="password" id="loginPassword" placeholder="Password">
             </div>
-            <button>
+            <button id="loginBTN">
               Sign in
             </button>
             <p>
@@ -125,15 +126,15 @@
 
 
 
-<script>
-  let container = document.getElementById('container')
-  toggle = () => {
-  container.classList.toggle('sign-in')
-  container.classList.toggle('sign-up')
-  }
-  setTimeout(() => {
-   container.classList.add('sign-in')
-  }, 200)
+	<script>
+	  let container = document.getElementById('container')
+	  toggle = () => {
+	  container.classList.toggle('sign-in')
+	  container.classList.toggle('sign-up')
+	  }
+	  setTimeout(() => {
+	   container.classList.add('sign-in')
+	  }, 200)
   </script>
 
 </html>
