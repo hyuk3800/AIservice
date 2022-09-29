@@ -26,7 +26,7 @@ const postreq = () => {
 			console.log("이거");
 			if(xhr.status == 200){
 				console.log(xhr.response);
-				location.href("http://localhost:9000/biz/login.do");
+				location.href = xhr.response;
 			}
 		}
 	}
