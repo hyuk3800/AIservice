@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +33,7 @@ public class loginUser {
 	
 	@ResponseBody
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginGo(@RequestBody HashMap<String, Object> map, HttpSession session) {
+	public String loginGo(@RequestBody HashMap<String, Object> map, HttpSession session, Model model) {
 		logger.info("POST_loginpage");
 		System.out.println(map);
 		String ID = (String) map.get("userid");
@@ -46,6 +47,7 @@ public class loginUser {
 		if(user != null) {
 			session.setAttribute("user", user);
 			System.out.println("로그인");
+//			model.addAllAttributes();
 			return "home";
 		}
 		else {

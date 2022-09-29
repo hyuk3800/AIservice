@@ -16,8 +16,10 @@ const postreq = () => {
 		console.log(xhr.readyState);
 		if(xhr.readyState == 4){
 			console.log(xhr.status);
+			console.log("이거");
 			if(xhr.status == 200){
-
+				console.log(xhr.response);
+				location.href("http://localhost:9000/biz/login.do");
 			}
 		}
 	}
