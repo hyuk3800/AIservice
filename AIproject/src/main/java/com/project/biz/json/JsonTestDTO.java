@@ -1,21 +1,30 @@
 package com.project.biz.json;
 
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import javax.servlet.http.HttpSession;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class JsonTestDTO<R> {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.project.biz.user.userVO;
+
+@RestController
+public class JsonTestDTO {
 	
-	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-	private double averageScore;
-	
-	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-	private int totalCount;
-	
-	private R items;
-	
-	private List<Comments> comments;
+	@GetMapping("/loginUser.do")
+	public userVO printJson(userVO vo, HttpSession session) {
+		userVO user = (userVO) session.getAttribute("user");
+		return vo;
+	}
 	
 	
+	@PostMapping("/loginUser.do")
+	public String postLoginJson(@RequestBody userVO vo) {
+		System.out.println("ddd");
+		System.out.println(vo.getID());
+		return "home";
+	}
 }
