@@ -2,7 +2,7 @@ DROP Table Member;
 
 CREATE TABLE member(
     id       INT NOT NULL AUTO_INCREMENT  COMMENT '회원ID',
-    nickname VARCHAR(30) NOT NULL COMMENT '닉네임',
+    username VARCHAR(30) NOT NULL COMMENT '닉네임',
     pwd      VARCHAR(30) NOT NULL COMMENT '암호',
     cre_date DATETIME NOT NULL COMMENT '가입일',
     mod_date DATETIME NOT NULL COMMENT '마지막암호변경일',
@@ -19,8 +19,8 @@ COMMENT '회원기본정보';
 
 -- NOW() : 현재 시간     
 
-INSERT INTO member(nickname,pwd,cre_date,mod_date)
-VALUES ('iu','1111',NOW(),NOW());
+INSERT INTO member(id,nickname,pwd,cre_date,mod_date)
+VALUES ('usertest01','iu','1111',NOW(),NOW());
 
 COMMIT;
 
@@ -67,6 +67,9 @@ CREATE TABLE chatroom(
 COMMENT '채팅룸정보';
 
 
+-- -------------------------------------------------------
+ALTER TABLE `aiservice`.`member` 
+CHANGE COLUMN `nickname` `username` VARCHAR(30) NOT NULL COMMENT '닉네임' ;
 
 
 
