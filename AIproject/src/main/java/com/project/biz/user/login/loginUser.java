@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.biz.user.userDAO;
 import com.project.biz.user.userVO;
 
-@RestController
+
 @Controller
 public class loginUser {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String loginVeiw(@RequestParam("user") String test) {
+	public String loginVeiw() {
 		logger.info("GET_loginpage");
-		test = "test";
+		
 		return "login";
 	}
 	
