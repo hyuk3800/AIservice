@@ -55,19 +55,5 @@ public class loginUser {
 			return "login.do";			
 		}
 	}
-//	@ResponseBody
-//	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-//	public String loginGo(@RequestBody HashMap<String, Object> map, HttpSession session) {
-//		logger.info("POST_loginpage");
-//		System.out.println(map);
-////		userVO user = (userVO) session.getAttribute("user");
-//		
-//		if(user != null) {
-//			session.setAttribute("user", user);
-//			return "home";
-//		}
-//		else {
-//			return "login";			
-//		}
-//	}
+
 }
