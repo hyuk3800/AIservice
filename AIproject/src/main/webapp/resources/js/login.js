@@ -4,13 +4,14 @@ const userid = document.querySelector("#loginID");
 const userPassword = document.querySelector("#loginPassword");
 const loginBTN = document.querySelector("#loginBTN");
 
-toggle = () => {
-  container.classList.toggle('sign-in')
-  container.classList.toggle('sign-up')
-}
-setTimeout(() => {
-  container.classList.add('sign-in')
-}, 200)
+// let container = document.getElementById('container')
+// toggle = () => {
+//   container.classList.toggle('sign-in')
+//   container.classList.toggle('sign-up')
+// }
+// setTimeout(() => {
+//   container.classList.add('sign-in')
+// }, 200)
 
 
 
