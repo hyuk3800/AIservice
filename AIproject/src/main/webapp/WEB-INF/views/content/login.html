@@ -14,8 +14,9 @@
       
     </head>
 	<body>
-	
+    
 	  <div id="container" class="container">
+
 	    <!-- FORM SECTION -->
 	    <div class="row">
 	      <!-- SIGN UP -->
@@ -79,7 +80,7 @@
 	              <span>
 	                Don't have an account?
 	              </span>
-	              <b onclick="toggle()" class="pointer">
+	              <b onclick="toggle()" onclick="logomove()" class="pointer">
 	                Sign up here
 	              </b>
 	            </p>
@@ -96,16 +97,20 @@
 	    <div class="row content-row">
 	      <!-- SIGN IN CONTENT -->
 	      <div class="col align-items-center flex-col">
+         
 	        <div class="text sign-in">
-	          <h2>
+	          <h2><div><a href="home.html"><img src="./images/logo.png" alt=""></a></div>
 	            Welcome
+              
 	          </h2>
+            
 	  
 	        </div>
 	        <div class="img sign-in">
 	    
 	        </div>
 	      </div>
+        
 	      <!-- END SIGN IN CONTENT -->
 	      <!-- SIGN UP CONTENT -->
 	      <div class="col align-items-center flex-col">
@@ -119,10 +124,14 @@
 	  
 	        </div>
 	      </div>
+        
 	      <!-- END SIGN UP CONTENT -->
 	    </div>
 	    <!-- END CONTENT SECTION -->
+      
 	  </div>
+
+    
 	</body>
   <script>
     let container = document.getElementById('container')
@@ -133,6 +142,8 @@ container.classList.toggle('sign-up')
 setTimeout(() => {
 container.classList.add('sign-in')
 }, 200)
+
+
   </script>
 
 </html>

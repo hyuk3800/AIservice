@@ -11,6 +11,31 @@
     --twitter-color: #1DA1F2;
     --insta-color: #E1306C;
 }
+div{
+    z-index: 999;
+}
+a{
+    z-index: 999;
+}
+img{
+    width: 200px;
+    height: 200px;
+    z-index: 999;
+
+}
+.visual {
+    cursor: pointer;
+    
+    text-align: center;
+    line-height: 450px;
+    font-size: 25px;
+    color: #434343;
+    margin: 30px;
+    max-width: 100%;
+    margin:0 auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 

@@ -14,6 +14,9 @@ const loginBTN = document.querySelector("#loginBTN");
 // }, 200)
 
 
+function gohome() {
+	location.href="home.html";
+}
 
 const postreq = () => {
 	console.log("클릭")
