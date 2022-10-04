@@ -1,7 +1,7 @@
 DROP Table Member;
 
 CREATE TABLE member(
-    id       INT NOT NULL AUTO_INCREMENT  COMMENT '회원ID',
+    id       VARCHAR(15) NOT NULL AUTO_INCREMENT  COMMENT '회원ID',
     username VARCHAR(30) NOT NULL COMMENT '닉네임',
     pwd      VARCHAR(30) NOT NULL COMMENT '암호',
     cre_date DATETIME NOT NULL COMMENT '가입일',

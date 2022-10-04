@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RestController;
 
-//import com.project.biz.user.userDAO;
-import com.project.biz.user.userVO;
+import com.project.member.MemberVo;
 
 
 @Controller
@@ -38,18 +37,28 @@ public class loginUser {
 		System.out.println(map);
 		String ID = (String) map.get("userid");
 		String password = (String) map.get("pwd");
-		userVO user = null;
-		if (ID != null || password != null) {
-			user = new userVO().setID(ID).setPassword(password);
-			System.out.println(user.toString());
-		}
+		MemberVo vo = new MemberVo();
+		
+		vo.setId(ID);
+		vo.setPwd(password);
+//		if (ID != null || password != null) {
+//			user = new userVO().setID(ID).setPassword(password);
+//			System.out.println(user.toString());
+//		}
 
-		if(user != null) {
-			session.setAttribute("user", user);
+		if(vo != null) {
+			session.setAttribute("member", vo);
 			System.out.println("로그인");
 //			model.addAllAttributes();
 			return "home";
 		}
+		
+//		if(user != null) {
+//			session.setAttribute("user", user);
+//			System.out.println("로그인");
+////			model.addAllAttributes();
+//			return "home";
+//		}
 		else {
 			System.out.println("실패");
 			return "login";			
