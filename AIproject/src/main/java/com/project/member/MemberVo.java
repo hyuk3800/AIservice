@@ -3,16 +3,16 @@ package com.project.member;
 import java.util.Date;
 
 public class MemberVo {
-	private int id;
+	private String id;
 	private String nickname; 
 	private String pwd;
 	private Date cre_date;
 	private Date mod_date;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNickname() {
