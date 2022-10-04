@@ -1,0 +1,94 @@
+/* /////////////////// head ////////////////////// */
+.headcont{
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.hContBox{
+    width: 100%;
+    height: 40px;
+    border:  1px solid red;
+}
+
+.headBox{
+    /* ㅎㅇ? */
+}
+
+.loginBox{
+    text-align: right;
+}
+
+/* //////////////////// main //////////////////// */
+
+.maincont{
+    padding-top: 60px;
+
+}
+
+.contentBox{
+    border: 1px dotted #000;
+}
+
+.chattingBox{
+    height: 70vh;
+}
+.chatBox{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.chbox{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 70vh;
+}
+ul{
+    overflow-y: scroll;
+    height: 100%;
+    list-style:none;
+    padding-left:0px;
+    font-size: 1.3rem;
+}
+ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+li{
+    margin: 10px 15px;
+}
+
+
+.user{
+    text-align: right;
+}
+
+#postChat{
+    padding-bottom: 10px;
+}
+
+#chatting{
+    width: 100%;
+}
+
+#chatBtn{
+    width: 90%;
+    font-size: 1rem;
+}
+.chatpostB{
+    height: 5vh;
+}
+
+
+/* ////////////////////// footer //////////////////////// */
+.footcont{
+    margin-top: 20px;
+}
+
+.footerBox{
+    border: 1px solid blue;
+}
+

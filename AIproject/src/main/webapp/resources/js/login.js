@@ -1,7 +1,22 @@
-const userId = document.querySelector("#ID");
-const password = document.querySelector("#Password")
-const loginBTN = document.querySelector("#loginBTN")
+const container = document.querySelector("#container");
 
+const userid = document.querySelector("#loginID");
+const userPassword = document.querySelector("#loginPassword");
+const loginBTN = document.querySelector("#loginBTN");
+
+// let container = document.getElementById('container')
+ toggle = () => {
+   container.classList.toggle('sign-in')
+   container.classList.toggle('sign-up')
+ }
+ setTimeout(() => {
+   container.classList.add('sign-in')
+ }, 200)
+
+
+function gohome() {
+	location.href="home.html";
+}
 
 const postreq = () => {
 	console.log("클릭")
@@ -19,12 +34,12 @@ const postreq = () => {
 			console.log("이거");
 			if(xhr.status == 200){
 				console.log(xhr.response);
-				location.href("http://localhost:9000/biz/login.do");
+				location.href = xhr.response;
 			}
 		}
 	}
-	const id = userId.value;
-	const pwd = password.value;
+	const id = userid.value;
+	const pwd = userPassword.value;
 	xhr.open("POST", "/biz/login.do", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	let user = {
@@ -33,6 +48,7 @@ const postreq = () => {
 	};
 
 	// console.log(user);
+	//
 	xhr.send(JSON.stringify(user));
 	
 };
