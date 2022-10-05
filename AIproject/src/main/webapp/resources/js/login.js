@@ -43,7 +43,7 @@ const postreq = () => {
 			// console.log("이거");
 			if(xhr.status == 200){
 				//console.log(xhr.response);
-				if(xhr.response == "True"){
+				if(xhr.response == "true"){
 					location.href = "home.do";					
 				}
 				else{
