@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import org.springframework.stereotype.Repository;
 
 import com.project.biz.JDBCUtill;
+import com.project.member.MemberVo;
 
 @Repository("userDAO")
 public class userDAO {
@@ -46,11 +47,22 @@ public class userDAO {
 		return user;
 	}
 	
-	public int InsertMember(userVO vo) {
+	public int InsertMember(MemberVo vo) {
 		System.out.println("insert User");
 		conn = JDBCUtill.getConn();
 		int row = 0;
-		
+		try {
+			stmt = conn.prepareStatement(InsertSql);
+			stmt.setString(1, vo.getID());
+			stmt.setString(2, vo.getNickname());
+			stmt.setString(3, vo.getPwd());
+			row = stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtill.close(stmt, conn);
+		}
 		
 		return row;
 	}

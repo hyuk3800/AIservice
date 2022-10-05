@@ -25,22 +25,22 @@
 	          <div class="form sign-up">
 	            <div class="input-group">
 	              <i class='bx bxs-user'></i>
-	              <input type="text" placeholder="Username">
+	              <input type="text" placeholder="Username" id="singUpName">
 	
 	            </div>
 	            <div class="input-group">
 	              <i class='bx bx-mail-send'></i>
-	              <input type="email" placeholder="Email">
+	              <input type="text" placeholder="ID" id="singUpID">
 	            </div>
 	            <div class="input-group">
 	              <i class='bx bxs-lock-alt'></i>
-	              <input type="password" placeholder="Password">
+	              <input type="password" placeholder="Password" id="singUpPwd">
 	            </div>
 	            <div class="input-group">
 	              <i class='bx bxs-lock-alt'></i>
-	              <input type="password" placeholder="Confirm password">
+	              <input type="password" placeholder="Confirm password" id="singUpCPwd">
 	            </div>
-	            <button>
+	            <button id="SignUpBtn">
 	              Sign up
 	            </button>
 	            <p>
@@ -68,6 +68,7 @@
 	              <i class='bx bxs-lock-alt'></i>
 	              <input type="password" id="loginPassword" placeholder="Password">
 	            </div>
+	            <div id="message" style="color : red;"></div>
 	            <button id="loginBTN">
 	              Sign in
 	            </button>
@@ -99,7 +100,13 @@
 	      <div class="col align-items-center flex-col">
          
 	        <div class="text sign-in">
-	          <h2><div><a href="home.html"><img src="./content/images/logo.png" alt=""></a></div>
+	          <!-- 
+	          <div>
+	          		 <a href="home.html"><img src="content/images/logo.png" alt=""></a>
+	          </div>
+	          -->
+	          <h2>
+	          	
 	            Welcome
               
 	          </h2>
