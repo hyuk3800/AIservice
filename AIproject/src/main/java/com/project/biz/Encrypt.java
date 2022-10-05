@@ -5,23 +5,23 @@ import java.security.SecureRandom;
 
 public class Encrypt {
 	
-//	public String getSalt() {
-//		
-//		SecureRandom r = new SecureRandom();
-//		
-//		byte[] salt = new byte[20];
-//		
-//		r.nextBytes(salt);
-//		
-//		StringBuffer sb = new StringBuffer();
-//		for (byte b : salt) {
-//			sb.append(String.format("%02x", b));
-//		};
-//		
-//		System.out.println(sb.toString());
-//		
-//		return sb.toString();
-//	}
+	public String getSalt() {
+		
+		SecureRandom r = new SecureRandom();
+		
+		byte[] salt = new byte[20];
+		
+		r.nextBytes(salt);
+		
+		StringBuffer sb = new StringBuffer();
+		for (byte b : salt) {
+			sb.append(String.format("%02x", b));
+		};
+		
+		System.out.println(sb.toString());
+		
+		return sb.toString();
+	}
 	
 	
 	public String getEncrypt(String pwd, String salt) {
@@ -50,19 +50,19 @@ public class Encrypt {
 	}
 
 
-//	public static void main(String[] args) {
-//		Encrypt en = new Encrypt();
-//		
-//		String pwd = "나는이인혁";
-//		System.out.println("pwd : " + pwd);
-//	
-//		String salt = "jhsdjkfhsadfjksfahafksjsdafhkjsdyisdug";
-//		System.out.println("salt : " + salt);
-//		
-//		
-//		String res = en.getEncrypt(pwd, salt);
-//		
-//		System.out.println(res);
-//	}
+	public static void main(String[] args) {
+		Encrypt en = new Encrypt();
+		
+		String pwd = "나는이인혁";
+		System.out.println("pwd : " + pwd);
+	
+		String salt = "jhsdjkfhsadfjksfahafksjsdafhkjsdyisdug";
+		System.out.println("salt : " + salt);
+		
+		
+		String res = en.getEncrypt(pwd, salt);
+		
+		System.out.println(res);
+	}
 
 }
