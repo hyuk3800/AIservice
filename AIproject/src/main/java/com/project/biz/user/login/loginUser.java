@@ -63,7 +63,7 @@ public class loginUser {
 			session.setAttribute("user", user);
 			System.out.println("로그인");
 //			model.addAllAttributes();
-			return "home.do";
+			return "true";
 		}
 		
 //		if(user != null) {
@@ -74,7 +74,7 @@ public class loginUser {
 //		}
 		else {
 			System.out.println("실패");
-			return "login.do";			
+			return "false";			
 		}
 	}
 

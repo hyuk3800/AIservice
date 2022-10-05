@@ -3,17 +3,31 @@ package com.project.member;
 import java.util.Date;
 
 public class MemberVo {
-	private String id;
+
+	private String ID;
+
+	// private String id;
+
 	private String nickname; 
 	private String pwd;
 	private Date cre_date;
 	private Date mod_date;
 	
-	public String getId() {
+
+	public String getID() {
+		return ID;
+	}
+	public void setID(String ID) {
+		this.ID = ID;
+
+	/* ///////////////////////
+  public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+  ////////////////////////////  */
+
 	}
 	public String getNickname() {
 		return nickname;
@@ -41,6 +55,6 @@ public class MemberVo {
 	}
 	@Override
 	public String toString() {
-		return "MemberVo [id=" + id + ", nickname=" + nickname + ", pwd=" + pwd + ", cre_date=" + cre_date + ", mod_date=" + mod_date + "]";
+		return "MemberVo [ID=" + ID + ", nickname=" + nickname + ", pwd=" + pwd + ", cre_date=" + cre_date + ", mod_date=" + mod_date + "]";
 	}
 }
