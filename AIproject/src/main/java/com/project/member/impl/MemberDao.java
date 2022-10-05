@@ -14,7 +14,7 @@ public class MemberDao {
 	private DataSource dataSource;
 	private final String memberInsertSql =
 			"INSERT INTO member(nickname, password, cre_date, mod_date) VALUES(?, ?, NOW(), NOW())";
-	
+			
 	public void insertMember(MemberVo vo) {
 		try {
 			conn = dataSource.getConnection();
