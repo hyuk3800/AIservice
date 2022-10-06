@@ -47,6 +47,7 @@ CREATE TABLE chatterchatting(
     chattingrecord VARCHAR(400) NOT NULL COMMENT '채팅기록',
     chatroomnum    INT NOT NULL COMMENT '채팅룸번호',
     chatting_date  DATETIME NOT NULL COMMENT '채팅일'
+
 )
 COMMENT '채터채팅정보';
 
