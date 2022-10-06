@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.biz.user.userDAO;
 //import com.project.biz.user.userDAO;
 import com.project.biz.user.userVO;
+import com.project.member.MemberVo;
 
 
 
@@ -43,35 +44,16 @@ public class loginUser {
 		String ID = (String) map.get("userid");
 		String password = (String) map.get("pwd");
 
-		// MemberVo vo = new MemberVo();
-		
-		// vo.setId(ID);
-		// vo.setPwd(password);
+		MemberVo vo = new MemberVo();
+		vo.setID(ID);
+		vo.setPwd(password);
 
-		userVO vo = new userVO().setID(ID).setPassword(password);
-
-//		if (ID != null || password != null) {
-//			user = new userVO().setID(ID).setPassword(password);
-//			System.out.println(user.toString());
-//		}
-
-		// if(vo != null) {
-		// 	session.setAttribute("member", vo);
-
-		userVO user = userDao.selectMember(vo);
+		MemberVo user = userDao.selectMember(vo);
 		if(user != null) {
 			session.setAttribute("user", user);
 			System.out.println("로그인");
-//			model.addAllAttributes();
 			return "true";
 		}
-		
-//		if(user != null) {
-//			session.setAttribute("user", user);
-//			System.out.println("로그인");
-////			model.addAllAttributes();
-//			return "home";
-//		}
 		else {
 			System.out.println("실패");
 			return "false";			

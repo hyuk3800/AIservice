@@ -5,6 +5,14 @@ import java.security.SecureRandom;
 
 public class Encrypt {
 	
+	private String Esalt = "808AIdp601AIrkehldjTek";
+	
+	
+	public String getEsalt() {
+		return Esalt;
+	}
+
+
 	public String getSalt() {
 		
 		SecureRandom r = new SecureRandom();
