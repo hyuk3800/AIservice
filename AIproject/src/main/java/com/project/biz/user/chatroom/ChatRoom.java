@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.biz.user.userVO;
+import com.project.member.MemberVo;
 
 @Controller
 public class ChatRoom {
@@ -19,7 +20,7 @@ public class ChatRoom {
 	public String getChathome(HttpSession session) {
 		logger.info("GET_ChatRoomPage");
 		if(session.getAttribute("user") != null) {
-			userVO user = (userVO) session.getAttribute("user");
+			MemberVo user = (MemberVo) session.getAttribute("user");
 			System.out.println(user.toString());
 		}
 		
