@@ -1,5 +1,7 @@
 const chatBtn = document.querySelector('#chatBtn');
 const chatinput = document.querySelector('#chatting');
+const chbox = document.querySelector(".chbox > ul");
+
 
 const getreq = () => {
 	let xhr;
@@ -32,6 +34,8 @@ const getreq = () => {
 const postreq = () => {
 	console.log("클릭");
 	
+	
+	
 	let xhr;
 	if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
         xhr = new XMLHttpRequest();
@@ -46,10 +50,20 @@ const postreq = () => {
 			if(xhr.status == 200){
 				chatinput.value = "";
 				console.log(xhr);
+				const AiLi = document.createElement("li");
+				AiLi.className = "ai";
+				AiLi.innerText = xhr.response;
+				chbox.appendChild(AiLi);
 			}
 		}
 	}
 	const chat = chatinput.value;
+	
+	const userLi = document.createElement("li");
+	userLi.className = "user";
+	userLi.innerText = chat;
+	chbox.appendChild(userLi);
+	
 	xhr.open("POST", "/biz/chat/chatting.do", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	let chatting = {

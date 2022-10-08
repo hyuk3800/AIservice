@@ -56,10 +56,10 @@ public class ChatRoom {
 		System.out.println(userChat);
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		if(user != null) {
-			return "user : why?";		
+			return "hi im Ai user";		
 		}
 		else {
-			return "null : why?";
+			return "hi im Ai null";
 		}
 		
 	}
