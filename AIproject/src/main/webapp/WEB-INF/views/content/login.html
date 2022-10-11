@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +9,7 @@
     <title>챗봇 로그인</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
    	<script defer src="resources/js/login.js"></script>
 </head>
@@ -21,26 +22,27 @@
       <div class="col align-items-center flex-col sign-up">
         <div class="form-wrapper align-items-center">
           <div class="form sign-up">
+            <form>
             <div class="input-group">
               <i class='bx bxs-user'></i>
-              <input type="text" placeholder="Username">
-
+              <input type="text" placeholder="Username" required>
             </div>
             <div class="input-group">
               <i class='bx bx-mail-send'></i>
-              <input type="email" placeholder="Email">
+              <input type="email" placeholder="Email" required>
             </div>
             <div class="input-group">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Password">
+              <input type="password" placeholder="Password" required>
             </div>
             <div class="input-group">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Confirm password">
+              <input type="password" placeholder="Confirm password" required>
             </div>
-            <button>
+            <button type="submit">
               Sign up
             </button>
+          </form>
             <p>
               <span>
                 Already have an account?
@@ -58,24 +60,34 @@
       <div class="col align-items-center flex-col sign-in">
         <div class="form-wrapper align-items-center">
           <div class="form sign-in">
+            <form>
             <div class="input-group">
               <i class='bx bxs-user'></i>
-              <input type="text" id="loginID" placeholder="Username">
+              <input type="text" id="loginID" placeholder="Username" required>
             </div>
             <div class="input-group">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" id="loginPassword" placeholder="Password">
+              <input type="password" id="loginPassword" placeholder="Password" required>
             </div>
-            <button id="loginBTN">
-              Sign in
+            <button type="submit" id="loginBTN">
+              Log in
             </button>
-            <p>
-              <b>
-                Forgot password?
-              </b>
-            </p>
-            <p>
-              <span>
+            </form>
+
+            <button id="nologin" onclick="shortcut()">Without Login</button>
+
+            <!-- <div class="changepic" onclick="toggleImg()"><p id="nologin">로그인 없이 바로 서비스 이용하기</p></div> -->
+
+              <!-- <div class="my_box"><div class="my_text" onclick="plzlogin()">로그인 없이 바로 서비스 이용하기</div>
+            <img class="my_img" src="../content/images/cryinglogo2.png" width="220px" height="253px"></div> -->
+
+            <!-- <p>
+              <a href="home.html">
+                <b id="confirmStart">로그인 없이 바로 서비스 이용하기</b>
+              </a>
+            </p> -->
+            <p id="join">
+              <span >
                 Don't have an account?
               </span>
               <b onclick="toggle()" class="pointer">
@@ -95,14 +107,8 @@
     <div class="row content-row">
       <!-- SIGN IN CONTENT -->
       <div class="col align-items-center flex-col">
-        <div class="text sign-in">
-          <h2>
-            Welcome
-          </h2>
-  
-        </div>
         <div class="img sign-in">
-    
+        <a href="login.html"><img src="./images/mainlogo.png" id="logo" z-index="8"></a>
         </div>
       </div>
       <!-- END SIGN IN CONTENT -->
@@ -112,8 +118,8 @@
         
         </div>
         <div class="text sign-up">
-          <h2>
-            Join with us
+          <h2 id="joinus">
+            Join with us!
           </h2>
   
         </div>
@@ -135,6 +141,46 @@
 	  setTimeout(() => {
 	   container.classList.add('sign-in')
 	  }, 200)
+
+  //   function plzlogin() {
+  //     var answer = confirm("다양한 혜택을 위해 로그인을 권장드립니다. 정말 로그인하지 않으시겠습니까?😭");
+  //   if(answer){
+  //       alert("AI 헤어디자이너 헤어캣을 바로 만나보세요!");
+  //       location.href="home.html";
+  //     return true;
+  //   }else{
+  //       alert("로그인 부탁드립니다😍");
+  //       location.href="login.html";
+  //     return false;
+  //   }
+  // }
+  //   function func2() {
+  //     alert("회원가입을 축하드립니다!");
+  //     location.href="login.html";
+  // }
+
+  //  function toggleImg() {
+  //     document.getElementById("logo").src = "./images/cryinglogo2.png";
+  //   }
+
+    function shortcut(seq){
+		Swal.fire({
+		  title: '정말 로그인하지 않겠습니까?😭',
+		  text: "다양한 혜택을 위해 로그인을 권장드립니다.",
+      icon : 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#d33',
+		  cancelButtonColor: '#3085d6',
+		  confirmButtonText: '바로이용',
+		  cancelButtonText: '로그인'
+		}).then((result) => {
+		  if (result.value) {
+        alert("AI 헤어디자이너 헤어캣을 바로 만나보세요!");
+        location.href="home.html";
+		  }
+		})
+	}
+
   </script>
 
 </html>
