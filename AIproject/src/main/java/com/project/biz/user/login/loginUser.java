@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RestController;
 
+// import com.project.member.MemberVo;
+
+import com.project.biz.user.userDAO;
 //import com.project.biz.user.userDAO;
 import com.project.biz.user.userVO;
+import com.project.member.MemberVo;
+
 
 
 @Controller
@@ -33,26 +38,25 @@ public class loginUser {
 	
 	@ResponseBody
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginGo(@RequestBody HashMap<String, Object> map, HttpSession session, Model model) {
+	public String loginGo(@RequestBody HashMap<String, Object> map, userDAO userDao, HttpSession session, Model model) {
 		logger.info("POST_loginpage");
 		System.out.println(map);
 		String ID = (String) map.get("userid");
 		String password = (String) map.get("pwd");
-		userVO user = null;
-		if (ID != null || password != null) {
-			user = new userVO().setID(ID).setPassword(password);
-			System.out.println(user.toString());
-		}
 
+		MemberVo vo = new MemberVo();
+		vo.setID(ID);
+		vo.setPwd(password);
+
+		MemberVo user = userDao.selectMember(vo);
 		if(user != null) {
 			session.setAttribute("user", user);
 			System.out.println("로그인");
-//			model.addAllAttributes();
-			return "home.do";
+			return "true";
 		}
 		else {
 			System.out.println("실패");
-			return "login.do";			
+			return "false";			
 		}
 	}
 

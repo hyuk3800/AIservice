@@ -1,3 +1,4 @@
+
 /* * {
     padding: 0;
     margin: 0;
@@ -151,9 +152,11 @@
     color:black;
 } */
 
+
 /* //////////////////// main //////////////////// */
 
 .maincont{
+
     position:static;
     background-color:#68beffcb;
 }
@@ -172,6 +175,7 @@
 
 .chattingBox{
     width:100%;
+
     height: 70vh;
 }
 .chatBox{
@@ -183,6 +187,7 @@
     position: absolute;
     width: 100%;
     bottom: 0;
+
     left: 52%;
     transform: translateX(-50%);
     height: 65vh;
