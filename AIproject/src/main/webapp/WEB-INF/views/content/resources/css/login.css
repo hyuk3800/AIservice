@@ -1,6 +1,67 @@
+#logo{
+    width:220px;
+    height:245px;
+    margin-top:5px;
+    margin-left:20px;
+    cursor:pointer;
+}
+
+#nologin:hover{
+    color:rgb(243, 77, 77);
+    cursor: pointer;
+}
+
+#nologin{
+    margin-top:10px;
+    background-color: lightpink;
+}
+
+/* #loginBTN{
+    background-color: orange;
+} */
+
+/* #nologin:hover{
+    color:red;
+    cursor: pointer;
+}
+
+.my_img {
+    display: none;
+    padding:20px;
+} 
+
+.my_box:hover .my_img {
+    display: inline;
+}
+
+.my_text:hover{
+    color:red;
+    cursor: pointer;
+} */
+
+/* #confirmStart:hover{
+    color:red;
+    background-image:url(../../images/cryinglogo.png)
+} */
+
+#joinus{
+    margin-top:35px;
+}
+
+#join{
+    margin-top:15px;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
 :root {
-    --primary-color: #ffa600fa;
-    --secondary-color: #ffee00fa;
+
+    --primary-color: #3caaffc4;
+    --secondary-color: #3caaffc4;
+
     --black: #000000;
     --white: #ffffff;
     --gray: #efefef;
