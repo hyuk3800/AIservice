@@ -42,7 +42,25 @@ public class singUp {
 		else {
 			System.out.println("성공 : True");
 			return "true";
-		}
+		} 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/searchID.do", method = RequestMethod.POST)
+	public String searchID(@RequestBody HashMap<String, Object> map, userDAO useDao) {
+		logger.info("POST_searchID");
+		String ID = (String) map.get("userid");
+		MemberVo vo = new MemberVo();
+		vo.setID(ID);
+		
+		int row = useDao.SearchMemberID(vo);
+		
+		if(row == 1) {
+			System.out.println("중복 : overlap");
+			return "overlap";
+		}else {
+			return null;			
+		}
+	}
+
 }
