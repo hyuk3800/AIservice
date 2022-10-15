@@ -5,14 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +27,9 @@ import com.project.member.MemberVo;
 public class ChatRoom {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	private FileService fileservice;
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String getChathome(HttpSession session) {
@@ -68,20 +75,21 @@ public class ChatRoom {
 		
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value = "/chat/uploadFile.do", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public String publ(MultipartFile uploadFile) throws Exception {
+	public String publ(@RequestParam("files") MultipartFile uploadFile, HttpServletRequest request) throws Exception {
 		logger.info("POST_File");
-		// TODO Auto-generated method stub
-		System.out.println(uploadFile);
+		fileservice.fileUpload(uploadFile);
+
+		
+//		System.out.println(uploadFile);
 		// File file1 = (File) param.get("");
 		String fileName = null;
 		
 		fileName = UUID.randomUUID().toString();
-
-		return fileName;
 		
-		
+		return "true";
 	}
 	
 	
