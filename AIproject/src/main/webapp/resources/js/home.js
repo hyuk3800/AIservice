@@ -29,7 +29,7 @@ const testFile = () => {
 	
 	reader.onload = () => {
 		document.getElementById("uploadImg").src = reader.result;
-		console.log(reader.result);
+//		console.log(reader.result);
 	}
 	
 	if(fileInfo){
@@ -163,50 +163,66 @@ const postreq = () => {
 	}
 };
 
-const postImgTest = () => {
-	console.log("클릭");
-	let fileInfo = fileInput.files[0];
-	let reader = new FileReader();
+ const postImgTest = () => {
+ 	console.log("클릭");
+ 	let fileInfo = fileInput.files[0];
+ 	let reader = new FileReader();
+ 	reader.readAsDataURL(fileInfo);
+ 	if(!fileInfo){
+ 		console.log("없음");
+ 	}
+ 	else{
+ //		reader.readAsBinaryString(fileInfo);
+ 		console.log("있는거 확인 됨");
+ 		let formData = new FormData();
+ 		formData.append('files', fileInfo);
+ //		console.log(JSON.parse(formData));
+ //		console.log(formData);
 
-	if(!fileInfo){
-		console.log("없음");
-	}
-	else{
-		reader.readAsBinaryString(fileInfo);
-		console.log("있는거 확인 됨");
-		let formData = new FormData();
-		formData.append('files', fileInfo);
-		console.log(fileInfo);
-		console.log(formData);
 
-
-		 let xhr;
-		 if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
-	         xhr = new XMLHttpRequest();
-	     } else if (window.ActiveXObject) { // IE 6 이하
-	         xhr = new ActiveXObject("Microsoft.XMLHTTP");
-	     }
-		 xhr.onreadystatechange = () => {
-		 	console.log(xhr.readyState);
-		 	if(xhr.readyState == 4){
-		 		console.log(xhr.status);
-		 		// console.log("이거");
-		 		if(xhr.status == 200){
-		 			console.log(xhr);
-		 		}
-		 	}
-		 }
+ 		 let xhr;
+ 		 if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
+ 	         xhr = new XMLHttpRequest();
+ 	     } else if (window.ActiveXObject) { // IE 6 이하
+ 	         xhr = new ActiveXObject("Microsoft.XMLHTTP");
+ 	     }
+ 		 xhr.onreadystatechange = () => {
+ 		 	console.log(xhr.readyState);
+ 		 	if(xhr.readyState == 4){
+ 		 		console.log(xhr.status);
+ 		 		// console.log("이거");
+ 		 		if(xhr.status == 200){
+ 		 			console.log(xhr);
+ 		 		}
+ 		 	}
+ 		 }
 
 		
 		
-		 xhr.open("POST", "/biz/chat/uploadFile.do", true);
-		 xhr.setRequestHeader("Content-type", "multipart\/form-data;");
+ 		 xhr.open("POST", "/biz/chat/uploadFile.do", true);
+// 		 xhr.setRequestHeader("Content-type", "multipart\/form-data;");
 		 
 		 
-		 xhr.send(fileInfo);	
-	}
+ 		 xhr.send(formData);	
+ 	}
+ };
+
+
+
+const testform = () => {
+	const testForm = document.querySelector("#testForm");
+	let fileInfo = fileInput
+	console.log(fileInfo.files[0]);
+	console.log(testForm[0].files[0]);
+	let formData1 = new FormData();
+	let formData2 = new FormData();
+	formData1.append('file', fileInfo.files[0]);
+	formData2.append('file', testForm[0].files[0]);
+	console.log("formData : ", formData1.get('file'));
+	console.log("testForm : ", formData2.get('file'));
+	console.log(JSON.stringify(formData1.get('file')));
+	console.log(JSON.stringify(formData2.get('file')));
 };
-
 
 
 getreq();
@@ -221,3 +237,4 @@ chatBtn.addEventListener('click', postreq);
 
 fileInput.addEventListener('change', testFile);
 fileBTN.addEventListener("click", postImgTest);
+//fileBTN.addEventListener("click", testform);
