@@ -78,9 +78,9 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/uploadFile.do", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public String publ(@RequestParam("files") MultipartFile uploadFile, HttpServletRequest request) throws Exception {
+	public String publ(@RequestParam("files") MultipartFile uploadFile, HttpSession session, HttpServletRequest request) throws Exception {
 		logger.info("POST_File");
-		fileservice.fileUpload(uploadFile);
+		fileservice.fileUpload(uploadFile, session);
 
 		
 //		System.out.println(uploadFile);
