@@ -21,6 +21,10 @@ public class userDAO {
 	private String SelectSql = "SELECT * FROM aiservice.member "
 							 + "WHERE id=? AND pwd=?;";
 	
+	private String SSelectSql = "SELECT * FROM aiservice.member "
+							  + "WHERE id=?;";
+	
+	
 	private String InsertSql = "INSERT INTO aiservice.member (id, username, pwd, cre_date, mod_date) " 
 							 + "VALUES (?, ?, ?, NOW(), NOW());";
 	
@@ -49,11 +53,36 @@ public class userDAO {
 		return user;
 	}
 	
+	public int SearchMemberID(MemberVo vo) {
+		 int row = 0;
+		 conn = JDBCUtill.getConn();
+			try {
+				stmt = conn.prepareStatement(SSelectSql);	
+				stmt.setString(1, vo.getID());
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					row = 1;
+					return row;
+				}
+				else {
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				JDBCUtill.close(stmt, conn);
+			}
+		 
+		 return row;
+	}
+	
 	public int InsertMember(MemberVo vo) {
-		System.out.println("insert User");
+		System.out.println("insert User");		
 		conn = JDBCUtill.getConn();
-		Encrypt enc = new Encrypt();
 		int row = 0;
+
+		
+		Encrypt enc = new Encrypt();
 		try {
 			stmt = conn.prepareStatement(InsertSql);
 			stmt.setString(1, vo.getID());

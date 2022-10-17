@@ -22,26 +22,28 @@
       <div class="col align-items-center flex-col sign-up">
         <div class="form-wrapper align-items-center">
           <div class="form sign-up">
-            <form>
-            <div class="input-group">
-              <i class='bx bxs-user'></i>
-              <input type="text" placeholder="Username" required>
-            </div>
-            <div class="input-group">
-              <i class='bx bx-mail-send'></i>
-              <input type="email" placeholder="Email" required>
-            </div>
-            <div class="input-group">
-              <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Password" required>
-            </div>
-            <div class="input-group">
-              <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Confirm password" required>
-            </div>
-            <button type="submit">
-              Sign up
-            </button>
+            <form class="formDo">
+            	<div id="singUpMSGI" class="message singUpMSG"></div>
+	            <div class="input-group">
+	              <i class='bx bxs-user'></i>
+	              <input id="singUpID" type="text" placeholder="ID" required>
+	            </div>
+	            <div class="input-group">
+	              <i class='bx bx-mail-send'></i>
+	              <input id="singUpName" type="text" placeholder="Username" required>
+	            </div>
+	            <div id="singUpMSGP" class="message singUpMSG"></div>
+	            <div class="input-group">
+	              <i class='bx bxs-lock-alt'></i>
+	              <input id="singUpPwd" type="password" placeholder="Password" required>
+	            </div>
+	            <div class="input-group">
+	              <i class='bx bxs-lock-alt'></i>
+	              <input id="singUpCPwd" type="password" placeholder="Confirm password" required>
+	            </div>
+	            <button id="SignUpBtn">
+	              Sign up
+	            </button>
           </form>
             <p>
               <span>
@@ -60,18 +62,20 @@
       <div class="col align-items-center flex-col sign-in">
         <div class="form-wrapper align-items-center">
           <div class="form sign-in">
-            <form>
-            <div class="input-group">
-              <i class='bx bxs-user'></i>
-              <input type="text" id="loginID" placeholder="Username" required>
-            </div>
-            <div class="input-group">
-              <i class='bx bxs-lock-alt'></i>
-              <input type="password" id="loginPassword" placeholder="Password" required>
-            </div>
-            <button type="submit" id="loginBTN">
-              Log in
-            </button>
+            <form class="formDo">
+            	<div id="loginMSG" class="message singUpMSG"></div>
+	            <div class="input-group">
+	              <i class='bx bxs-user'></i>
+	              <input type="text" id="loginID" placeholder="ID" required>
+	            </div>
+	            <div class="input-group">
+	              <i class='bx bxs-lock-alt'></i>
+	              <input type="password" id="loginPassword" placeholder="Password" required>
+	            </div>
+	            
+	            <button id="loginBTN">
+	              Log in
+	            </button>
             </form>
 
             <button id="nologin" onclick="shortcut()">Without Login</button>
@@ -108,7 +112,7 @@
       <!-- SIGN IN CONTENT -->
       <div class="col align-items-center flex-col">
         <div class="img sign-in">
-        <a href="login.html"><img src="./images/mainlogo.png" id="logo" z-index="8"></a>
+        <a href="login.html"><img src="resources/images/mainlogo.png" id="logo" z-index="8"></a>
         </div>
       </div>
       <!-- END SIGN IN CONTENT -->
@@ -129,215 +133,5 @@
     <!-- END CONTENT SECTION -->
   </div>
 </body>
-
-	<!-- <head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>챗봇 로그인</title>
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="resources/css/login.css">
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-	   	<script defer src="resources/js/login.js"></script>
-      
-    </head>
-	<body>
-    
-	  <div id="container" class="container">
-
-	    <!-- FORM SECTION -->
-	    <div class="row">
-	      <!-- SIGN UP -->
-	      <div class="col align-items-center flex-col sign-up">
-	        <div class="form-wrapper align-items-center">
-	          <div class="form sign-up">
-	            <div class="input-group">
-	              <i class='bx bxs-user'></i>
-	              <input type="text" placeholder="Username" id="singUpName">
-	
-	            </div>
-	            <div class="input-group">
-	              <i class='bx bx-mail-send'></i>
-	              <input type="text" placeholder="ID" id="singUpID">
-	            </div>
-	            <div class="input-group">
-	              <i class='bx bxs-lock-alt'></i>
-	              <input type="password" placeholder="Password" id="singUpPwd">
-	            </div>
-	            <div class="input-group">
-	              <i class='bx bxs-lock-alt'></i>
-	              <input type="password" placeholder="Confirm password" id="singUpCPwd">
-	            </div>
-	            <button id="SignUpBtn">
-	              Sign up
-	            </button>
-	            <p>
-	              <span>
-	                Already have an account?
-	              </span>
-	              <b onclick="toggle()" class="pointer">
-	                Sign in here
-	              </b>
-	            </p>
-	          </div>
-	        </div>
-	      
-	      </div>
-	      <!-- END SIGN UP -->
-	      <!-- SIGN IN -->
-	      <div class="col align-items-center flex-col sign-in">
-	        <div class="form-wrapper align-items-center">
-	          <div class="form sign-in">
-	            <div class="input-group">
-	              <i class='bx bxs-user'></i>
-	              <input type="text" id="loginID" placeholder="Username">
-	            </div>
-	            <div class="input-group">
-	              <i class='bx bxs-lock-alt'></i>
-	              <input type="password" id="loginPassword" placeholder="Password">
-	            </div>
-	            <div id="message" style="color : red;"></div>
-	            <button id="loginBTN">
-	              로그인
-	            </button>
-	            <p>
-	              <b onclick='location.href="home.do"' class="pointer">
-	                로그인 없이 메인 페이지로
-	              </b>
-	            </p>
-	            <p>
-	              <span>
-	                계정이 없으신가요?
-	              </span>
-	              <b onclick="toggle()" onclick="logomove()" class="pointer">
-	                회원가입
-	              </b>
-	            </p>
-	          </div>
-	        </div>
-	        <div class="form-wrapper">
-	    
-	        </div>
-	      </div>
-	      <!-- END SIGN IN -->
-	    </div>
-	    <!-- END FORM SECTION -->
-	    <!-- CONTENT SECTION -->
-	    <div class="row content-row">
-	      <!-- SIGN IN CONTENT -->
-	      <div class="col align-items-center flex-col">
-         
-	        <div class="text sign-in">
-
-	 
-	          <div>
-	          		 <a href="home.html"><img src="content/images/logo.png" alt=""></a>
-	          </div>
-	          -->
-	    
-	          	
-
-
-	          <h2><a href="home.do"><img src="" alt=""></a>
-				<br>
-				<br>
-
-	            Welcome
-              
-	          </h2>
-            
-	  
-	        </div>
-	        <div class="img sign-in">
-	    
-	        </div>
-	      </div>
-        
-	      <!-- END SIGN IN CONTENT -->
-	      <!-- SIGN UP CONTENT -->
-	      <div class="col align-items-center flex-col">
-	        <div class="img sign-up">
-	        
-	        </div>
-	        <div class="text sign-up">
-	          <h2>
-	            join with us
-	          </h2>
-	  
-	        </div>
-	      </div>
-        
-	      <!-- END SIGN UP CONTENT -->
-	    </div>
-	    <!-- END CONTENT SECTION -->
-      
-	  </div>
-
-    
-	</body>
-<!--    <script>
-    let container = document.getElementById('container')
-toggle = () => {
-container.classList.toggle('sign-in')
-container.classList.toggle('sign-up')
-}
-setTimeout(() => {
-container.classList.add('sign-in')
-}, 200)
-
-
-	<script>
-	  let container = document.getElementById('container')
-	  toggle = () => {
-	  container.classList.toggle('sign-in')
-	  container.classList.toggle('sign-up')
-	  }
-	  setTimeout(() => {
-	   container.classList.add('sign-in')
-	  }, 200)
-
-  //   function plzlogin() {
-  //     var answer = confirm("다양한 혜택을 위해 로그인을 권장드립니다. 정말 로그인하지 않으시겠습니까?😭");
-  //   if(answer){
-  //       alert("AI 헤어디자이너 헤어캣을 바로 만나보세요!");
-  //       location.href="home.html";
-  //     return true;
-  //   }else{
-  //       alert("로그인 부탁드립니다😍");
-  //       location.href="login.html";
-  //     return false;
-  //   }
-  // }
-  //   function func2() {
-  //     alert("회원가입을 축하드립니다!");
-  //     location.href="login.html";
-  // }
-
-  //  function toggleImg() {
-  //     document.getElementById("logo").src = "./images/cryinglogo2.png";
-  //   }
-
-    function shortcut(seq){
-		Swal.fire({
-		  title: '정말 로그인하지 않겠습니까?😭',
-		  text: "다양한 혜택을 위해 로그인을 권장드립니다.",
-      icon : 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#d33',
-		  cancelButtonColor: '#3085d6',
-		  confirmButtonText: '바로이용',
-		  cancelButtonText: '로그인'
-		}).then((result) => {
-		  if (result.value) {
-        alert("AI 헤어디자이너 헤어캣을 바로 만나보세요!");
-        location.href="home.html";
-		  }
-		})
-	}
-
-  </script>
-
-
 
 </html>

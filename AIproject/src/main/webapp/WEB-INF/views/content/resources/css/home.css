@@ -111,14 +111,12 @@ li{
     font-size: 17px;
     margin-top:-1px;
     margin-left:20%;
-    list-style-image: url(../images/chatroomlogo.png);
-    background: url("../images/catbubble.png") no-repeat;
+    background: url("../images/ailogo.png") no-repeat;
     padding:4px;
 }
 
 .user{
-    list-style-image: url(../images/clientbubble.png);
-    background: url("../images/clientlogo2.png") no-repeat;
+    background: url("../images/clientlogo.png") no-repeat;
     font-size: 17px;
     margin-left:75%;
     padding:5px;
