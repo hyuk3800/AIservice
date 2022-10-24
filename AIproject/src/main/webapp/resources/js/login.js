@@ -45,8 +45,8 @@ function shortcut(seq){
 		  text: "다양한 혜택을 위해 로그인을 권장드립니다.",
       icon : 'warning',
 		  showCancelButton: true,
-		  confirmButtonColor: '#d33',
-		  cancelButtonColor: '#3085d6',
+		  confirmButtonColor: '#3caaffc4',
+		  cancelButtonColor: '#ffb6c1',
 		  confirmButtonText: '바로이용',
 		  cancelButtonText: '로그인'
 		}).then((result) => {
