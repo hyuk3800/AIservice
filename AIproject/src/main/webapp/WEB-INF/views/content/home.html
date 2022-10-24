@@ -19,28 +19,16 @@
    <script defer src="resources/js/home.js"></script>
 </head>
 
-<script type="text/javascript">
-
-    function find(seq){
-    swal("검색할 내용을 입력해주세요 :", {
-    content: "input",
-    })
-    .then((value) => {
-    swal(`You typed: ${value}`);
-    });
-}
-</script>
-
 <body>
 
     <header class="container headcont">
        	<div class="top">
        		<div class="center">
 	            <a href="login.do">
-	            <img src="resources/images/moveback.png" id="moveback" width="32" height="35"></a>
+	            <img src="resources/images/gologin.png" id="gologin" width="32" height="35"></a>
 	            <a href="home.html">
 	            <img src="resources/images/logofont.png" id="title" width="250" height="60"></a>
-	            <img src="resources/images/search.png" id="search" width="40" height="40" onclick="find()">
+	            <a href="mypage.html"><img src="resources/images/gomypage.png" id="gomypage" width="36" height="36" onclick="find()"></a>
        		</div>
        	</div>
     </header>
