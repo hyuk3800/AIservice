@@ -31,10 +31,12 @@
     <header class="container headcont">
        	<div class="top">
        		<div class="center">
-	            <a href="login.do">
-	            <img src="resources/images/moveback.png" id="moveback" width="32" height="35"></a>
-	            <a href="home.html">
-	            <img src="resources/images/logofont.png" id="title" width="250" height="60"></a>
+	            <a id="loginout" href="login.do">
+	            	<img src="resources/images/moveback.png" id="moveback" width="32" height="35">
+	            </a>
+	            <a href="home.do">
+	            	<img src="resources/images/logofont.png" id="title" width="250" height="60">
+	           	</a>
 	            <img src="resources/images/search.png" id="search" width="40" height="40" onclick="find()">
        		</div>
        	</div>
@@ -124,7 +126,7 @@
 	        <form id="postChat" class="row">
         		<div id="testBtn">+</div>
                 <input type="text" id="chatting" class="chatpostB">
-                <button type="submit" id="chatBtn" class="chatpostB">Send</button>
+                <button type="button" id="chatBtn" class="chatpostB">Send</button>
 	        </form> 
     </main>
     <div id="testPop">
