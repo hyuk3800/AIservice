@@ -33,10 +33,12 @@ public class ChatRoom {
 	private FileService fileservice;
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String getChathome(HttpSession session) {
+	public String getChathome(HttpSession session, chatDAO chatDAO) {
 		logger.info("GET_ChatRoomPage");
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		if(user != null) {
+			int chatRoom = chatDAO.searchChatRoom((MemberVo) session.getAttribute("user"));
+			session.setAttribute("chatroom", chatRoom);
 			System.out.println(user.toString());
 		}
 
@@ -50,9 +52,8 @@ public class ChatRoom {
 		testJson json = new testJson();
 		json.setWeb("home");
 		if(session.getAttribute("user") != null) {
-			int chatRoom = chatDAO.searchChatRoom((MemberVo) session.getAttribute("user"));
+			int chatRoom = (int) session.getAttribute("chatroom");
 			System.out.println(chatRoom);
-			session.setAttribute("chatroom", chatRoom);
 			json.setChatRoom(chatRoom);
 			MemberVo user = (MemberVo) session.getAttribute("user");
 			System.out.println(user.toString());
