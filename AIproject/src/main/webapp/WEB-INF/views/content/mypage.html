@@ -6,14 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mypage</title>
-<link rel="stylesheet" href="../../../resources/css/mypage.css">
-<link rel="stylesheet" href="css/animations.css">
-<link href="css/hover.css" rel="stylesheet" media="all">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../resources/css/mypage.css">
 </head>
 
 <script>
@@ -75,6 +71,28 @@
 		})
 };
 
+// autoslide
+
+$(function(){
+$('#sc').slick({
+slide: 'div',       
+infinite : true,    
+slidesToShow : 2,        
+slidesToScroll : 1,        
+speed : 100,     
+arrows : true,        
+dots : true,        
+autoplay : true,           
+autoplaySpeed : 1200,         
+pauseOnHover : true,        
+vertical : false,      
+prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
+nextArrow : "<button type='button' class='slick-next'>Next</button>",      
+dotsClass : "slick-dots",     
+draggable : true,    
+});
+})
+
 </script>
 
 
@@ -82,8 +100,8 @@
 <div class="slideDown">
     <nav id="nav">
         <ul class="container">
-            <li><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
-            <li><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
+            <li class="home"><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
+            <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
         </ul>
     </nav>
 
@@ -95,8 +113,9 @@
                 </div>
                 <div class="col-8 col-7-large col-12-medium">
                     <header>
-                        <img src="./images/mypage_username.png" id="username" width="220" height="45">
-                        <img src="./images/mypage_changename.png" id="changename" width="20" height="20">
+                        <input type="text" id="userID" placeholder="ID" required>
+                        <!-- <img src="./images/mypage_username.png" id="username" width="220" height="45"> -->
+                        <img src="./images/mypage_changename.png" id="changename"></div>
                     </header>
                 </div>
             </div>
@@ -114,9 +133,20 @@
                                 <div class="hvr-pulse-shrink">
                                 <a href="mygallery.html"><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></a>
                                 <a href="mygallery.html"><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></a>
-                                <p>고객님이 등록하신 헤어스타일을 확인해보세요!</p>
+                                <p id="goseeuh">고객님이 등록하신 헤어스타일을 확인해보세요!</p>
                             </div>
-                                    <div class="slider">
+
+                            <div class="autoslider" id="as">
+                                <div class="slidercont" id="sc">
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/다운펌.png" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/애쉬블루.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
+                                </div>
+                            </div>
+                                    <!-- <div class="slider">
                                         <input type="radio" name="slide" id="slide1" checked="">
                                         <input type="radio" name="slide" id="slide2">
                                         <input type="radio" name="slide" id="slide3">
@@ -133,7 +163,7 @@
                                             <label for="slide3">&nbsp;</label>
                                             <label for="slide4">&nbsp;</label>
                                         </div>
-                                    </div>
+                                    </div> -->
                             </div>
                         </section>
                     </div>

@@ -26,6 +26,9 @@ $('#animatedElement').click(function() {
 $(this).addClass("slideUp");
 });
 
+$('#animatedElement').click(function() {
+    $(this).addClass("pulse");
+});
 
 // lightbox
 lightbox.option({
@@ -38,44 +41,44 @@ lightbox.option({
 
 //hairgallery
 
-$(document).ready(function (e){
-$(".package").on("click","img",function(){
-    var path = $(this).attr('src')
-    showImage(path);
-});
+// $(document).ready(function (e){
+// $(".package").on("click","img",function(){
+//     var path = $(this).attr('src')
+//     showImage(path);
+// });
 
-function showImage(fileCallPath){
+// function showImage(fileCallPath){
     
-    $(".bigPictureWrapper").css("display","flex").show();
+//     $(".bigPictureWrapper").css("display","flex").show();
     
-    $(".bigPicture")
-    .html("<img src='"+fileCallPath+"' >")
-    .animate({width:'100%', height: '100%'}, 700);
+//     $(".bigPicture")
+//     .html("<img src='"+fileCallPath+"' >")
+//     .animate({width:'100%', height: '100%'}, 700);
     
-    }
+//     }
     
-$(".bigPictureWrapper").on("click", function(e){
-    $(".bigPicture").animate({width:'0%', height: '0%'}, 500);
-    setTimeout(function(){
-        $('.bigPictureWrapper').hide();
-    }, 500);
-    });
-});
+// $(".bigPictureWrapper").on("click", function(e){
+//     $(".bigPicture").animate({width:'0%', height: '0%'}, 500);
+//     setTimeout(function(){
+//         $('.bigPictureWrapper').hide();
+//     }, 500);
+//     });
+// });
 
-function logout(seq){
-Swal.fire({
-    title: '정말로 로그아웃 하시겠습니까?',
-    showCancelButton: true,
-    confirmButtonColor: '#3caaffc4',
-    cancelButtonColor: '#ffb6c1',
-    confirmButtonText: '로그아웃 하기',
-    cancelButtonText: '취소'
-}).then((result) => {
-    if (result.value) {
-location.href="login.html";
-    }
-})
-};
+// function logout(seq){
+// Swal.fire({
+//     title: '정말로 로그아웃 하시겠습니까?',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3caaffc4',
+//     cancelButtonColor: '#ffb6c1',
+//     confirmButtonText: '로그아웃 하기',
+//     cancelButtonText: '취소'
+// }).then((result) => {
+//     if (result.value) {
+// location.href="login.html";
+//     }
+// })
+// };
 
 </script>
 
@@ -97,7 +100,7 @@ location.href="login.html";
                 </div>
                 <div class="col-8 col-7-large col-12-medium">
                     <header>
-                        <img src="./images/mypage_username.png" id="username" width="220" height="45">
+                        <input type="text" id="userID" placeholder="ID" required>
                     </header>
                 </div>
             </div>
@@ -119,32 +122,29 @@ location.href="login.html";
     <div class='bigPictureWrapper'>
 		<div class='bigPicture'></div>
 	</div>
-	<img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;">
-	<img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
-    <img src="./images/그레이염색.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
-    <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
-    <img src="./images/그레이염색.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
-    <img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
-	<img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
-    <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;">
-    <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
-    <img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
-	<img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
-	<img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
+    <!-- <div class="test">
+        <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;">
+        <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/그레이염색.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
+        <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/그레이염색.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
+        <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;">
+        <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/히피펌.jpg" style="width: 100px; height: 100px;"> 
+        <img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
+        <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
+    </div> -->
 
-
-    <!-- <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
     <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
     <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
     <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
@@ -161,7 +161,11 @@ location.href="login.html";
     <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
     <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
     <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a> -->
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
 
                         </div>
                         </section>
