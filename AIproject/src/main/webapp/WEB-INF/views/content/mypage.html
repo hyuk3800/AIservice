@@ -1,3 +1,4 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,14 +7,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mypage</title>
-<link rel="stylesheet" href="../../../resources/css/mypage.css">
-<link rel="stylesheet" href="css/animations.css">
-<link href="css/hover.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="resources/css/mypage.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script defer type="text/javascript" src="resources/js/mypage.js"></script>
 </head>
 
 <script>
@@ -82,7 +82,7 @@
 <div class="slideDown">
     <nav id="nav">
         <ul class="container">
-            <li><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
+            <li><a href="home.do"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
             <li><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
         </ul>
     </nav>
@@ -112,8 +112,8 @@
                         <section class="box style1">
                             <div class="slidedisplay" id="mybox">
                                 <div class="hvr-pulse-shrink">
-                                <a href="mygallery.html"><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></a>
-                                <a href="mygallery.html"><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></a>
+                                <a href="mygallery.do"><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></a>
+                                <a href="mygallery.do"><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></a>
                                 <p>고객님이 등록하신 헤어스타일을 확인해보세요!</p>
                             </div>
                                     <div class="slider">
