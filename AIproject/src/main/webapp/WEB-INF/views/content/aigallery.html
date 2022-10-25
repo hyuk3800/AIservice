@@ -80,6 +80,39 @@ $(".modal_content").click(function(){
 
 });
 
+//모달 목록 (Modal List)
+var recentModalList = [];
+
+$(document).ready(function () {
+    //Modal on Modal : jquery-1.9.1.js:3257 Uncaught RangeError: Maximum call stack size exceeded.
+    $.fn.modal.Constructor.prototype.enforceFocus = function () { };
+
+    //모달이 뜰 때 객체를 리스트에 추가 (Add modal to list)
+    $('.modal').on('shown.bs.modal', function (e) {
+        recentModalList.push(e.target);
+    });
+
+    //모달이 닫힐 때 객체를 리스트에서 삭제. (Remove modal from list)
+    $('.modal').on('hide.bs.modal', function (e) {
+        customModalClosed(e);
+        console.log(recentModalList.length);
+    });
+});
+
+var customModalClosed = function (e) {
+    //나를 지운다.(Remove me in list)
+    for (var i = recentModalList.length - 1; i >= 0; i--) {
+        if (recentModalList[i] == e.target) {
+            recentModalList.splice(i, 1);
+        }
+    }
+
+    //이전 모달이 있으면 포커싱.(Focus to before modal)
+    if (recentModalList.length > 0) {
+        recentModalList[recentModalList.length - 1].focus();
+    }
+};
+
 // image download
 var a = document.createElement('a');
 a.href = 이미지주소;
@@ -135,8 +168,10 @@ document.body.removeChild(a);
                                     <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35">
                                     <img src="./images/haircatpick.png" id="haircatpick" width="248" height="48">
                                     <p id="note2">AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
+                                    <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button>
                                 </div>
                                     <img src="./images/핑크염색.jpg" width="300" height="320">
+                                    
                                 <div class="airec">
                                     <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
                                     <div class="textbox">😻<b><span style="color:rgb(157, 0, 255)">냥냥냥~!</span><br/>(WOW!<br/>정말 트렌디한데요?)</b></div>
