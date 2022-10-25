@@ -10,6 +10,26 @@ const uploadfilter = document.querySelector(".filter");
 const fileInput = document.querySelector("#fileInput");
 const fileBTN = document.querySelector("#fileBTN");
 
+const headcont = document.querySelector(".headcont");
+
+const loginout = document.querySelector("#loginout");
+
+
+
+const nyanya = [
+	"냥냥~",
+	"냥냥냐",
+	"냐냐~냥",
+	"냥냥냐~냥",
+	"냐~",
+	"냥",
+	"냐냐",
+	"야옹",
+	"냐냐냥",
+	"야옹야옹",
+	"냐앙"
+]
+
 const entbtnkeyup = (e) => {
 	if(e.keyCode === 13){
 		e.preventDefault();
@@ -55,6 +75,9 @@ const postBtnOn = () => {
 const testuploadButton = () => {
 	console.log("확인");
 	testPop.classList.toggle("on");
+	document.getElementById("uploadImg").src = "";
+	fileInput.value = "";
+	
 };
 
 const makeingUser = (chat) => {
@@ -77,7 +100,30 @@ const makeingUser = (chat) => {
 	scrollHeight();
 };
 
+const makeingUserFile = (fileName) => {
+	const userDiv = document.createElement("div");
+	const user_icon = document.createElement("div");
+	const userIcon = document.createElement("div");
+	const usertextbox = document.createElement("div");
+	const userImg = document.createElement("img")
+	userDiv.className = "chat ch2";
+	user_icon.className = "icon";
+	userIcon.className = "user icon";
+	usertextbox.className = "textbox";
+	userImg.src = "resources/uploadImg/" + fileName;
+	usertextbox.appendChild(userImg);
+	
+	user_icon.appendChild(userIcon);
+	userDiv.appendChild(user_icon);
+	userDiv.appendChild(usertextbox);
+	
+	chbox.appendChild(userDiv);
+
+};
+
+
 const makingAi = (chat) => {
+	const random = Math.round(Math.random()*10);
 	const AiDiv = document.createElement("div");
 	const icon = document.createElement("div");
 	const aiIcon = document.createElement("div");
@@ -87,7 +133,7 @@ const makingAi = (chat) => {
 	aiIcon.className = "ai icon";
 	textbox.className = "textbox";
 	
-	textbox.innerText = chat;
+	textbox.innerText = nyanya[random] + "(" + chat + ")";
 	
 	icon.appendChild(aiIcon);
 	AiDiv.appendChild(icon);
@@ -112,7 +158,36 @@ const getreq = () => {
 				chatinput.value = "";
 				let data = JSON.parse(xhr.responseText);
 				console.log(data);
-				//console.log(xhr);
+				
+				if(data['user'] != null){
+					headcont.dataset.chatroom = data['chatRoom'];
+					loginout.href="logout.do";
+					
+					if(data['chatData'] != null){
+						for (let i=0; i < data['chatData'].length; i++){
+							let chatRow = data['chatData'][i];
+							if(chatRow['chatter'] == 'AI'){
+								console.log("이건 AI", chatRow)
+								if(chatRow['type']==0){
+									makingAi(chatRow['chatData']);								
+								}
+							}
+							else{
+								console.log("이건 User", chatRow)
+								if(chatRow['type'] == 0){
+									makeingUser(chatRow['chatData']);								
+								}
+								else if (chatRow['type'] == 1){
+									makeingUserFile(chatRow['chatData']);
+								}
+							}
+						}					
+					}					
+				}
+				else{
+					headcont.dataset.chatroom = null;
+				}
+				scrollHeight();
 			}
 		}
 	}
@@ -121,10 +196,13 @@ const getreq = () => {
 
 
 	xhr.send();	
+	scrollHeight();
 }
 
 const postreq = () => {
 	console.log("클릭");
+	
+	const roomnum = headcont.dataset.chatroom;
 	if(chatinput.value == ""){
 		
 	}
@@ -136,13 +214,14 @@ const postreq = () => {
 	    } else if (window.ActiveXObject) { // IE 6 이하
 	        xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	    }
+		
 		xhr.onreadystatechange = function(){
 			console.log(xhr.readyState);
 			if(xhr.readyState == 4){
 				console.log(xhr.status);
 				// console.log("이거");
 				if(xhr.status == 200){
-					chatinput.value = "";
+					
 					postBtnOff()
 					console.log(xhr);
 					makingAi(xhr.response);
@@ -156,24 +235,27 @@ const postreq = () => {
 		xhr.open("POST", "/biz/chat/chatting.do", true);
 		xhr.setRequestHeader("Content-type", "application/json");
 		let chatting = {
-			chat : chat
+			chat : chat,
+			chatroom : roomnum
 		};
-	
+		
 		xhr.send(JSON.stringify(chatting));	
+		chatinput.value = "";
 	}
+	chatinput.focus();
 };
 
  const postImgTest = () => {
- 	console.log("클릭");
+// 	console.log("클릭");
  	let fileInfo = fileInput.files[0];
- 	let reader = new FileReader();
- 	reader.readAsDataURL(fileInfo);
+// 	let reader = new FileReader();
+// 	reader.readAsDataURL(fileInfo);
  	if(!fileInfo){
  		console.log("없음");
  	}
  	else{
  //		reader.readAsBinaryString(fileInfo);
- 		console.log("있는거 확인 됨");
+// 		console.log("있는거 확인 됨");
  		let formData = new FormData();
  		formData.append('files', fileInfo);
  //		console.log(JSON.parse(formData));
@@ -193,6 +275,8 @@ const postreq = () => {
  		 		// console.log("이거");
  		 		if(xhr.status == 200){
  		 			console.log(xhr);
+ 		 			makeingUserFile(xhr.responseText);
+ 		 			scrollHeight();
  		 		}
  		 	}
  		 }
@@ -204,37 +288,25 @@ const postreq = () => {
 		 
 		 
  		 xhr.send(formData);	
+ 		 
+ 	 	 testuploadButton();
  	}
+
  };
 
-
-
-const testform = () => {
-	const testForm = document.querySelector("#testForm");
-	let fileInfo = fileInput
-	console.log(fileInfo.files[0]);
-	console.log(testForm[0].files[0]);
-	let formData1 = new FormData();
-	let formData2 = new FormData();
-	formData1.append('file', fileInfo.files[0]);
-	formData2.append('file', testForm[0].files[0]);
-	console.log("formData : ", formData1.get('file'));
-	console.log("testForm : ", formData2.get('file'));
-	console.log(JSON.stringify(formData1.get('file')));
-	console.log(JSON.stringify(formData2.get('file')));
-};
 
 
 getreq();
 scrollHeight();
 
-postChat.addEventListener('submit', handleToDoSubmit);
+chatinput.addEventListener('focus', scrollHeight);
 chatinput.addEventListener('keydown', postBtnOn);
 testBtn.addEventListener('click', testuploadButton);
 uploadfilter.addEventListener('click', testuploadButton);
 chatinput.addEventListener('keyup', entbtnkeyup);
+
+postChat.addEventListener('submit', handleToDoSubmit);
 chatBtn.addEventListener('click', postreq);
 
 fileInput.addEventListener('change', testFile);
 fileBTN.addEventListener("click", postImgTest);
-//fileBTN.addEventListener("click", testform);

@@ -2,6 +2,7 @@ package com.project.biz.user.chatroom;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -34,9 +35,8 @@ public class ChatRoom {
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String getChathome(HttpSession session) {
 		logger.info("GET_ChatRoomPage");
-
-		if(session.getAttribute("user") != null) {
-			MemberVo user = (MemberVo) session.getAttribute("user");
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		if(user != null) {
 			System.out.println(user.toString());
 		}
 
@@ -46,30 +46,70 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/json.do", method = RequestMethod.GET)
-	public testJson testGetJson(HttpSession session) {
+	public testJson testGetJson(HttpSession session, chatDAO chatDAO) {
 		testJson json = new testJson();
 		json.setWeb("home");
 		if(session.getAttribute("user") != null) {
+			int chatRoom = chatDAO.searchChatRoom((MemberVo) session.getAttribute("user"));
+			System.out.println(chatRoom);
+			session.setAttribute("chatroom", chatRoom);
+			json.setChatRoom(chatRoom);
 			MemberVo user = (MemberVo) session.getAttribute("user");
 			System.out.println(user.toString());
 			json.setUser(user);
+			
+			List<chatVO> chatList = chatDAO.searchAllChat(json);
+			json.setChatData(chatList);
 		}
+		
+		
 		return json;
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/chatting.do", method = RequestMethod.POST)
-	public String chattingPost(@RequestBody HashMap<String, Object> map, HttpSession session) {
+	public String chattingPost(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDAO) {
 		logger.info("POST_Chatting");
 		System.out.println(map);
 		String userChat = (String) map.get("chat");
 		System.out.println(userChat);
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		if(user != null) {
-			return "hi im Ai user";		
+			int chatRoom = (int) session.getAttribute("chatroom");
+			chatVO vo = new chatVO()
+							.setChatter(user.getID())
+							.setChatroomnum(chatRoom)
+							.setChatData(userChat)
+							.setType(0);
+			int row = chatDAO.insertUserChat(vo);
+			System.out.println(row + " 행에 추가됨");
+			
+			String ai = "hi im Ai " + user.getID();
+			
+			chatVO aiVo = new chatVO()
+							.setChatData(ai)
+							.setChatroomnum(chatRoom)
+							.setType(0);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			
+			int airow = chatDAO.insertChatterChat(aiVo);
+			
+			
+			return ai;		
 		}
 		else {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 			return "hi im Ai null";
 		}
 		
@@ -78,18 +118,28 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/uploadFile.do", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public String publ(@RequestParam("files") MultipartFile uploadFile, HttpSession session, HttpServletRequest request) throws Exception {
+	public String publ(@RequestParam("files") MultipartFile uploadFile, HttpSession session, HttpServletRequest request, chatDAO chatDAO) throws Exception {
 		logger.info("POST_File");
-		fileservice.fileUpload(uploadFile, session);
-
+		String fileName = fileservice.fileUpload(uploadFile, session);
 		
-//		System.out.println(uploadFile);
-		// File file1 = (File) param.get("");
-		String fileName = null;
+		System.out.println(fileName);
 		
-		fileName = UUID.randomUUID().toString();
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		if(user != null) {
+			System.out.println("userTrue");
+			int chatroom = (int) session.getAttribute("chatroom");
+			String userID = user.getID();
+			
+			chatVO vo = new chatVO()
+							.setChatter(userID)
+							.setChatData(fileName)
+							.setChatroomnum(chatroom)
+							.setType(1);
+			int row = chatDAO.insertUserChat(vo);
+			System.out.println(row+" 행에 추가");
+		}
 		
-		return "true";
+		return fileName;
 	}
 	
 	
