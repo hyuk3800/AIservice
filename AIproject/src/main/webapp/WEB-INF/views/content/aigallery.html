@@ -80,6 +80,13 @@ $(".modal_content").click(function(){
 
 });
 
+// image download
+var a = document.createElement('a');
+a.href = 이미지주소;
+a.download = 다운로드파일이름;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
 </script>
 
 
@@ -87,8 +94,8 @@ $(".modal_content").click(function(){
     <div>
         <nav id="nav">
             <ul class="container">
-                <li><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
-                <li><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
+                <li class="home"><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
+                <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
             </ul>
         </nav>
 
@@ -101,7 +108,7 @@ $(".modal_content").click(function(){
                     </div>
                     <div class="col-8 col-7-large col-12-medium">
                         <header>
-                            <img src="./images/mypage_username.png" id="username" width="220" height="45">
+                            <input type="text" id="userID" placeholder="ID" required>
                         </header>
                     </div>
                 </div>
@@ -129,23 +136,25 @@ $(".modal_content").click(function(){
                                     <img src="./images/haircatpick.png" id="haircatpick" width="248" height="48">
                                     <p id="note2">AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
                                 </div>
-                                    <img src="./images/핑크염색.jpg" id="pinkhair" width="270" height="320">
+                                    <img src="./images/핑크염색.jpg" width="300" height="320">
                                 <div class="airec">
-                                    <img src="./images/reviewcat.png" id="reviewcat" width="120" height="130">
+                                    <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
                                     <div class="textbox">😻<b><span style="color:rgb(157, 0, 255)">냥냥냥~!</span><br/>(WOW!<br/>정말 트렌디한데요?)</b></div>
                                 </div>
+
                                 </div>
                             </div>
+                                <img src="./images/clearcat.png" id="cryinglogo" width="91" height="105">
+                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
+                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
                                 <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
-                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
-                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
                             </div>
                         </div>
                         </section>
 
                         <div class="scroll-moveBox flex flex-br-c">
-        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/backwards.png" id="backwards" width="27" height="27"></a></button>
-        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mygallery.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/userlogo.png" id="userlogo" width="27" height="27">MY GALLERY</a></button>
+        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/backwards.png" id="backwards" width="27" height="27" ></a></button>
+        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mygallery.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/userlogo.png" id="userlogo" width="27" height="27" >MY GALLERY</a></button>
         <div class="dropup">
             <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27" height="27"></button>
             <div class="dropup-content">

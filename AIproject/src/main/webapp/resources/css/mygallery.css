@@ -88,6 +88,16 @@ p{
     margin-top:3px;
 }
 
+#userID{
+	width: 200px;
+	height:33px;
+	border-radius:5px;
+	border:none;
+	text-align: center;
+	box-shadow:inset 0px 0px 0px 1px rgb(0 0 0 / 11%), 0px 2px 3px 0px rgb(0 0 0 / 5%);
+	margin-bottom:10px;
+}
+
 /* gallery */
 
 #context{
@@ -373,6 +383,7 @@ body.lb-disable-scrolling {
 }
 
 .w-btn-blue-outline {
+	background-color: #ffffff;
     border: 3px solid #ffffff;
     color: #6e6e6e;
 }
@@ -497,6 +508,47 @@ background-color: rgb(223, 190, 251);
 	100% {
 		transform: translateY(0%);
 	}	
+}
+
+.pulse{
+	animation-name: pulse;
+	-webkit-animation-name: pulse;	
+
+	animation-duration: 1.5s;	
+	-webkit-animation-duration: 1.5s;
+
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.9);
+		opacity: 0.7;		
+	}
+	50% {
+		transform: scale(1);
+		opacity: 1;	
+	}	
+	100% {
+		transform: scale(0.9);
+		opacity: 0.7;	
+	}			
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale(0.95);
+		opacity: 0.7;		
+	}
+	50% {
+		-webkit-transform: scale(1);
+		opacity: 1;	
+	}	
+	100% {
+		-webkit-transform: scale(0.95);
+		opacity: 0.7;	
+	}			
 }
 
 /* hover */
