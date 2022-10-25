@@ -19,7 +19,7 @@ public class FileService {
 	
 	
 	
-	public void fileUpload(MultipartFile multipartFile, HttpSession session) {
+	public String fileUpload(MultipartFile multipartFile, HttpSession session) {
 
 		String uploadDir = session.getServletContext().getRealPath("resources/uploadImg");
 		
@@ -40,7 +40,16 @@ public class FileService {
 			System.out.println("True");
 		}
 		
-		Path copyOfLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		String fileName = multipartFile.getOriginalFilename();
+		fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+		File file = new File(uploadDir+"/"+fileName);
+		if(file.exists()) {
+			String num_16 = Integer.toHexString((int) System.currentTimeMillis());
+			fileName = num_16 + fileName;
+		}
+
+		
+		Path copyOfLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(fileName));
 		
 		try {
 			Files.copy(multipartFile.getInputStream(), copyOfLocation, StandardCopyOption.REPLACE_EXISTING);
@@ -48,6 +57,6 @@ public class FileService {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		return fileName;
 	}
 }
