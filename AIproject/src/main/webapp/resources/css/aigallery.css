@@ -145,6 +145,19 @@ p{
 	margin-top:2px;
 }
 
+#downbtn{
+    margin-left: 59%;
+    background-color:#fff;
+    height:35px;
+    border-radius:10px;
+    border: none;
+}
+
+#download{
+    vertical-align: middle;
+    margin-right:4px;
+}
+
 #aibox{
     text-align: center;
 }
@@ -200,6 +213,7 @@ p{
 .airec{
     display: flex;
     align-items: center;
+    margin-top: -5%;
 }
 
 .textbox::before {
