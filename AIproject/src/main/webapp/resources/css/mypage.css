@@ -124,6 +124,7 @@ body {
     height:33vh;
     margin-top:15px;
     box-shadow:inset 1px 0px 1px 1px rgb(0 0 0 / 15%), 0px 2px 3px 0px rgb(0 0 0 / 10%);
+	min-height: 230px;
 }
 
 #ug{
@@ -262,11 +263,11 @@ p{
 }
 .slick-prev:before
 {
-    content: '←';
+    content: '\2190';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '←';
+    content: '\2190';
 }
 
 .slick-next
@@ -280,11 +281,11 @@ p{
 }
 .slick-next:before
 {
-    content: '→';
+    content: '\2192';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '→';
+    content: '\2192';
 }
 
 /* Dots */
@@ -296,7 +297,6 @@ p{
 .slick-dots
 {
     position: absolute;
-    bottom: -25px;
 
     display: block;
 
@@ -362,7 +362,7 @@ p{
     width: 20px;
     height: 20px;
 
-    content: '●';
+    content: '\25CF';
     text-align: center;
 
     opacity: .25;
@@ -467,6 +467,7 @@ p{
 }
 .slick-slide img
 {
+	margin: 0 auto;
 	border-radius: 15px;
 	border:1px solid rgba(156, 147, 147, 0.273);
     display: block;
@@ -1274,4 +1275,21 @@ ul.imgs li img{
 	-webkit-animation-timing-function: ease-out;
 	animation-timing-function: ease-out;
   }
+  
+  #nomygallery{
+  	display: none;
+  }
+  
+  #nomygallery.on{
+  	display: block;
+  }
+  
+  #addtomygal{
+  	border: none;
+  	outline: 1px solid #bfbfbf;
+  }
+ .gomygalleryA{
+  	color: #000;
+  	text-decoration: none;
+ }
   

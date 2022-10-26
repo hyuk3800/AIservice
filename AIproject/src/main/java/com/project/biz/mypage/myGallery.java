@@ -21,7 +21,7 @@ public class myGallery {
 	
 	@RequestMapping("/mygallery.do")
 	public String getMyGallery(HttpSession session) {
-		
+		logger.info("get_mygallery_page");
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		if(user != null) {		
 			return "mygallery";
@@ -35,7 +35,7 @@ public class myGallery {
 	@ResponseBody
 	@RequestMapping("/mygallery/json.do")
 	public testJson getMyGalleryJson(HttpSession session, galleryDAO galleryDAO) {
-		logger.info("GET_myGallery");
+		logger.info("GET_myGallery_json");
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		List<chatVO> chatList = null;
 		if (user != null) {
