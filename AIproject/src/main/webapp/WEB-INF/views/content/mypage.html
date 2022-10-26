@@ -40,6 +40,24 @@
 	});
 
     // alert
+
+    function addmypic(seq){
+		Swal.fire({
+		  title: '📚MY GALLERY에 등록된 사진이 없습니다',
+		  text: "AI 챗봇 헤어캣😺을 통해 내 갤러리에 사진을 등록해보세요!",
+          icon : 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3caaffc4',
+		  cancelButtonColor: '#ffb6c1',
+		  confirmButtonText: '사진 등록하기',
+		  cancelButtonText: '취소'
+		}).then((result) => {
+		  if (result.value) {
+        location.href="home.html";
+		  }
+		})
+};
+
     function addaipic(seq){
 		Swal.fire({
 		  title: '😺AI 헤어캣이 유사한 헤어를 추천해줍니다!',
@@ -92,7 +110,6 @@ dotsClass : "slick-dots",
 draggable : true,    
 });
 })
-
 </script>
 
 
@@ -115,7 +132,7 @@ draggable : true,
                     <header>
                         <input type="text" id="userID" placeholder="ID" required>
                         <!-- <img src="./images/mypage_username.png" id="username" width="220" height="45"> -->
-                        <img src="./images/mypage_changename.png" id="changename"></div>
+                        <img src="./images/mypage_changename.png" class="change" id="changename"></div>
                     </header>
                 </div>
             </div>
@@ -136,7 +153,11 @@ draggable : true,
                                 <p id="goseeuh">고객님이 등록하신 헤어스타일을 확인해보세요!</p>
                             </div>
 
-                            <div class="autoslider" id="as">
+                            <div class="noaipic" id="crycat">
+                                <a href="home.html"><button id="addtomygal">+</button></a>
+                                <div><button class="w-btn-outline2 w-btn-blue-outline2" type="button" onclick="addmypic()">GO ADD HAIR!</button>
+                                </div>
+                            <!-- <div class="autoslider" id="as">
                                 <div class="slidercont" id="sc">
                                   <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
                                   <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
@@ -145,7 +166,7 @@ draggable : true,
                                   <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
                                   <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
                                 </div>
-                            </div>
+                            </div> -->
                                     <!-- <div class="slider">
                                         <input type="radio" name="slide" id="slide1" checked="">
                                         <input type="radio" name="slide" id="slide2">
