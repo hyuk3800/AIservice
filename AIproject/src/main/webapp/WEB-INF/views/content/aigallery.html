@@ -1,3 +1,4 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,7 +18,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/> -->
-<link rel="stylesheet" href="../../../resources/css/aigallery.css">
+<link rel="stylesheet" href="resources/css/aigallery.css">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css"/> -->
 </head>
 
@@ -66,7 +67,7 @@ Swal.fire({
     cancelButtonText: '취소'
 }).then((result) => {
     if (result.value) {
-location.href="login.html";
+location.href="login.do";
     }
 })
 };
