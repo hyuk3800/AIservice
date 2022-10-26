@@ -8,105 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mypage</title>
 
+<script defer src="resources/js/startmypage.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <link rel="stylesheet" href="resources/css/mypage.css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script defer type="text/javascript" src="resources/js/mypage.js"></script>
-
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<link rel="stylesheet" href="../../../resources/css/mypage.css">
--->
-
+<script defer src="resources/js/mypage.js"></script>
 </head>
-
-<script>
-
-    // Animation
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideUp");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideDown");
-	});
-
-	$('#animatedElement').click(function() {
-		$(this).addClass("slideLeft");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideRight");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("pullUp");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideExpandUp");
-	});
-
-    // alert
-    function addaipic(seq){
-		Swal.fire({
-		  title: '😺AI 헤어캣이 유사한 헤어를 추천해줍니다!',
-		  text: "챗봇을 통해 내 갤러리에 사진 3장 이상을 등록해보세요!",
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '사진 등록하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="home.html";
-		  }
-		})
-};
-
-    function logout(seq){
-		Swal.fire({
-		  title: '정말로 로그아웃 하시겠습니까?',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '로그아웃 하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="login.html";
-		  }
-		})
-};
-
-// autoslide
-
-$(function(){
-$('#sc').slick({
-slide: 'div',       
-infinite : true,    
-slidesToShow : 2,        
-slidesToScroll : 1,        
-speed : 100,     
-arrows : true,        
-dots : true,        
-autoplay : true,           
-autoplaySpeed : 1200,         
-pauseOnHover : true,        
-vertical : false,      
-prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
-nextArrow : "<button type='button' class='slick-next'>Next</button>",      
-dotsClass : "slick-dots",     
-draggable : true,    
-});
-})
-
-</script>
 
 
 <body>
@@ -152,12 +61,14 @@ draggable : true,
 
                             <div class="autoslider" id="as">
                                 <div class="slidercont" id="sc">
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/다운펌.png" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/애쉬블루.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
+                                  <!-- 
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/다운펌.png" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/애쉬블루.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
+                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
+                                    -->
                                 </div>
                             </div>
                                     <!-- <div class="slider">
