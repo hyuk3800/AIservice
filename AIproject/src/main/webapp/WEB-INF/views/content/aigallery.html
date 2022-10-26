@@ -6,11 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Gallery</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
@@ -77,13 +79,42 @@ $(".recommend").click(function(){
   $(".modal").fadeIn();
 });
 
-$(".modal_content").click(function(){
+$("#close").click(function(){
   $(".modal").fadeOut();
 });
 
 });
 
-// // image download
+// // image downloads
+
+// document.getElementById('exportBtn').onclick = function(){
+// domtoimage.toBlob(document.getElementById('image__'))
+// .then(function (blob) {
+//     window.saveAs(blob, 'image__.png');
+// });
+// }
+
+
+// $('.fancybox-image').each(function (){
+//     var href = $(this).attr('src');
+//     $(this).next("a").attr("href", href);
+// });
+
+// $('[data-fancybox="gallery"]').fancybox({
+//   buttons : [
+//     'zoom',
+//     'counter',
+//     'slideshow',
+//     'fullscreen',
+//     'thumbs',
+//     'download',
+//     'close',
+//   ],
+//   beforeShow : function(instance, slide) { 
+//     instance.$refs.container.find('.fancybox-button--download').attr('href', slide.src);
+//   }
+// });
+
 
 
 // fancy box
@@ -94,14 +125,39 @@ Toolbar: {
       id: "counter",
       position: "center",
     },
+    "zoom",
     "counter",
     "slideshow",
-    "fullscreen",
     "thumbs",
+    "download",
     "close",
   ],
 },
 });
+
+
+// autoslide
+
+$(function(){
+$('#sc').slick({
+slide: 'div',       
+infinite : true,    
+slidesToShow : 1,        
+slidesToScroll : 1,        
+speed : 100,     
+arrows : true,        
+dots : false,        
+autoplay : false,           
+autoplaySpeed : 2000,         
+pauseOnHover : true,        
+vertical : false,      
+prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
+nextArrow : "<button type='button' class='slick-next'>Next</button>",      
+dotsClass : "slick-dots",     
+draggable : true,    
+});
+})
+
 </script>
 
 
@@ -151,57 +207,58 @@ Toolbar: {
                                 <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
                                 <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
                                 <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100"> -->
-
                       
                                 <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
-                                <a data-fancybox="gallery" data-info="Description#1" href="./images/핑크염색.jpg">
-                                  <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100" id="recommend">
+                                <a href="https://lipsum.app/id/11/800x600/" data-fancybox="gallery" data-download-src="https://lipsum.app/id/11/1300x1200">
+                                  <img src="https://lipsum.app/id/11/400x300" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#2"
-                                  href="./images/그레이염색.jpg">
-                                  <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
+                                <a href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
+                                  <img src="./images/그레이염색.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#3"
-                                  href="./images/애쉬블루.jpg">
-                                  <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
+                                <a href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                                  <img src="./images/애쉬블루.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#4"
-                                  href="./images/s컬펌.jpg">
-                                  <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
+                                <a href="./images/히피펌.jpg" data-fancybox="gallery" data-download-src="./images/히피펌.jpg">
+                                  <img src="./images/히피펌.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#5"
-                                  href="./images/히피펌.jpg">
-                                  <img class="rounded" src="./images/히피펌.jpg" width="100" height="100">
+                                <a href="./images/s컬펌.jpg" data-fancybox="gallery" data-download-src="./images/s컬펌.jpg">
+                                  <img src="./images/s컬펌.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#6" href="./images/핑크염색.jpg">
-                                <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100">
+                                <a href="./images/다운펌.png" data-fancybox="gallery" data-download-src="./images/다운펌.png">
+                                  <img src="./images/다운펌.png" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#7"
-                                href="./images/그레이염색.jpg">
-                                <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
+                                <a href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
+                                  <img src="./images/핑크염색.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#8"
-                                href="./images/애쉬블루.jpg">
-                                <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
+                                <a href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
+                                  <img src="./images/그레이염색.jpg" width="100" height="100">
                                 </a>
-                                <a data-fancybox="gallery" data-info="Description#9"
-                                href="./images/s컬펌.jpg">
-                                <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
+                                <a href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                                  <img src="./images/애쉬블루.jpg" width="100" height="100">
                                 </a>
-                                <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
                                 <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
-                                <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100"> -->
 
                             <div class="modal">
                                 <div class="modal_content" title="클릭하면 창이 닫힙니다.">
-                                    <span class="close" id="close"> &#x2716;</span>
+                                    <div class="x"><span class="close" id="close"> &#x2716;</span></div>
                                 <div class="head">
                                     <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35">
                                     <img src="./images/haircatpick.png" id="haircatpick" width="248" height="48">
                                     <p id="note2">AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
-                                    <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button>
+                                    <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
                                 </div>
-                                    <img src="./images/핑크염색.jpg" width="300" height="320">
+                                    <!-- <img src="./images/핑크염색.jpg" width="300" height="320"> -->
+                                    <!-- <div class="autoslider" id="as"> -->
+                                      <div class="slidercont" id="sc">
+                                        <div class="hvr-pulse-shrink"><img src="./images/그레이염색.jpg" width="280" height="300"></div>
+                                        <div class="hvr-pulse-shrink"><img src="./images/다운펌.png" width="280" height="300"></div>
+                                        <div class="hvr-pulse-shrink"><img src="./images/애쉬블루.jpg" width="280" height="300"></div>
+                                        <div class="hvr-pulse-shrink"><img src="./images/핑크염색.jpg" width="280" height="300"></div>
+                                        <div class="hvr-pulse-shrink"><img src="./images/히피펌.jpg" width="280" height="300"></a></div>
+                                      </div>
+                                  <!-- </div> -->
                                     
                                 <div class="airec">
                                     <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
