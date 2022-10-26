@@ -28,6 +28,10 @@ public class userDAO {
 	private String InsertSql = "INSERT INTO aiservice.member (id, username, pwd, cre_date, mod_date) " 
 							 + "VALUES (?, ?, ?, NOW(), NOW());";
 	
+	private String updateSql = "UPDATE aiservice.member "
+							 + "SET username=? "
+							 + "WHERE id=?";
+	
 	
 	public MemberVo selectMember(MemberVo vo) {
 		System.out.println("select User");
@@ -98,4 +102,28 @@ public class userDAO {
 		
 		return row;
 	}
+	
+	
+	public int updateUserName(MemberVo vo) {
+		System.out.println("update User");
+		int row = 0;
+		
+		conn = JDBCUtill.getConn();
+		try {
+			stmt = conn.prepareStatement(updateSql);
+			stmt.setString(1, vo.getNickname());
+			stmt.setString(2, vo.getID());
+			row = stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			JDBCUtill.close(stmt, conn);
+		}
+		return row;
+	}
+	
+	
 }
