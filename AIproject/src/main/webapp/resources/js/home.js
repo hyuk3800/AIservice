@@ -9,11 +9,12 @@ const uploadfilter = document.querySelector(".filter");
 
 const fileInput = document.querySelector("#fileInput");
 const fileBTN = document.querySelector("#fileBTN");
+const fileLabel = document.querySelector("#fileLabel");
 
 const headcont = document.querySelector(".headcont");
 
 const loginout = document.querySelector("#loginout");
-
+const mypage = document.querySelector('#mypage');
 
 
 const nyanya = [
@@ -29,6 +30,10 @@ const nyanya = [
 	"야옹야옹",
 	"냐앙"
 ]
+
+const scrollHeight = () => {
+	chbox.scrollTo(0,chbox.scrollHeight);
+};
 
 const entbtnkeyup = (e) => {
 	if(e.keyCode === 13){
@@ -50,6 +55,7 @@ const testFile = () => {
 	reader.onload = () => {
 		document.getElementById("uploadImg").src = reader.result;
 //		console.log(reader.result);
+		fileLabel.classList.remove("on");
 	}
 	
 	if(fileInfo){
@@ -58,9 +64,7 @@ const testFile = () => {
 	
 }
 
-const scrollHeight = () => {
-	chbox.scrollTo(0,chbox.scrollHeight);
-};
+
 
 const postBtnOff = () => {
 	chatBtn.style.display = "none";
@@ -77,6 +81,9 @@ const testuploadButton = () => {
 	testPop.classList.toggle("on");
 	document.getElementById("uploadImg").src = "";
 	fileInput.value = "";
+	if(fileLabel.classList != "on"){
+		fileLabel.classList.add("on");
+	}
 	
 };
 
@@ -118,7 +125,7 @@ const makeingUserFile = (fileName) => {
 	userDiv.appendChild(usertextbox);
 	
 	chbox.appendChild(userDiv);
-
+	scrollHeight()
 };
 
 
@@ -156,13 +163,15 @@ const getreq = () => {
 			// console.log("이거");
 			if(xhr.status == 200){
 				chatinput.value = "";
+				fileLabel.classList.add("on");
 				let data = JSON.parse(xhr.responseText);
 				console.log(data);
 				
 				if(data['user'] != null){
 					headcont.dataset.chatroom = data['chatRoom'];
 					loginout.href="logout.do";
-					
+					mypage.href="mypage.do";
+					loginout.querySelector("#moveback").src = "resources/images/gologout.png";
 					if(data['chatData'] != null){
 						for (let i=0; i < data['chatData'].length; i++){
 							let chatRow = data['chatData'][i];
@@ -181,12 +190,16 @@ const getreq = () => {
 									makeingUserFile(chatRow['chatData']);
 								}
 							}
+							scrollHeight();
 						}					
-					}					
+					}
+
 				}
 				else{
 					headcont.dataset.chatroom = null;
+					loginout.querySelector("#moveback").src = "resources/images/gologin.png";
 				}
+				scrollHeight();
 				scrollHeight();
 			}
 		}
@@ -197,11 +210,12 @@ const getreq = () => {
 
 	xhr.send();	
 	scrollHeight();
+	scrollHeight();
 }
 
 const postreq = () => {
 	console.log("클릭");
-	
+	postBtnOff();
 	const roomnum = headcont.dataset.chatroom;
 	if(chatinput.value == ""){
 		
@@ -222,9 +236,11 @@ const postreq = () => {
 				// console.log("이거");
 				if(xhr.status == 200){
 					
-					postBtnOff()
+					
 					console.log(xhr);
 					makingAi(xhr.response);
+					scrollHeight();
+					scrollHeight();
 				}
 			}
 		}
@@ -241,6 +257,7 @@ const postreq = () => {
 		
 		xhr.send(JSON.stringify(chatting));	
 		chatinput.value = "";
+		
 	}
 	chatinput.focus();
 };
@@ -276,6 +293,7 @@ const postreq = () => {
  		 		if(xhr.status == 200){
  		 			console.log(xhr);
  		 			makeingUserFile(xhr.responseText);
+ 		 			scrollHeight();
  		 			scrollHeight();
  		 		}
  		 	}

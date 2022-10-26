@@ -2,10 +2,11 @@
 .context {
 	position: relative;
 	margin-top: 8vh;
+	margin-bottom: 5.2vh;
     padding: 15px;
     background-color:#68beffcb;
     overflow-y: scroll;
-    height: 86.8vh;
+   	height: 86.8vh;
     -ms-overflow-style: none;
 }
 
@@ -105,7 +106,6 @@
 	left: 50%;
     transform: translateX(-50%);
 	width: 100%;
-    height: 8%;
 	z-index: 9000;
 	background-color: #c3f3ff;
 }
@@ -173,9 +173,17 @@
     height: 65vh;
 }
 
+.postChatBox{
+	position: fixed;
+    bottom: 0.1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 
 #postChat{
-	position: relative;
+	height: 5.5vh;
 }
 
 
@@ -191,35 +199,55 @@
 }
 
 #testBtn{
+	padding: 0;
 	position: absolute;
 	width: 35px;
 	height: 35px;
 	top: 50%;
-    left: 0;
+    left: 1%;
     transform: translateY(-50%);
-	border: 1px solid red;
+
 }
 
 #chatting{
 
-	padding-left: 10%;
+	padding-left: 35px;
     width:100%;
     /*width:80%;*/
     border-color:rgb(190, 184, 184);
-    height: 43px;
+    height: 100%;
 
+}
+
+#chatting:focus{
+	outline: none;
 }
 
 #chatBtn{
 	display: none;
     width:20%;
-    height: 43px;
+    height: 100%;
     background-color:rgb(255, 240, 101);
     border-color:rgb(165, 158, 158);
     font-size: 17px;
     /* margin-top:15%; */
 }
 
+.plusBox{
+	position: relative;
+	width: 100%;
+	height: 100%;	
+}
+
+.plus{
+	position: absolute;
+	top: 41%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	font-size: 29px;
+    font-weight: bold;
+    color: rgba(119, 119, 119, 0.6);
+}
 
 
  /* ////////////////////// footer //////////////////////// */
@@ -234,12 +262,12 @@
 }
 */
 #testPop{
-	position: absolute;
+	position: fixed;
 	top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.97);
     z-index: 9999;
     display: none;
 }
@@ -255,19 +283,188 @@
 #testPopForm{
 	position: absolute;
 	width: 90%;
-	height: 90%;
+	height: 85%;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border: 1px solid green;
+	/*border: 1px solid green;*/
+}
+#testPopFormBox{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.filters{
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	top: 1%;
+	left: .5%;
 }
 
 .filter{
-	width: 50px;
-	height: 50px;
-	border: 1px solid blue;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	/*border: 1px solid blue;*/
+	color: #fff;
+}
+#filterBox{
+	position: absolute;
+	font-size: 60px;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: .5;
+    transition: opacity .3s ease-in-out ;
+}
+.Dbox{
+	/* content: ''; */
+	width: 45%;
+	height: 5px;
+	position: absolute;
+	background: #fff;
+
+}
+.filter:hover #filterBox{
+	opacity: 1;
+}
+.D1{
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.D1:before{
+	right: -5px;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	border: 2.5px solid transparent;
+	border-left-color: #fff;
 }
 
+.D2{
+	top: 30%;
+    left: 69%;
+    transform: translate(-50%, -50%) rotate(135deg);
+
+}
+
+.D2:before{
+	right: -5px;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	border: 2.5px solid transparent;
+	border-left-color: #fff;
+}
+
+.D3{
+	top: 69%;
+    left: 30%;
+    transform: translate(-50%, -50%) rotate(135deg);
+
+}
+.D3:before{
+	left: -5px;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	border: 2.5px solid transparent;
+	border-right-color: #fff;
+}
+
+.D4{
+	top: 69%;
+    left: 69%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+}
+.D4:before{
+	left: -5px;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	border: 2.5px solid transparent;
+	border-right-color: #fff;
+}
+
+
+#fileLabel{
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	margin: 0;
+	width: 90%;
+	height: 70vh;
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 110px;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+}
+
+#fileLabel.on{
+	display: block;
+}
+
+#fileLabelInBox{
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+}
+
+
+
+#fileLabelInBoxbox{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 50%;
+	left: 50%;	
+	transform: translate(-50%, -50%);
+}
+
+#fileBTN{
+	position: absolute;
+	width: 65px;
+	height: 65px;	
+	bottom: 2%;
+	right: 18px;
+	font-size: 38px;
+	color: #fff;
+	border: none;
+	outline: none;
+	background: none;
+	opacity: .5;
+}
+
+#fileInput[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+#uploadImgBox{
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	width: 100%;
+}
 
 #uploadImg{
 	width: 100%;
