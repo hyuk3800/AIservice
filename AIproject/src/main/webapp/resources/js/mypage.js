@@ -1,5 +1,4 @@
-
-    // Animation
+// Animation
     $('#animatedElement').click(function() {
 		$(this).addClass("slideUp");
 	});
@@ -25,24 +24,6 @@
 	});
 
     // alert
-
-    function addmypic(seq){
-		Swal.fire({
-		  title: '📚MY GALLERY에 등록된 사진이 없습니다',
-		  text: "AI 챗봇 헤어캣😺을 통해 내 갤러리에 사진을 등록해보세요!",
-          icon : 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '사진 등록하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="home.do";
-		  }
-		})
-};
-
     function addaipic(seq){
 		Swal.fire({
 		  title: '😺AI 헤어캣이 유사한 헤어를 추천해줍니다!',
@@ -54,7 +35,7 @@
 		  cancelButtonText: '취소'
 		}).then((result) => {
 		  if (result.value) {
-        location.href="home.do";
+        location.href="home.html";
 		  }
 		})
 };
@@ -69,7 +50,24 @@
 		  cancelButtonText: '취소'
 		}).then((result) => {
 		  if (result.value) {
-        location.href="logout.do";
+        location.href="login.html";
+		  }
+		})
+};
+
+function addmypic(seq){
+		Swal.fire({
+		  title: '📚MY GALLERY에 등록된 사진이 없습니다',
+		  text: "AI 챗봇 헤어캣😺을 통해 내 갤러리에 사진을 등록해보세요!",
+          icon : 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3caaffc4',
+		  cancelButtonColor: '#ffb6c1',
+		  confirmButtonText: '사진 등록하기',
+		  cancelButtonText: '취소'
+		}).then((result) => {
+		  if (result.value) {
+        location.href="home.html";
 		  }
 		})
 };
@@ -95,5 +93,3 @@ dotsClass : "slick-dots",
 draggable : true,    
 });
 })
-
-
