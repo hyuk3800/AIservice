@@ -6,14 +6,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Gallery</title>
-<link rel="stylesheet" href="../../../resources/css/aigallery.css">
-<link rel="stylesheet" href="css/animations.css">
-<link href="css/hover.css" rel="stylesheet" media="all">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/> -->
+<link rel="stylesheet" href="../../../resources/css/aigallery.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css"/> -->
 </head>
 
 <script>
@@ -80,46 +83,25 @@ $(".modal_content").click(function(){
 
 });
 
-//모달 목록 (Modal List)
-var recentModalList = [];
+// // image download
 
-$(document).ready(function () {
-    //Modal on Modal : jquery-1.9.1.js:3257 Uncaught RangeError: Maximum call stack size exceeded.
-    $.fn.modal.Constructor.prototype.enforceFocus = function () { };
 
-    //모달이 뜰 때 객체를 리스트에 추가 (Add modal to list)
-    $('.modal').on('shown.bs.modal', function (e) {
-        recentModalList.push(e.target);
-    });
-
-    //모달이 닫힐 때 객체를 리스트에서 삭제. (Remove modal from list)
-    $('.modal').on('hide.bs.modal', function (e) {
-        customModalClosed(e);
-        console.log(recentModalList.length);
-    });
+// fancy box
+Fancybox.bind('[data-fancybox="gallery"]', {
+Toolbar: {
+  display: [
+    {
+      id: "counter",
+      position: "center",
+    },
+    "counter",
+    "slideshow",
+    "fullscreen",
+    "thumbs",
+    "close",
+  ],
+},
 });
-
-var customModalClosed = function (e) {
-    //나를 지운다.(Remove me in list)
-    for (var i = recentModalList.length - 1; i >= 0; i--) {
-        if (recentModalList[i] == e.target) {
-            recentModalList.splice(i, 1);
-        }
-    }
-
-    //이전 모달이 있으면 포커싱.(Focus to before modal)
-    if (recentModalList.length > 0) {
-        recentModalList[recentModalList.length - 1].focus();
-    }
-};
-
-// image download
-var a = document.createElement('a');
-a.href = 이미지주소;
-a.download = 다운로드파일이름;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
 </script>
 
 
@@ -160,7 +142,56 @@ document.body.removeChild(a);
                                 <img src="./images/haircatpick.png" id="haircatpick" width="266" height="48">
                                 <p id="note">내 갤러리에 3장 이상의 사진을 저장하면<br>AI 헤어캣이 유사한 스타일을 추천해줍니다!</p>
                         <div class="package">
-                            <div class="gallery">
+                            <!-- <div class="gallery"> -->
+                              <div class="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6" id="flexcont">
+                                <!-- <img src="./images/clearcat.png" id="cryinglogo" width="91" height="105">
+                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
+                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105"> -->
+
+                                <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100"> -->
+
+                      
+                                <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
+                                <a data-fancybox="gallery" data-info="Description#1" href="./images/핑크염색.jpg">
+                                  <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100" id="recommend">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#2"
+                                  href="./images/그레이염색.jpg">
+                                  <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#3"
+                                  href="./images/애쉬블루.jpg">
+                                  <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#4"
+                                  href="./images/s컬펌.jpg">
+                                  <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#5"
+                                  href="./images/히피펌.jpg">
+                                  <img class="rounded" src="./images/히피펌.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#6" href="./images/핑크염색.jpg">
+                                <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#7"
+                                href="./images/그레이염색.jpg">
+                                <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#8"
+                                href="./images/애쉬블루.jpg">
+                                <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
+                                </a>
+                                <a data-fancybox="gallery" data-info="Description#9"
+                                href="./images/s컬펌.jpg">
+                                <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
+                                </a>
+                                <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100">
+
                             <div class="modal">
                                 <div class="modal_content" title="클릭하면 창이 닫힙니다.">
                                     <span class="close" id="close"> &#x2716;</span>
@@ -176,14 +207,13 @@ document.body.removeChild(a);
                                     <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
                                     <div class="textbox">😻<b><span style="color:rgb(157, 0, 255)">냥냥냥~!</span><br/>(WOW!<br/>정말 트렌디한데요?)</b></div>
                                 </div>
-
                                 </div>
                             </div>
-                                <img src="./images/clearcat.png" id="cryinglogo" width="91" height="105">
-                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
-                                <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
-                                <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+                                
                             </div>
+
+                            
+
                         </div>
                         </section>
 
