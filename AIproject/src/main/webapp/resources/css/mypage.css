@@ -1326,7 +1326,7 @@ ul.imgs li img{
     height: 30px;
     padding: 2px 11px 2px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: .8rem;
     font-family: "paybooc-Light", sans-serif;
     box-shadow: 0 15px 35px rgb(0 0 0 / 10%);
     font-weight: 600;
