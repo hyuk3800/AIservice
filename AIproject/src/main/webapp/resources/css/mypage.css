@@ -1323,9 +1323,10 @@ ul.imgs li img{
 .catHairPickBtn{
 	border: 3px solid #ffffff;
     color: #464646;
+    height: 30px;
     padding: 2px 11px 2px;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 14px;
     font-family: "paybooc-Light", sans-serif;
     box-shadow: 0 15px 35px rgb(0 0 0 / 10%);
     font-weight: 600;
