@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class JDBCUtill {
 	public static Connection getConn() {
 		String driver = "com.mysql.cj.jdbc.Driver";
-		String url = "jdbc:mysql://localhost/pj_tk?serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost/aiservice?serverTimezone=UTC";
 		String id = "study";
 		String pwd = "study";
 		
