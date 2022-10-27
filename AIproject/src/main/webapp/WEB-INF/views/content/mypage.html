@@ -20,7 +20,7 @@
 <div class="slideDown">
     <nav id="nav">
         <ul class="container">
-            <li class="home"><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
+            <li class="home"><a href="home.do"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
             <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
         </ul>
     </nav>
@@ -104,16 +104,20 @@
                 <div class="col-4 col-6-medium col-12-small">
                     <div class="slideLeft">
                         <section class="box style1">
-                            <div class="slidedisplay" id="mybox">
+                            <div class="slidedisplay catImgBOX" id="mybox">
                                 <div class="hvr-pulse-shrink">
-                                    <a href="aigallery.html"><img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="33" height="33"></a>
-                                    <a href="aigallery.html"><img src="./images/haircatpick.png" id="haircatpick" width="266" height="48"></a>
+                                    <a href="aigallery.do"><img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="33" height="33"></a>
+                                    <a href="aigallery.do"><img src="./images/haircatpick.png" id="haircatpick" width="266" height="48"></a>
                                     <p>AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
                                 </div>
                                 <div class="noaipic" id="crycat">
-                                    <img src="./images/noaipic.png" width="140" height="130"></div>
-                                    <button class="w-btn-outline w-btn-blue-outline" type="button" onclick="addaipic()">GO FIND HAIRCAT PICK!</button>
+                                	<div class="catcatBox on" onclick="addaipic()">
+	                                    <img class="catImg" src="./images/noaipic.png" width="140" height="130">
+	                                
+	                                    <button class="catHairPickBtn" type="button">GO FIND HAIRCAT PICK!</button>
                                 <!-- <button class="hvr-bounce-to-bottom" id="goaddpicbtn" onclick="addaipic()" class="pointer">AI 갤러리 확인하기</button> -->
+                            		</div>
+                            	</div>
                             </div>
                         </section>
                     </div>

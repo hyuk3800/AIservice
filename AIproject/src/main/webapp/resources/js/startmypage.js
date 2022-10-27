@@ -56,7 +56,9 @@ const getJson = () => {
 					console.log("null");
 					nomygallery.className = "on";
 				}
-
+				
+				const catcatBox = document.querySelector(".catcatBox");
+				
 			}
 		}
 	}
