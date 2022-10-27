@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/project/biz/mypage/mypage.java=UTF-8
 encoding//src/main/java/com/project/biz/user/login/loginUser.java=UTF-8
 encoding//src/main/java/com/project/biz/user/login/singUp.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8

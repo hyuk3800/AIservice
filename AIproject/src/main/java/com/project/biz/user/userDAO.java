@@ -84,9 +84,10 @@ public class userDAO {
 		System.out.println("insert User");		
 		conn = JDBCUtill.getConn();
 		int row = 0;
-
-		
 		Encrypt enc = new Encrypt();
+		System.out.println(vo.getID());
+		System.out.println(vo.getNickname());
+		System.out.println(enc.getEncrypt(vo.getPwd(), enc.getEsalt()));
 		try {
 			stmt = conn.prepareStatement(InsertSql);
 			stmt.setString(1, vo.getID());

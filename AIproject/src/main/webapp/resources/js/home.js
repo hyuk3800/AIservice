@@ -14,7 +14,7 @@ const fileLabel = document.querySelector("#fileLabel");
 const headcont = document.querySelector(".headcont");
 
 const loginout = document.querySelector("#loginout");
-const mypage = document.querySelector('#mypage');
+const mypage = document.querySelectorAll(".mypage");
 
 
 const nyanya = [
@@ -170,7 +170,8 @@ const getreq = () => {
 				if(data['user'] != null){
 					headcont.dataset.chatroom = data['chatRoom'];
 					loginout.href="logout.do";
-					mypage.href="mypage.do";
+					mypage[0].classList.toggle("on");
+					mypage[1].classList.toggle("on");
 					loginout.querySelector("#moveback").src = "resources/images/gologout.png";
 					if(data['chatData'] != null){
 						for (let i=0; i < data['chatData'].length; i++){
@@ -311,7 +312,6 @@ const postreq = () => {
  	}
 
  };
-
 
 
 getreq();

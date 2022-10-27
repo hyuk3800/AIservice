@@ -76,7 +76,7 @@ public class mypage {
 		MemberVo vo = (MemberVo) session.getAttribute("user");
 		vo.setNickname(newName);
 		int row = userDao.updateUserName(vo);
-		System.out.println(row + "Çà¿¡ ¼öÁ¤");
+		System.out.println(row + "ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½");
 		
 		return row;
 	}

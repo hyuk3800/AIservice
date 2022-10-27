@@ -40,22 +40,26 @@ public class galleryDAO {
 			stmt = conn.prepareStatement(SelectChatter);
 			stmt.setInt(1, chatroom);
 			rs = stmt.executeQuery();
-			chatList = new ArrayList<chatVO>();			
-			while (rs.next()) {
-				String chatter = rs.getString("chatter");
-				String chat= rs.getString("chattingrecord");
-				Date cre_date= rs.getDate("chatting_date");
-				int type = rs.getInt("chattype");
+			chatList = new ArrayList<chatVO>();		
+			if(!rs.next()) {
 				
-				chatVO chatRS = new chatVO()
-						.setChatter(chatter)
-						.setChatData(chat)
-						.setCre_date(cre_date)
-						.setType(type);
-				
-				chatList.add(chatRS);
-				
-		
+			}else {
+				while (rs.next()) {
+					String chatter = rs.getString("chatter");
+					String chat= rs.getString("chattingrecord");
+					Date cre_date= rs.getDate("chatting_date");
+					int type = rs.getInt("chattype");
+					
+					chatVO chatRS = new chatVO()
+							.setChatter(chatter)
+							.setChatData(chat)
+							.setCre_date(cre_date)
+							.setType(type);
+					
+					chatList.add(chatRS);
+					
+			
+				}
 			}
 			
 		} 
