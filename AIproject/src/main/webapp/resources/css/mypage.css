@@ -174,7 +174,6 @@ p{
 
 /* slick-theme */
 
-@charset 'UTF-8';
 /* Slider */
 .slick-loading .slick-list
 {
@@ -1337,13 +1336,18 @@ ul.imgs li img{
 .catImg:hover ~
 .catHairPickBtn
 {
+	font-size: .7rem;
 	background-color: #ffbd66;
     color: #464646;
     letter-spacing: 1.1px;
+	transform: translateX(-50%) scale(1.2);
+    
 }
 
 .catHairPickBtn:hover{
+	font-size: .7rem;
 	background-color: #ffbd66;
     color: #464646;
     letter-spacing: 1.1px;
+	transform: translateX(-50%) scale(1.2);
 }
