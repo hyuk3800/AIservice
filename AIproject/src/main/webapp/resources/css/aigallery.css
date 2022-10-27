@@ -110,12 +110,12 @@ body {
 }
 
 p{
-    margin-top:-10px;
+    margin-top:-6px;
     font-size:13px;
 }
 
 #haircatpicklogo{
-    margin-bottom:7px;
+    margin-bottom:2px;
     /* margin-left:16px; */
     margin-top:3px;
 }
@@ -1156,11 +1156,11 @@ p{
 }
 .slick-prev:before
 {
-    content: '�넀';
+    content: '←';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '�넀';
+    content: '←';
 }
 
 .slick-next
@@ -1174,11 +1174,11 @@ p{
 }
 .slick-next:before
 {
-    content: '�넂';
+    content: '→';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '�넂';
+    content: '→';
 }
 
 /* Dots */
@@ -1361,7 +1361,6 @@ p{
 }
 .slick-slide img
 {
-	border-radius: 15px;
 	border:1px solid rgba(156, 147, 147, 0.273);
     display: block;
 }
@@ -1398,6 +1397,19 @@ p{
 
 .x{
   height:30px;
+}
+
+.close{
+  -webkit-transform: scale(0.9);
+	transform: scale(0.9);
+	-webkit-transition: .1s ease-in-out;
+	transition: .1s ease-in-out;
+	border-radius:10px;
+}
+
+.close:hover {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 #close{
@@ -1440,7 +1452,7 @@ p{
 
 .textbox::before {
     left: -16px;
-    content: "��";
+    content: "◀";
     color: rgb(169, 217, 248);
 }
 
@@ -1596,7 +1608,7 @@ border-radius: 10px;
 background-color: #7575753d;
 min-width: 40px;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-z-index: 3;
+z-index: 999;
 }
 
 .dropup-content a {
