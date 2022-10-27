@@ -94,6 +94,7 @@ ul, li {
 #mybox{
     text-align: center;
 	cursor: pointer;
+
 }
 
 #moveback{
@@ -716,7 +717,22 @@ ul.imgs li img{
 }
 
 #crycat{
+	position: relative;
+	height: 60%;
 	margin-top:-7px;
+}
+
+.catImg{
+	position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.catHairPickBtn{
+	position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* button */
@@ -748,13 +764,13 @@ ul.imgs li img{
 
 .w-btn-outline:hover {
     letter-spacing: 1.1px;
-    transform: scale(1.03);
     cursor: pointer;
 }
 
 .w-btn-outline:active {
     transform: scale(1.03);
 }
+
 
 .w-btn-blue-outline:hover {
     background-color: #ffbd66;
@@ -1292,4 +1308,41 @@ ul.imgs li img{
   	color: #000;
   	text-decoration: none;
  }
-  
+ .catImgBOX{
+ 	height: 100%;
+ }
+.catcatBox{
+	display: none;
+	height: 100%;
+}
+ 
+.catcatBox.on{
+	display: block;
+}
+
+.catHairPickBtn{
+	border: 3px solid #ffffff;
+    color: #464646;
+    padding: 2px 11px 2px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgb(0 0 0 / 10%);
+    font-weight: 600;
+    background-color: rgb(223, 190, 251);
+    transition: 0.25s;
+}
+
+.catImg:hover ~
+.catHairPickBtn
+{
+	background-color: #ffbd66;
+    color: #464646;
+    letter-spacing: 1.1px;
+}
+
+.catHairPickBtn:hover{
+	background-color: #ffbd66;
+    color: #464646;
+    letter-spacing: 1.1px;
+}

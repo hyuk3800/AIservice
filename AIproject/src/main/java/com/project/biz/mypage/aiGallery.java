@@ -1,5 +1,6 @@
 package com.project.biz.mypage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,7 @@ public class aiGallery {
 		List<chatVO> chatList = null;
 		if (user != null) {
 			System.out.println("aigallery_json");
+
 		}
 		
 		testJson json = new testJson();

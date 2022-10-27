@@ -37,7 +37,7 @@ function addaipic(seq){
 	  cancelButtonText: '취소'
 	}).then((result) => {
 	  if (result.value) {
-    location.href="home.html";
+    location.href="home.do";
 		  }
 		})
 };
@@ -52,7 +52,7 @@ function addaipic(seq){
 	  cancelButtonText: '취소'
 	}).then((result) => {
 	  if (result.value) {
-    location.href="login.html";
+    location.href="logout.do";
 		  }
 		})
 };
@@ -69,7 +69,7 @@ function addmypic(seq){
 	  cancelButtonText: '취소'
 	}).then((result) => {
 	  if (result.value) {
-    location.href="home.html";
+    location.href="home.do";
 		  }
 		})
 };
