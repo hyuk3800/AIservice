@@ -1156,11 +1156,11 @@ p{
 }
 .slick-prev:before
 {
-    content: '←';
+    content: '\25CF';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '←';
+    content: '\25CF';
 }
 
 .slick-next
@@ -1174,11 +1174,11 @@ p{
 }
 .slick-next:before
 {
-    content: '→';
+    content: '\2192';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '→';
+    content: '\2192';
 }
 
 /* Dots */

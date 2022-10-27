@@ -95,6 +95,9 @@ ul, li {
 #mybox{
     text-align: center;
 	cursor: pointer;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
 }
 
@@ -127,6 +130,10 @@ body {
     margin-top:15px;
     box-shadow:inset 1px 0px 1px 1px rgb(0 0 0 / 15%), 0px 2px 3px 0px rgb(0 0 0 / 10%);
 	min-height: 230px;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 }
 
 #ug{
@@ -157,12 +164,11 @@ p{
 #haircatpicklogo{
     margin-bottom:7px;
     margin-left:16px;
-    margin-top:3px;
+    margin-top: 5px;
 }
 
 #haircatpick{
     margin-left:-5px;
-    margin-top:3px;
 }
 
 /* auto slider */
@@ -722,12 +728,6 @@ ul.imgs li img{
 	margin-top:-7px;
 }
 
-.catImg{
-	position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
 .catHairPickBtn{
 	position: absolute;
     bottom: 0;
@@ -738,10 +738,9 @@ ul.imgs li img{
 /* button */
 
 #addtomygal{
-	width:115px;
-	height:110px;
+	width: 105px;
+    height: 105px;
 	border-radius:15px;
-	margin-top: 10px;
     margin-bottom: 10px;
 	font-size: 55px;
 	color:#afa9a9;
@@ -754,12 +753,13 @@ ul.imgs li img{
 .w-btn-outline {
     padding: 2px 11px 2px;
     border-radius: 8px;
-	font-size:15px;
+    font-size: 14px;
     font-family: "paybooc-Light", sans-serif;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px rgb(0 0 0 / 10%);
     font-weight: 600;
-	background-color: rgb(223, 190, 251);
+    background-color: rgb(223, 190, 251);
     transition: 0.25s;
+    width: 200px;
 }
 
 .w-btn-outline:hover {
@@ -791,6 +791,7 @@ ul.imgs li img{
     font-weight: 600;
 	background-color: #fcf282;
     transition: 0.25s;
+    margin-bottom: 5%;
 }
 
 .w-btn-outline2:hover {
@@ -811,6 +812,26 @@ ul.imgs li img{
 .w-btn-blue-outline2 {
     border: 3px solid #ffffff;
     color: #464646;
+}
+
+.catImg{
+	position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;	
+}
+
+.catImg.{
+	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
+	-webkit-transition: .1s ease-in-out;
+	transition: .1s ease-in-out;
+	border-radius:10px;
+}
+.catImg:hover {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 /* animation */
@@ -1318,17 +1339,16 @@ ul.imgs li img{
  
 .catcatBox.on{
 	display: block;
-	margin-top: 3%;
 }
 
 .catHairPickBtn{
-	width: 180px;
+	width: 160px;
 	border: 3px solid #ffffff;
     color: #464646;
     height: 30px;
     padding: 2px 11px 2px;
     border-radius: 8px;
-    font-size: .8rem;
+    font-size: 13px;
     font-family: "paybooc-Light", sans-serif;
     box-shadow: 0 15px 35px rgb(0 0 0 / 10%);
     font-weight: 600;
@@ -1336,21 +1356,21 @@ ul.imgs li img{
     transition: 0.25s;
 }
 
-.catImg:hover ~
+/* .catImg:hover ~
 .catHairPickBtn
 {
-	font-size: .7rem;
+
 	background-color: #ffbd66;
     color: #464646;
     letter-spacing: 1.1px;
-	transform: translateX(-50%) scale(1.2);
+	transform: translateX(-50%) scale(1.1);
     
 }
 
 .catHairPickBtn:hover{
-	font-size: .7rem;
+
 	background-color: #ffbd66;
     color: #464646;
     letter-spacing: 1.1px;
-	transform: translateX(-50%) scale(1.2);
-}
+	transform: translateX(-50%) scale(1.1);
+} */
