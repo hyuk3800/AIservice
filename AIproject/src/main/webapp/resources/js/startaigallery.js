@@ -17,7 +17,6 @@ const makeImgBox = (srclink) => {
 	flexcont.append(abox);
 };
 
-
 const getJson = () => {
 	console.log("시작")
 	
@@ -48,13 +47,13 @@ const getJson = () => {
 				}
 				else{
 					console.log("null");
-					nomygallery.className = "on";
+
 				}
 
 			}
 		}
 	}
-	xhr.open("GET", "/biz/mygallery/json.do", false);
+	xhr.open("GET", "/biz/aigallery/json.do", false);
 	xhr.setRequestHeader("Content-type", "application/json");
 
 

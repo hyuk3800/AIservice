@@ -1,26 +1,33 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Gallery</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/> -->
-<link rel="stylesheet" href="../../../resources/css/aigallery.css">
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css"/> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Gallery</title>
+  
+  <script defer src="resources/js/startaigallery.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/> -->
+  <link rel="stylesheet" href="resources/css/aigallery.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css"/> -->
+  <script defer src="resources/js/aigallery.js"></script>
 </head>
 
+
+<!--
 <script>
 
 // Animation
@@ -160,153 +167,223 @@ draggable : true,
 })
 
 </script>
+-->
 
 
 <body>
-    <div>
-        <nav id="nav">
-            <ul class="container">
-                <li class="home"><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
-                <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
-            </ul>
-        </nav>
+  <div>
+    <nav id="nav">
+      <ul class="container">
+        <li class="home"><a href="home.do"><img src="./images/gomainpage.png" id="gomainpage" width="30"
+              height="30"></a></li>
+        <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30">
+        </li>
+      </ul>
+    </nav>
 
-        
-        <article id="top" class="wrapper style1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4 col-5-large col-12-medium">
-                        <span class="image fit"><img src="./images/mypage_profile.png" id="profile" width="75" height="75"></span>
-                    </div>
-                    <div class="col-8 col-7-large col-12-medium">
-                        <header>
-                            <input type="text" id="userID" placeholder="ID" required>
-                        </header>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>
 
-    <article id="work" class="wrapper style2">
-        <div class="container">
-            <div class="row aln-center">
-                <div class="col-4 col-6-medium col-12-small" id="aibox">
-                    <div class="slideUp">
-                        <section class="box style1">
-                                <span class="title"></span>
-                                <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35">
-                                <img src="./images/haircatpick.png" id="haircatpick" width="266" height="48">
-                                <p id="note">내 갤러리에 3장 이상의 사진을 저장하면<br>AI 헤어캣이 유사한 스타일을 추천해줍니다!</p>
-                        <div class="package">
-                            <!-- <div class="gallery"> -->
-                              <div class="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6" id="flexcont">
-                                <!-- <img src="./images/clearcat.png" id="cryinglogo" width="91" height="105">
+    <article id="top" class="wrapper style1">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 col-5-large col-12-medium">
+            <span class="image fit"><img src="./images/mypage_profile.png" id="profile" width="75" height="75"></span>
+          </div>
+          <div class="col-8 col-7-large col-12-medium">
+            <header>
+              <input type="text" disabled id="userID" placeholder="ID" required>
+            </header>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <article id="work" class="wrapper style2">
+    <div class="container">
+      <div class="row aln-center">
+        <div class="col-4 col-6-medium col-12-small" id="aibox">
+          <div class="slideUp">
+            <section class="box style1">
+              <span class="title"></span>
+              <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35">
+              <img src="./images/haircatpick.png" id="haircatpick" width="266" height="48">
+              <p id="note">내 갤러리에 3장 이상의 사진을 저장하면<br>AI 헤어캣이 유사한 스타일을 추천해줍니다!</p>
+              <div class="package">
+                <!-- <div class="gallery"> -->
+                <div class="flexBBox">
+                  <div class="flexMBox">
+                    <div class="flexSbox" id="flexcont">
+                      <!-- <img src="./images/clearcat.png" id="cryinglogo" width="91" height="105">
                                 <img src="./images/addhair.png" id="cryinglogo" width="91" height="105">
                                 <img src="./images/addhair.png" id="cryinglogo" width="91" height="105"> -->
-                      
-                                <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
-                                <a href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
-                                  <img src="./images/핑크염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
-                                  <img src="./images/그레이염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                                  <img src="./images/애쉬블루.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/히피펌.jpg" data-fancybox="gallery" data-download-src="./images/히피펌.jpg">
-                                  <img src="./images/히피펌.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/s컬펌.jpg" data-fancybox="gallery" data-download-src="./images/s컬펌.jpg">
-                                  <img src="./images/s컬펌.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/다운펌.png" data-fancybox="gallery" data-download-src="./images/다운펌.png">
-                                  <img src="./images/다운펌.png" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
-                                  <img src="./images/핑크염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
-                                  <img src="./images/그레이염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                                  <img src="./images/애쉬블루.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/히피펌.jpg" data-fancybox="gallery" data-download-src="./images/히피펌.jpg">
-                                  <img src="./images/히피펌.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/s컬펌.jpg" data-fancybox="gallery" data-download-src="./images/s컬펌.jpg">
-                                  <img src="./images/s컬펌.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/다운펌.png" data-fancybox="gallery" data-download-src="./images/다운펌.png">
-                                  <img src="./images/다운펌.png" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
-                                  <img src="./images/핑크염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
-                                  <img src="./images/그레이염색.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <a href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                                  <img src="./images/애쉬블루.jpg" class="recommend" width="100" height="100">
-                                </a>
-                                <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+
+                      <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
                                 <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
                                 <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100"> -->
 
-                            <div class="modal">
-                                <div class="modal_content" title="클릭하면 창이 닫힙니다.">
-                                    <div class="x"><span class="close" id="close"> &#x2716;</span></div>
-                                <div class="head">
-                                    <!-- <img src="./images/scissors.jpga" width="300" height="50"> -->
-                                    <!-- <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35"> -->
-                                    <img src="./images/salon.png" id="salon">
-                                    <p id="note2">다른 실시간 유저들의 PICK도 구경해보세요!</p>
-                                </div>
-                                    <!-- <div class="autoslider" id="as"> -->
-                                      <div class="slidercont" id="sc">
-                                        <div class="hvr-pulse-shrink"><img src="./images/그레이염색.jpg" width="280" height="300"></div>
-                                        <div class="hvr-pulse-shrink"><img src="./images/다운펌.png" width="280" height="300"></div>
-                                        <div class="hvr-pulse-shrink"><img src="./images/애쉬블루.jpg" width="280" height="300"></div>
-                                        <div class="hvr-pulse-shrink"><img src="./images/핑크염색.jpg" width="280" height="300"></div>
-                                        <div class="hvr-pulse-shrink"><img src="./images/히피펌.jpg" width="280" height="300"></a></div>
-                                      </div>
-                                  <!-- </div> -->
-                                    
-                                <div class="airec">
-                                    <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
-                                    <div class="textbox">😻<b><span style="color:rgb(157, 0, 255)">냥냥냥~!</span><br/>(WOW!<br/>정말 트렌디한데요?)</b></div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </section>
+                      <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
+                      <a class="myatags" href="https://lipsum.app/id/11/800x600/" data-fancybox="gallery"
+                        data-download-src="https://lipsum.app/id/11/1300x1200">
+                        <img class="rounded recommend" src="https://lipsum.app/id/11/400x300">
+                      </a>
+                      <a class="myatags" href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
+                        <img class="rounded recommend" src="./images/그레이염색.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/히피펌.jpg" data-fancybox="gallery" data-download-src="./images/히피펌.jpg">
+                        <img class="rounded recommend" src="./images/히피펌.jpg">
+                      </a>
+                      <a class="myatags" href="./images/s컬펌.jpg" data-fancybox="gallery" data-download-src="./images/s컬펌.jpg">
+                        <img class="rounded recommend" src="./images/s컬펌.jpg">
+                      </a>
+                      <a class="myatags" href="./images/다운펌.png" data-fancybox="gallery" data-download-src="./images/다운펌.png">
+                        <img class="rounded recommend" src="./images/다운펌.png">
+                      </a>
+                      <a class="myatags" href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
+                        <img class="rounded recommend" src="./images/핑크염색.jpg">
+                      </a>
+                      <a class="myatags" href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
+                        <img class="rounded recommend" src="./images/그레이염색.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded" src="./images/애쉬블루.jpg">
+                      </a>
+                      <!-- <img src="./images/핑크염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+	                                <img src="./images/그레이염색.jpg" class="recommend" id="pinkhair" width="100" height="100">
+	                                <img src="./images/히피펌.jpg" class="recommend" id="pinkhair" width="100" height="100"> -->
 
-                        <div class="scroll-moveBox flex flex-br-c">
-        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/backwards.png" id="backwards" width="27" height="27" ></a></button>
-        <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mygallery.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/userlogo.png" id="userlogo" width="27" height="27" >MY GALLERY</a></button>
-        <div class="dropup">
-            <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27" height="27"></button>
-            <div class="dropup-content">
-                <div class="pulse"><div class="ins"><a href="https://www.instagram.com/"><img src="./images/instagram.png" id="instagram" width="27" height="27"></a></div></div>
-                <div class="pulse"><div class="kk"><a href="https://www.facebook.com/"><img src="./images/kakaotalk.png" id="kakaotalk" width="27" height="27"></a></div></div>
-                <div class="pulse"><div class="nb"><a href="http://blog.naver.com"><img src="./images/naverblog.png" id="naverblog" width="27" height="27"></a></div></div>
-                <div class="pulse"><div class="tt"><a href="https://twitter.com"><img src="./images/twitter.png" id="twitter" width="27" height="27"></a></div></div>
-                <div class="pulse"><div class="fb"><a href="https://www.facebook.com/"><img src="./images/facebook.png" id="facebook" width="27" height="27"></a></div></div>
-            </div>
-          </div>
+                      <div class="modal">
+                        <div class="modal_content" title="클릭하면 창이 닫힙니다.">
+                          <div class="x"><span class="close" id="close"> &#x2716;</span></div>
+                          <div class="head">
+                            <img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="35" height="35">
+                            <img src="./images/haircatpick.png" id="haircatpick" width="248" height="48">
+                            <p id="note2">AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
+                            <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
+                          </div>
+                          <!-- <img src="./images/핑크염색.jpg" width="300" height="320"> -->
+                          <!-- <div class="autoslider" id="as"> -->
+                          <div class="slidercont" id="sc">
+                            <div class="hvr-pulse-shrink"><img src="./images/그레이염색.jpg" width="280" height="300"></div>
+                            <div class="hvr-pulse-shrink"><img src="./images/다운펌.png" width="280" height="300"></div>
+                            <div class="hvr-pulse-shrink"><img src="./images/애쉬블루.jpg" width="280" height="300"></div>
+                            <div class="hvr-pulse-shrink"><img src="./images/핑크염색.jpg" width="280" height="300"></div>
+                            <div class="hvr-pulse-shrink"><img src="./images/히피펌.jpg" width="280" height="300"></a>
+                            </div>
+                          </div>
+                          <!-- </div> -->
+
+                          <div class="airec">
+                            <img src="./images/haircatpicklogo.png" id="reviewcat" width="140" height="130">
+                            <div class="textbox">😻<b><span
+                                  style="color:rgb(157, 0, 255)">냥냥냥~!</span><br />(WOW!<br />정말 트렌디한데요?)</b></div>
+                          </div>
+
                         </div>
-                        
+                      </div>
+
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </article>
-   
 
-   
+              </div>
+            </section>
+
+            <div class="scroll-moveBox flex flex-br-c">
+              <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.do" id="scroll_move"
+                  class="button hvr-pulse-shrink"><img src="./images/backwards.png" id="backwards" width="27"
+                    height="27"></a></button>
+              <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mygallery.do" id="scroll_move"
+                  class="button hvr-pulse-shrink"><img src="./images/userlogo.png" id="userlogo" width="27"
+                    height="27">MY GALLERY</a></button>
+              <div class="dropup">
+                <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27" height="27"></button>
+                <div class="dropup-content">
+                  <div class="pulse">
+                    <div class="ins"><a href="https://www.instagram.com/"><img src="./images/instagram.png"
+                          id="instagram" width="27" height="27"></a></div>
+                  </div>
+                  <div class="pulse">
+                    <div class="kk"><a href="https://www.facebook.com/"><img src="./images/kakaotalk.png" id="kakaotalk"
+                          width="27" height="27"></a></div>
+                  </div>
+                  <div class="pulse">
+                    <div class="nb"><a href="http://blog.naver.com"><img src="./images/naverblog.png" id="naverblog"
+                          width="27" height="27"></a></div>
+                  </div>
+                  <div class="pulse">
+                    <div class="tt"><a href="https://twitter.com"><img src="./images/twitter.png" id="twitter"
+                          width="27" height="27"></a></div>
+                  </div>
+                  <div class="pulse">
+                    <div class="fb"><a href="https://www.facebook.com/"><img src="./images/facebook.png" id="facebook"
+                          width="27" height="27"></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+
+
 
 </body>
 

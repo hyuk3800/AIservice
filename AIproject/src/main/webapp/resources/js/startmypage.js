@@ -1,5 +1,7 @@
 const changename = document.querySelector("#changename");
 const slidercont = document.querySelector(".slidercont");
+const nomygallery = document.querySelector("#nomygallery");
+const hvr_pulse_shrink = document.querySelector(".hvr-pulse-shrink");
 
 let nickname;
 
@@ -9,7 +11,7 @@ const makeImgBox = (srclink) => {
 	
 	const mygallery = document.createElement("a");
 	mygallery.href="mygallery.do";
-
+	
 	const imgBox = document.createElement("img");
 	imgBox.src = "resources/uploadImg/" + srclink;
 	imgBox.width = 130;
@@ -43,13 +45,20 @@ const getJson = () => {
 				const userID = document.querySelector("#userID");
 				nickname = user['nickname'];
 				userID.value = user['nickname'];
-
-				for(let i=0; i < data["chatData"].length; i++){
-					const srclink = data["chatData"][i]["chatData"];
-
-					makeImgBox(srclink);
+				if(data["chatData"].length != 0){
+					for(let i=0; i < data["chatData"].length; i++){
+						const srclink = data["chatData"][i]["chatData"];
+						
+						makeImgBox(srclink);
+					}					
 				}
-
+				else{
+					console.log("null");
+					nomygallery.className = "on";
+				}
+				
+				const catcatBox = document.querySelector(".catcatBox");
+				
 			}
 		}
 	}

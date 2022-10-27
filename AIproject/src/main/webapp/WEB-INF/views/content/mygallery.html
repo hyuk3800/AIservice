@@ -1,141 +1,62 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gallery</title>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css"/>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script src="../../../../webapp/resources/js/lightbox.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script defer src="resources/js/startmygallery.js"></script>
 
-<link rel="stylesheet" href="../../../resources/css/mygallery.css">
+    <script defer src="http://code.jquery.com/jquery-latest.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script defer src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script defer type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/js/jquery.sliderPro.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slider-pro/1.5.0/css/slider-pro.min.css" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script defer src="resources/js/lightbox.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script defer src="resources/js/mygallery.js"></script>
+
+    <link rel="stylesheet" href="resources/css/mygallery.css">
+
 
 </head>
 
-<script>
 
-// Animation
-$('#animatedElement').click(function() {
-$(this).addClass("slideUp");
-});
-
-$('#animatedElement').click(function() {
-    $(this).addClass("pulse");
-});
-
-// lightbox
-lightbox.option({
-'resizeDuration': 300,
-'wrapAround': true,
-'alwaysShowNavOnTouchDevices':true,
-'disableScrolling':true,
-'positionFromTop':260
-});
-
-//hairgallery
-
-// $(document).ready(function (e){
-// $(".package").on("click","img",function(){
-//     var path = $(this).attr('src')
-//     showImage(path);
-// });
-
-// function showImage(fileCallPath){
-    
-//     $(".bigPictureWrapper").css("display","flex").show();
-    
-//     $(".bigPicture")
-//     .html("<img src='"+fileCallPath+"' >")
-//     .animate({width:'100%', height: '100%'}, 700);
-    
-//     }
-    
-// $(".bigPictureWrapper").on("click", function(e){
-//     $(".bigPicture").animate({width:'0%', height: '0%'}, 500);
-//     setTimeout(function(){
-//         $('.bigPictureWrapper').hide();
-//     }, 500);
-//     });
-// });
-
-function logout(seq){
-Swal.fire({
-    title: '정말로 로그아웃 하시겠습니까?',
-    showCancelButton: true,
-    confirmButtonColor: '#3caaffc4',
-    cancelButtonColor: '#ffb6c1',
-    confirmButtonText: '로그아웃 하기',
-    cancelButtonText: '취소'
-}).then((result) => {
-    if (result.value) {
-location.href="login.html";
-    }
-})
-};
-
-
-// fancy box
-Fancybox.bind('[data-fancybox="gallery"]', {
-Toolbar: {
-  display: [
-    {
-      id: "counter",
-      position: "center",
-    },
-    "counter",
-    "zoom",
-    "slideshow",
-    "thumbs",
-    "download",
-    "close",
-  ],
-},
-});
-
-// Fancybox.bind('[data-fancybox="gallery"]', {
-//   caption: function (fancybox, carousel, slide) {
-//     return (
-//       `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
-//     );
-//   },
-// });
-</script>
 
 <body>
-<div>
-    <nav id="nav">
-        <ul class="container">
-            <li><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
-            <li><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
-        </ul>
-    </nav>
+    <div>
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="home.do"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a>
+                </li>
+                <li><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
+            </ul>
+        </nav>
 
-    
-     <article id="top" class="wrapper style1">
-        <div class="container">
-            <div class="row">
-                <div class="col-4 col-5-large col-12-medium">
-                    <span class="image fit"><img src="./images/mypage_profile.png" id="profile" width="75" height="75"></span>
-                </div>
-                <div class="col-8 col-7-large col-12-medium">
-                    <header>
-                        <input type="text" id="userID" placeholder="ID" required>
-                    </header>
+
+        <article id="top" class="wrapper style1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 col-5-large col-12-medium">
+                        <span class="image fit"><img src="./images/mypage_profile.png" id="profile" width="75"
+                                height="75"></span>
+                    </div>
+                    <div class="col-8 col-7-large col-12-medium">
+                        <header>
+                            <input type="text" disabled id="userID" placeholder="ID" required>
+                        </header>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
-</div>
+        </article>
+    </div>
 
     <article id="work" class="wrapper style2">
         <div class="container">
@@ -143,16 +64,18 @@ Toolbar: {
                 <div class="col-4 col-6-medium col-12-small" id="context">
                     <div class="slideUp">
                         <section class="box style1">
-                                <span class="title"></span>
-                                    <a href="mygallery.html"><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></a>
-                                    <a href="mygallery.html"><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></a>
-<div class="package" onclick="showImage">
+                            <span class="title"></span>
+                            <a href="mygallery.do"><img src="./images/ui_gallery.png" id="galleryui" width="28"
+                                    height="29"></a>
+                            <a href="mygallery.do"><img src="./images/mygallery.png" id="mygallerylogo" width="226"
+                                    height="48"></a>
+                            <div class="package" onclick="showImage">
 
-    <!-- <div class='bigPictureWrapper'>
+                                <!-- <div class='bigPictureWrapper'>
 		<div class='bigPicture'></div>
 	</div> -->
 
-    <!-- <div class="test">
+                                <!-- <div class="test">
         <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;">
         <img src="./images/핑크염색.jpg" style="width: 100px; height: 100px;"> 
         <img src="./images/애쉬블루.jpg" style="width: 100px; height: 100px;"> 
@@ -174,117 +97,132 @@ Toolbar: {
         <img src="./images/다운펌.png" style="width: 100px; height: 100px;"> 
         <img src="./images/s컬펌.jpg" style="width: 100px; height: 100px;"> 
     </div> -->
+                                <div class="flexBBox">
+                                    <div class="flexMBox">
+                                        <div class="flexSbox" id="flexcont">
+                                            <a class="myatags" data-fancybox="gallery" href="./images/핑크염색.jpg">
+                                                <img class="rounded" src="./images/핑크염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/그레이염색.jpg">
+                                                <img class="rounded" src="./images/그레이염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/애쉬블루.jpg">
+                                                <img class="rounded" src="./images/애쉬블루.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/s컬펌.jpg">
+                                                <img class="rounded" src="./images/s컬펌.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/히피펌.jpg">
+                                                <img class="rounded" src="./images/히피펌.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/핑크염색.jpg">
+                                                <img class="rounded" src="./images/핑크염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/그레이염색.jpg">
+                                                <img class="rounded" src="./images/그레이염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/애쉬블루.jpg">
+                                                <img class="rounded" src="./images/애쉬블루.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/s컬펌.jpg">
+                                                <img class="rounded" src="./images/s컬펌.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/히피펌.jpg">
+                                                <img class="rounded" src="./images/히피펌.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/핑크염색.jpg">
+                                                <img class="rounded" src="./images/핑크염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/그레이염색.jpg">
+                                                <img class="rounded" src="./images/그레이염색.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/애쉬블루.jpg">
+                                                <img class="rounded" src="./images/애쉬블루.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/s컬펌.jpg">
+                                                <img class="rounded" src="./images/s컬펌.jpg">
+                                            </a>
+                                            <a class="myatags" data-fancybox="gallery" href="./images/히피펌.jpg">
+                                                <img class="rounded" src="./images/히피펌.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a>
+    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg"></a>
+    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg"></a>
+    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg"></a>
+    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg"></a> -->
 
-    <div class="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6" id="flexcont">
-        <a data-fancybox="gallery" data-info="Description#1" href="./images/핑크염색.jpg">
-          <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#2"
-          href="./images/그레이염색.jpg">
-          <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#3"
-          href="./images/애쉬블루.jpg">
-          <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#4"
-          href="./images/s컬펌.jpg">
-          <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#5"
-          href="./images/히피펌.jpg">
-          <img class="rounded" src="./images/히피펌.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#6" href="./images/핑크염색.jpg">
-        <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#7"
-        href="./images/그레이염색.jpg">
-        <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#8"
-        href="./images/애쉬블루.jpg">
-        <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#9"
-        href="./images/s컬펌.jpg">
-        <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#10"
-        href="./images/히피펌.jpg">
-        <img class="rounded" src="./images/히피펌.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#11" href="./images/핑크염색.jpg">
-            <img class="rounded" src="./images/핑크염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#12"
-        href="./images/그레이염색.jpg">
-        <img class="rounded" src="./images/그레이염색.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#13"
-        href="./images/애쉬블루.jpg">
-        <img class="rounded" src="./images/애쉬블루.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#14"
-        href="./images/s컬펌.jpg">
-        <img class="rounded" src="./images/s컬펌.jpg" width="100" height="100">
-        </a>
-        <a data-fancybox="gallery" data-info="Description#15"
-        href="./images/히피펌.jpg">
-        <img class="rounded" src="./images/히피펌.jpg" width="100" height="100">
-        </a>
-      </div>
-
-    <!-- <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a>
-    <a href="./images/히피펌.jpg" data-lightbox="myhairpic"><img src="./images/히피펌.jpg" width="100" height="100"></a>
-    <a href="./images/핑크염색.jpg" data-lightbox="myhairpic"><img src="./images/핑크염색.jpg" width="100" height="100"></a>
-    <a href="./images/s컬펌.jpg" data-lightbox="myhairpic"><img src="./images/s컬펌.jpg" width="100" height="100"></a>
-    <a href="./images/그레이염색.jpg" data-lightbox="myhairpic"><img src="./images/그레이염색.jpg" width="100" height="100"></a> -->
-
-                        </div>
+                            </div>
                         </section>
 
-    <div class="scroll-moveBox flex flex-br-c">
-    <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/backwards.png" id="backwards" width="27" height="27"></a></button>
-    <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="aigallery.html" id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="27" height="27">HAIRCAT GALLERY</a></button>
-    <div class="dropup">
-        <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27" height="27"></button>
-        <div class="dropup-content">
-            <div class="pulse"><div class="ins"><a href="https://www.instagram.com/"><img src="./images/instagram.png" id="instagram" width="27" height="27"></a></div></div>
-            <div class="pulse"><div class="kk"><a href="https://www.facebook.com/"><img src="./images/kakaotalk.png" id="kakaotalk" width="27" height="27"></a></div></div>
-            <div class="pulse"><div class="nb"><a href="http://blog.naver.com"><img src="./images/naverblog.png" id="naverblog" width="27" height="27"></a></div></div>
-            <div class="pulse"><div class="tt"><a href="https://twitter.com"><img src="./images/twitter.png" id="twitter" width="27" height="27"></a></div></div>
-            <div class="pulse"><div class="fb"><a href="https://www.facebook.com/"><img src="./images/facebook.png" id="facebook" width="27" height="27"></a></div></div>
-        </div>
-      </div>
+                        <div class="scroll-moveBox flex flex-br-c">
+                            <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="mypage.do"
+                                    id="scroll_move" class="button hvr-pulse-shrink"><img src="./images/backwards.png"
+                                        id="backwards" width="27" height="27"></a></button>
+                            <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="aigallery.do"
+                                    id="scroll_move" class="button hvr-pulse-shrink"><img
+                                        src="./images/haircatpicklogo.png" id="haircatpicklogo" width="27"
+                                        height="27">HAIRCAT GALLERY</a></button>
+                            <div class="dropup">
+                                <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27"
+                                        height="27"></button>
+                                <div class="dropup-content">
+                                    <div class="pulse">
+                                        <div class="ins"><a href="https://www.instagram.com/"><img
+                                                    src="./images/instagram.png" id="instagram" width="27"
+                                                    height="27"></a></div>
+                                    </div>
+                                    <div class="pulse">
+                                        <div class="kk"><a href="https://www.facebook.com/"><img
+                                                    src="./images/kakaotalk.png" id="kakaotalk" width="27"
+                                                    height="27"></a></div>
+                                    </div>
+                                    <div class="pulse">
+                                        <div class="nb"><a href="http://blog.naver.com"><img
+                                                    src="./images/naverblog.png" id="naverblog" width="27"
+                                                    height="27"></a></div>
+                                    </div>
+                                    <div class="pulse">
+                                        <div class="tt"><a href="https://twitter.com"><img src="./images/twitter.png"
+                                                    id="twitter" width="27" height="27"></a></div>
+                                    </div>
+                                    <div class="pulse">
+                                        <div class="fb"><a href="https://www.facebook.com/"><img
+                                                    src="./images/facebook.png" id="facebook" width="27"
+                                                    height="27"></a></div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-    
-    </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </article>
-   
 
-   
+
+
 
 </body>
 

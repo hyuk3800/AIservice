@@ -1,3 +1,4 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,117 +7,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mypage</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<link rel="stylesheet" href="../../../resources/css/mypage.css">
+
+<script defer src="resources/js/startmypage.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script defer src="resources/js/mypage.js"></script>
+<link rel="stylesheet" href="resources/css/mypage.css">
 </head>
-
-<script>
-
-    // Animation
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideUp");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideDown");
-	});
-
-	$('#animatedElement').click(function() {
-		$(this).addClass("slideLeft");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideRight");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("pullUp");
-	});
-
-    $('#animatedElement').click(function() {
-		$(this).addClass("slideExpandUp");
-	});
-
-    // alert
-    function addaipic(seq){
-		Swal.fire({
-		  title: '😺AI 헤어캣이 유사한 헤어를 추천해줍니다!',
-		  text: "챗봇을 통해 내 갤러리에 사진 3장 이상을 등록해보세요!",
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '사진 등록하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="home.html";
-		  }
-		})
-};
-
-    function logout(seq){
-		Swal.fire({
-		  title: '정말로 로그아웃 하시겠습니까?',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '로그아웃 하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="login.html";
-		  }
-		})
-};
-
-function addmypic(seq){
-		Swal.fire({
-		  title: '📚MY GALLERY에 등록된 사진이 없습니다',
-		  text: "AI 챗봇 헤어캣😺을 통해 내 갤러리에 사진을 등록해보세요!",
-          icon : 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3caaffc4',
-		  cancelButtonColor: '#ffb6c1',
-		  confirmButtonText: '사진 등록하기',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-        location.href="home.html";
-		  }
-		})
-};
-
-// autoslide
-
-$(function(){
-$('#sc').slick({
-slide: 'div',       
-infinite : true,    
-slidesToShow : 2,        
-slidesToScroll : 1,        
-speed : 100,     
-arrows : true,        
-dots : true,        
-autoplay : true,           
-autoplaySpeed : 1200,         
-pauseOnHover : true,        
-vertical : false,      
-prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
-nextArrow : "<button type='button' class='slick-next'>Next</button>",      
-dotsClass : "slick-dots",     
-draggable : true,    
-});
-})
-</script>
-
 
 <body>
 <div class="slideDown">
     <nav id="nav">
         <ul class="container">
-            <li class="home"><a href="home.html"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
+            <li class="home"><a href="home.do"><img src="./images/gomainpage.png" id="gomainpage" width="30" height="30"></a></li>
             <li class="logout"><img src="./images/gologout.png" id="gologout" onclick="logout()" width="30" height="30"></li>
         </ul>
     </nav>
@@ -147,26 +51,35 @@ draggable : true,
                         <section class="box style1">
                             <div class="slidedisplay" id="mybox">
                                 <div class="hvr-pulse-shrink">
-                                <a href="mygallery.html"><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></a>
-                                <a href="mygallery.html"><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></a>
-                                <p id="goseeuh">고객님이 등록하신 헤어스타일을 확인해보세요!</p>
-                            </div>
 
+
+	                                <a class="gomygalleryA" href="mygallery.do">
+		                                <span><img src="./images/ui_gallery.png" id="galleryui" width="28" height="29"></span>
+		                                <span><img src="./images/mygallery.png" id="mygallerylogo" width="226" height="48"></span>
+		                                <p id="goseeuh">고객님이 등록하신 헤어스타일을 확인해보세요!</p>
+                            		</a>
+                            	</div>
+							</div>
                             <div class="noaipic" id="crycat">
-                                <a href="home.html"><button id="addtomygal">+</button></a>
-                                <div><button class="w-btn-outline2 w-btn-blue-outline2" type="button" onclick="addmypic()">GO ADD HAIR!</button>
+                                <div id="nomygallery" onclick="addmypic()">
+	                                <button id="addtomygal">+</button>
+	                                <div><button class="w-btn-outline2 w-btn-blue-outline2" type="button" >GO ADD HAIR!</button>
+	                                </div>
                                 </div>
+	                            <div class="autoslider" id="as">
+	                                <div class="slidercont" id="sc">
+	                                  <!-- 
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/다운펌.png" width="130" height="130"></a></div>
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/애쉬블루.jpg" width="130" height="130"></a></div>
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
+	                                  <div class="hvr-pulse-shrink"><a href="mygallery.do"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
+	                                    -->
+	                                </div>
+	                            </div>
 
-                            <!-- <div class="autoslider" id="as">
-                                <div class="slidercont" id="sc">
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/s컬펌.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/그레이염색.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/다운펌.png" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/애쉬블루.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/핑크염색.jpg" width="130" height="130"></a></div>
-                                  <div class="hvr-pulse-shrink"><a href="mygallery.html"><img src="./images/히피펌.jpg" width="130" height="130"></a></div>
-                                </div>
-                            </div> -->
+
                                     <!-- <div class="slider">
                                         <input type="radio" name="slide" id="slide1" checked="">
                                         <input type="radio" name="slide" id="slide2">
@@ -193,16 +106,20 @@ draggable : true,
                 <div class="col-4 col-6-medium col-12-small">
                     <div class="slideLeft">
                         <section class="box style1">
-                            <div class="slidedisplay" id="mybox">
+                            <div class="slidedisplay catImgBOX" id="mybox">
                                 <div class="hvr-pulse-shrink">
-                                    <a href="aigallery.html"><img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="33" height="33"></a>
-                                    <a href="aigallery.html"><img src="./images/haircatpick.png" id="haircatpick" width="266" height="48"></a>
+                                    <a href="aigallery.do"><img src="./images/haircatpicklogo.png" id="haircatpicklogo" width="33" height="33"></a>
+                                    <a href="aigallery.do"><img src="./images/haircatpick.png" id="haircatpick" width="266" height="48"></a>
                                     <p>AI 헤어캣이 유사한 헤어스타일을 추천해줍니다!</p>
                                 </div>
                                 <div class="noaipic" id="crycat">
-                                    <img src="./images/noaipic.png" width="140" height="130"></div>
-                                    <button class="w-btn-outline w-btn-blue-outline" type="button" onclick="addaipic()">GO FIND HAIRCAT PICK!</button>
+                                	<div class="catcatBox on" onclick="addaipic()">
+	                                    <img class="catImg" src="./images/noaipic.png" width="140" height="130">
+	                                
+	                                    <button class="catHairPickBtn" type="button">GO FIND HAIRCAT PICK!</button>
                                 <!-- <button class="hvr-bounce-to-bottom" id="goaddpicbtn" onclick="addaipic()" class="pointer">AI 갤러리 확인하기</button> -->
+                            		</div>
+                            	</div>
                             </div>
                         </section>
                     </div>

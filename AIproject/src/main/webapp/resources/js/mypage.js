@@ -1,5 +1,6 @@
 
 // Animation
+
 $('#animatedElement').click(function() {
 	$(this).addClass("slideUp");
 });
@@ -36,14 +37,14 @@ function addaipic(seq){
 	  cancelButtonText: '취소'
 	}).then((result) => {
 	  if (result.value) {
-    location.href="home.html";
-	  }
-	})
+    location.href="home.do";
+		  }
+		})
 };
 
-function logout(seq){
-	Swal.fire({
-	  title: '정말로 로그아웃 하시겠습니까?',
+    function logout(seq){
+		Swal.fire({
+		  title: '정말로 로그아웃 하시겠습니까?',
 	  showCancelButton: true,
 	  confirmButtonColor: '#3caaffc4',
 	  cancelButtonColor: '#ffb6c1',
@@ -51,12 +52,29 @@ function logout(seq){
 	  cancelButtonText: '취소'
 	}).then((result) => {
 	  if (result.value) {
-    location.href="login.do";
-	  }
-	})
+    location.href="logout.do";
+		  }
+		})
 };
 
-//autoslide
+function addmypic(seq){
+		Swal.fire({
+		  title: '📚MY GALLERY에 등록된 사진이 없습니다',
+	  text: "AI 챗봇 헤어캣😺을 통해 내 갤러리에 사진을 등록해보세요!",
+      icon : 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3caaffc4',
+	  cancelButtonColor: '#ffb6c1',
+	  confirmButtonText: '사진 등록하기',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+    location.href="home.do";
+		  }
+		})
+};
+
+// autoslide
 
 $(function(){
 $('#sc').slick({
@@ -77,6 +95,3 @@ dotsClass : "slick-dots",
 draggable : true,    
 });
 })
-
-
-
