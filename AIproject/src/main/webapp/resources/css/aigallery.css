@@ -122,7 +122,19 @@ p{
 
 #haircatpick{
     margin-left:-5px;
-    /* margin-top:3px; */
+    margin-top:3px;
+}
+
+#ribbon{
+  width:300px;
+  height:40px;
+}
+
+#salon{
+  width: 302px;
+  height: 40px;
+  margin-bottom: 7px;
+  margin-top: 1%;
 }
 
 /* gallery */
@@ -164,7 +176,7 @@ p{
 }
 
 .package{
-	height: 48vh;
+	height: 50vh;
 	overflow-y: scroll;
 }
 
@@ -184,10 +196,6 @@ p{
 	width: 300px;
 	margin: auto;
 	border-radius: 3px;
-  }
-
-  #flexcont img{
-      border-radius:15px;
   }
 
   /* fancy box */
@@ -270,7 +278,7 @@ p{
   
   /* Closing */
   .fancybox__container.is-animated.is-closing .fancybox__rightCol {
-    animation: 0.1s ease both fancybox-fadeOut;
+    animation: 0.05s ease both fancybox-fadeOut;
   }
   
   .fancybox__container.is-animated.is-closing .fancybox__leftCol {
@@ -876,7 +884,7 @@ p{
     opacity: var(--fancybox-opacity, 1);
   }
   .fancybox__container.is-animated[aria-hidden="false"] .fancybox__thumbs {
-    animation: 0.1s ease-in backwards fancybox-fadeIn;
+    animation: 0.05s ease-in backwards fancybox-fadeIn;
   }
   .fancybox__container.is-animated.is-closing .fancybox__thumbs {
     opacity: 0;
@@ -1407,13 +1415,13 @@ p{
     position: relative;
     display: inline-block;
     max-width: calc(100% - 70px);
-    padding: 12px 7px;
+    padding: 14px 7px;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 18px;
     background-color: rgb(169, 217, 248);
     color:rgb(0, 0, 0);
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     /* margin-bottom:5%; */
 }
 
@@ -1504,15 +1512,16 @@ p{
 }
 
 .modal{ 
-position:fixed;
-width:100%;
+position:absolute;
+width:101%;
 height:100%;
-background-image:url(../images/background5.png);
+background-image:url(../images/background7.png);
 background-size:cover;
 /* background: rgba(255, 255, 255, 0.8); */
-top:0;
+top:5%;
 left:0;
 display:none;
+padding-top: 1%;
 }
 
 .modal_content{
@@ -1524,7 +1533,7 @@ background-size : cover; */
 border-radius:10px;
 position:relative;
 /* top:2%; */
-left:5.1%;
+left:4.6%;
 margin-top:30px;
 text-align:center;
 box-sizing:border-box;

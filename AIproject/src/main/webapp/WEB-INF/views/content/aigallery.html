@@ -27,6 +27,149 @@
 </head>
 
 
+<!--
+<script>
+
+// Animation
+$('#animatedElement').click(function() {
+    $(this).addClass("slideUp");
+});
+
+$('#animatedElement').click(function() {
+    $(this).addClass("pulse");
+});
+
+
+///hairgallery
+// $(document).ready(function (e){
+// $(".package").on("click","img",function(){
+//     var path = $(this).attr('src')
+//     showImage(path);
+// });
+
+// function showImage(fileCallPath){
+//     $(".bigPictureWrapper").css("display","flex").show();
+//     $(".bigPicture")
+//     .html("<img src='"+fileCallPath+"' >")
+//     .animate({width:'100%', height: '100%'}, 700);
+//     }
+    
+// $(".bigPictureWrapper").on("click", function(e){
+//     $(".bigPicture").animate({width:'0%', height: '0%'}, 500);
+//     setTimeout(function(){
+//         $('.bigPictureWrapper').hide();
+//     }, 500);
+//     });
+// });
+
+
+// alert
+function logout(seq){
+Swal.fire({
+    title: '정말로 로그아웃 하시겠습니까?',
+    showCancelButton: true,
+    confirmButtonColor: '#3caaffc4',
+    cancelButtonColor: '#ffb6c1',
+    confirmButtonText: '로그아웃 하기',
+    cancelButtonText: '취소'
+}).then((result) => {
+    if (result.value) {
+location.href="login.html";
+    }
+})
+};
+
+// add to gallery
+
+$(function(){ 
+
+$(".recommend").click(function(){
+  $(".modal").fadeIn();
+});
+
+$("#close").click(function(){
+  $(".modal").fadeOut();
+});
+
+});
+
+// // image downloads
+
+// document.getElementById('exportBtn').onclick = function(){
+// domtoimage.toBlob(document.getElementById('image__'))
+// .then(function (blob) {
+//     window.saveAs(blob, 'image__.png');
+// });
+// }
+
+
+// $('.fancybox-image').each(function (){
+//     var href = $(this).attr('src');
+//     $(this).next("a").attr("href", href);
+// });
+
+// $('[data-fancybox="gallery"]').fancybox({
+//   buttons : [
+//     'zoom',
+//     'counter',
+//     'slideshow',
+//     'fullscreen',
+//     'thumbs',
+//     'download',
+//     'close',
+//   ],
+//   beforeShow : function(instance, slide) { 
+//     instance.$refs.container.find('.fancybox-button--download').attr('href', slide.src);
+//   }
+// });
+
+
+
+// fancy box
+Fancybox.bind('[data-fancybox="gallery"]', {
+Toolbar: {
+  display: [
+    {
+      id: "counter",
+      position: "center",
+    },
+    "zoom",
+    "counter",
+    "slideshow",
+    "thumbs",
+    "download",
+    "close",
+  ],
+},
+});
+
+
+// autoslide
+
+$(function(){
+$('#sc').slick({
+slide: 'div',       
+infinite : true,    
+slidesToShow : 1,        
+slidesToScroll : 1,        
+speed : 100,     
+arrows : true,        
+dots : false,        
+autoplay : true,           
+autoplaySpeed : 1000,         
+pauseOnHover : true,        
+vertical : false,      
+prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
+nextArrow : "<button type='button' class='slick-next'>Next</button>",      
+dotsClass : "slick-dots",     
+draggable : true,    
+});
+})
+
+</script>
+-->
+
+
 <body>
   <div>
     <nav id="nav">
@@ -81,64 +224,64 @@
                       <!-- <button id="downbtn"><img src="./images/download.jpg" id="download" width="23" height="23"><strong>Download</strong></button> -->
                       <a class="myatags" href="https://lipsum.app/id/11/800x600/" data-fancybox="gallery"
                         data-download-src="https://lipsum.app/id/11/1300x1200">
-                        <img class="rounded" src="https://lipsum.app/id/11/400x300">
+                        <img class="rounded recommend" src="https://lipsum.app/id/11/400x300">
                       </a>
                       <a class="myatags" href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
-                        <img class="rounded" src="./images/그레이염색.jpg">
+                        <img class="rounded recommend" src="./images/그레이염색.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/히피펌.jpg" data-fancybox="gallery" data-download-src="./images/히피펌.jpg">
-                        <img class="rounded" src="./images/히피펌.jpg">
+                        <img class="rounded recommend" src="./images/히피펌.jpg">
                       </a>
                       <a class="myatags" href="./images/s컬펌.jpg" data-fancybox="gallery" data-download-src="./images/s컬펌.jpg">
-                        <img class="rounded" src="./images/s컬펌.jpg">
+                        <img class="rounded recommend" src="./images/s컬펌.jpg">
                       </a>
                       <a class="myatags" href="./images/다운펌.png" data-fancybox="gallery" data-download-src="./images/다운펌.png">
-                        <img class="rounded" src="./images/다운펌.png">
+                        <img class="rounded recommend" src="./images/다운펌.png">
                       </a>
                       <a class="myatags" href="./images/핑크염색.jpg" data-fancybox="gallery" data-download-src="./images/핑크염색.jpg">
-                        <img class="rounded" src="./images/핑크염색.jpg">
+                        <img class="rounded recommend" src="./images/핑크염색.jpg">
                       </a>
                       <a class="myatags" href="./images/그레이염색.jpg" data-fancybox="gallery" data-download-src="./images/그레이염색.jpg">
-                        <img class="rounded" src="./images/그레이염색.jpg">
+                        <img class="rounded recommend" src="./images/그레이염색.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
+                      </a>
+                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
                         <img class="rounded" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
-                      </a>
-                      <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
-                        <img class="rounded" src="./images/애쉬블루.jpg">
+                        <img class="rounded recommend" src="./images/애쉬블루.jpg">
                       </a>
                       <a class="myatags" href="./images/애쉬블루.jpg" data-fancybox="gallery" data-download-src="./images/애쉬블루.jpg">
                         <img class="rounded" src="./images/애쉬블루.jpg">
@@ -188,6 +331,7 @@
                             <div class="textbox">😻<b><span
                                   style="color:rgb(157, 0, 255)">냥냥냥~!</span><br />(WOW!<br />정말 트렌디한데요?)</b></div>
                           </div>
+
                         </div>
                       </div>
 
