@@ -822,7 +822,7 @@ ul.imgs li img{
     display: flex;	
 }
 
-.catImg.{
+/*.catImg.{
 	-webkit-transform: scale(0.9);
 	transform: scale(0.9);
 	-webkit-transition: .1s ease-in-out;
@@ -832,7 +832,7 @@ ul.imgs li img{
 .catImg:hover {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
-}
+} */
 
 /* animation */
 
