@@ -28,7 +28,28 @@
 
 </head>
 
+<script>
+// sns 공유
+function shareInstagram() {
+  window.open("https://www.instagram.com/" + encodeURIComponent(location.href));
+};
 
+function shareKakaotalk() {
+  window.open("https://www.facebook.com/sharer.php?u=http://221.148.138.28:9000/biz/login.do" + encodeURIComponent(location.href));
+};
+
+function shareNaverBlog() {
+  window.open("https://share.naver.com/web/shareView.nhn?url=http://naver.com&title=챗봇 헤어캣 서비스" + encodeURIComponent(location.href));
+};
+
+function shareTwitter() {
+  window.open("https://twitter.com/intent/tweet?url=http://221.148.138.28:9000/biz/login.do" + encodeURIComponent(location.href));
+};
+
+function shareFacebook() {
+  window.open("https://www.facebook.com/sharer.php?u=http://221.148.138.28:9000/biz/login.do" + encodeURIComponent(location.href));
+};
+</script>
 
 <body>
     <div>
@@ -184,32 +205,13 @@
                             <div class="dropup">
                                 <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27"
                                         height="27"></button>
-                                <div class="dropup-content">
-                                    <div class="pulse">
-                                        <div class="ins"><a href="https://www.instagram.com/"><img
-                                                    src="./images/instagram.png" id="instagram" width="27"
-                                                    height="27"></a></div>
-                                    </div>
-                                    <div class="pulse">
-                                        <div class="kk"><a href="https://www.facebook.com/"><img
-                                                    src="./images/kakaotalk.png" id="kakaotalk" width="27"
-                                                    height="27"></a></div>
-                                    </div>
-                                    <div class="pulse">
-                                        <div class="nb"><a href="http://blog.naver.com"><img
-                                                    src="./images/naverblog.png" id="naverblog" width="27"
-                                                    height="27"></a></div>
-                                    </div>
-                                    <div class="pulse">
-                                        <div class="tt"><a href="https://twitter.com"><img src="./images/twitter.png"
-                                                    id="twitter" width="27" height="27"></a></div>
-                                    </div>
-                                    <div class="pulse">
-                                        <div class="fb"><a href="https://www.facebook.com/"><img
-                                                    src="./images/facebook.png" id="facebook" width="27"
-                                                    height="27"></a></div>
-                                    </div>
-                                </div>
+                                 <div class="dropup-content">
+                  <div class="pulse"><div class="ins"><a href="javascript:shareInstagram()"><img src="./images/instagram.png" id="instagram" width="27" height="27"></a></div></div>
+                  <div class="pulse"><div class="kk"><a href="javascript:shareKakaotalk()"><img src="./images/kakaotalk.png" id="kakaotalk" width="27" height="27"></a></div></div>
+                  <div class="pulse"><div class="nb"><a href="javascript:shareNaverBlog()"><img src="./images/naverblog.png" id="naverblog" width="27" height="27"></a></div></div>
+                  <div class="pulse"><div class="tt"><a href="javascript:shareTwitter()"><img src="./images/twitter.png" id="twitter" width="27" height="27"></a></div></div>
+                  <div class="pulse"><div class="fb"><a href="javascript:shareFacebook()"><img src="./images/facebook.png" id="facebook" width="27" height="27"></a></div></div>
+              </div>
                             </div>
 
 
