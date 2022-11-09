@@ -73,7 +73,7 @@ const postBtnOff = () => {
 
 const postBtnOn = () => {
 	chatBtn.style.display = "block";
-	chatinput.style.width = "80%";
+	chatinput.style.width = "87%";
 };
 
 const testuploadButton = () => {
