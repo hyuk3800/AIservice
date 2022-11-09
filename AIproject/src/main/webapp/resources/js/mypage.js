@@ -28,8 +28,8 @@ $('#animatedElement').click(function() {
 // alert
 function addaipic(seq){
 	Swal.fire({
-	  title: '😺AI 헤어캣이 유사한 헤어를 추천해줍니다!',
-	  text: "챗봇을 통해 내 갤러리에 사진 3장 이상을 등록해보세요!",
+	  title: '😺AI 헤어캣이 새로운 헤어스타일을 만들어 드립니다!',
+	  text: "챗봇을 통해 다양한 헤어스타일을 만나보세요!",
 	  showCancelButton: true,
 	  confirmButtonColor: '#3caaffc4',
 	  cancelButtonColor: '#ffb6c1',

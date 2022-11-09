@@ -3,8 +3,8 @@
 	position: relative;
 	margin-top: 8vh;
 	margin-bottom: 5.2vh;
-    padding: 15px;
-    background-color:#68beffcb;
+    padding: 10px;
+    /* background-color:#68beffcb; */
     overflow-y: scroll;
    	height: 86.8vh;
     -ms-overflow-style: none;
@@ -148,6 +148,7 @@
 
 /* //////////////////// main //////////////////// */
 
+
 .maincont{
 
     position:static;
@@ -219,7 +220,7 @@
 
 #chatting{
 
-	padding-left: 35px;
+	padding-left: 69px;
     width:100%;
     /*width:80%;*/
     border-color:rgb(190, 184, 184);
@@ -233,9 +234,9 @@
 
 #chatBtn{
 	display: none;
-    width:20%;
+    width:13%;
     height: 100%;
-    background-color:rgb(255, 240, 101);
+    background-color:rgb(255, 238, 83);
     border-color:rgb(165, 158, 158);
     font-size: 17px;
     /* margin-top:15%; */
@@ -245,16 +246,27 @@
 	position: relative;
 	width: 100%;
 	height: 100%;	
+	display:inline;
 }
 
 .plus{
 	position: absolute;
-	top: 41%;
-	left: 55%;
+	top: 63%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 29px;
     font-weight: bold;
     color: rgba(119, 119, 119, 0.6);
+}
+
+#dummybtn{
+	position: absolute;
+    left: 36px;
+    bottom: -2.8px;
+}
+
+#dbtn{
+	border:none;
 }
 
 
@@ -275,7 +287,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.97);
+    background-color: rgba(65, 79, 82, 0.607);
     z-index: 9999;
     display: none;
 }
@@ -284,8 +296,10 @@
 }
 .testPopbox{
 	position: relative;
-	width: 100%;
+	width: 101%;
     height: 100%;
+	background-image: url(../images/background4.png);
+	background-size: cover;
 }
 
 #testPopForm{
@@ -323,10 +337,11 @@
 	position: absolute;
 	font-size: 60px;
 	top: 35%;
-	left: 50%;
+	left: 65%;
 	transform: translate(-50%, -50%);
 	opacity: .5;
     transition: opacity .3s ease-in-out ;
+	color: black;
 }
 .Dbox{
 	/* content: ''; */
@@ -414,7 +429,6 @@
 	height: 70vh;
 	color: rgba(255, 255, 255, 0.4);
 	font-size: 110px;
-	background-color: rgba(0, 0, 0, 0.6);
 	display: none;
 }
 
@@ -422,11 +436,12 @@
 	display: block;
 }
 
-#fileLabelInBox{
-	position: relative;
-	width: 100%;
-	height: 100%;
-
+#fileLabelInBox {
+    position: relative;
+    width: 108%;
+    height: 84%;
+    background-color: rgb(255, 255, 255);
+    right: 13px;
 }
 
 
@@ -435,23 +450,26 @@
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	top: 50%;
+	top: 44%;
 	left: 50%;	
 	transform: translate(-50%, -50%);
+	text-align: center;
+	color: gray;
 }
 
 #fileBTN{
 	position: absolute;
 	width: 65px;
 	height: 65px;	
-	bottom: 2%;
-	right: 18px;
-	font-size: 38px;
+	bottom: -5%;
+	right: -20px;
+	font-size: 45px;
 	color: #fff;
 	border: none;
 	outline: none;
 	background: none;
 	opacity: .5;
+	color:black;
 }
 
 #fileInput[type="file"] {  /* 파일 필드 숨기기 */
@@ -474,7 +492,36 @@
 	width: 100%;
 }
 
-#uploadImg{
-	width: 100%;
-	max-height: 60vh;
+#addnote{
+	margin-top: -30px;
+}
+
+#uploadImg {
+    width: 99%;
+    max-height: 59vh;
+    margin-top: -80px;
+}
+
+#sendbtn{
+	vertical-align:middle;
+}
+
+#pickhairstyle{
+	background-color: #b9e1ff;
+	position: absolute;
+    top: 78%;
+    width:99%;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#pickhaircolor{
+	background-color: rgb(255, 212, 218);
+	position: absolute;
+    top: 86%;
+    width: 99%;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
 }

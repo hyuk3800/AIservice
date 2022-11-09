@@ -29,6 +29,43 @@
 </head>
 
 <script>
+
+function language () {
+    var nav = window.navigator,
+    browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
+    i,
+    language;
+
+    // support for HTML 5.1 "navigator.languages"
+    if (Array.isArray(nav.languages)) {
+      for (i = 0; i < nav.languages.length; i++) {
+        language = nav.languages[i];
+        if (language && language.length) {
+          return language;
+        }
+      }
+    }
+
+    // support for other well known properties in browsers
+    for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
+      language = nav[browserLanguagePropertyKeys[i]];
+      if (language && language.length) {
+        return language;
+      }
+    }
+
+    return null;
+  };
+function checker () {
+  const whatIs = language();
+  if (whatIs === "ko-KR") {
+    window.location.href = 'https://example.com/ko/';
+     }
+  else if (whatIs === "ja-JP") {
+    window.location.href = 'https://example.com/ja/';
+    }
+
+
 // sns 공유
 function shareInstagram() {
   window.open("https://www.instagram.com/" + encodeURIComponent(location.href));
@@ -90,6 +127,7 @@ function shareFacebook() {
                                     height="29"></a>
                             <a href="mygallery.do"><img src="./images/mygallery.png" id="mygallerylogo" width="226"
                                     height="48"></a>
+                            <p id="note">더미 데이터를 통해 더 다양한 헤어 서비스를 제공합니다.<br>채팅을 통해 내 갤러리에 더 많은 사진을 추가해보세요!</p>
                             <div class="package" onclick="showImage">
 
                                 <!-- <div class='bigPictureWrapper'>
@@ -201,7 +239,7 @@ function shareFacebook() {
                             <button class="w-btn-outline w-btn-blue-outline" type="button"><a href="aigallery.do"
                                     id="scroll_move" class="button hvr-pulse-shrink"><img
                                         src="./images/haircatpicklogo.png" id="haircatpicklogo" width="27"
-                                        height="27">HAIRCAT GALLERY</a></button>
+                                        height="27">HAIR CAT GALLERY</a></button>
                             <div class="dropup">
                                 <button class="dropbtn"><img src="./images/sns2.png" id="sns2" width="27"
                                         height="27"></button>
