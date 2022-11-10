@@ -41,22 +41,22 @@ public class mypage {
 	@RequestMapping("/mypage/json.do")
 	public testJson getjson(HttpSession session, galleryDAO galleryDAO) {
 		logger.info("GET_gallery");
+		String page = "mypage";
 		MemberVo user = (MemberVo) session.getAttribute("user");
+		List<chatVO> dummyList = null;
 		List<chatVO> chatList = null;
 		if (user != null) {
 			int chatroom = (int) session.getAttribute("chatroom");
-			chatList = galleryDAO.searchChatterGallery(chatroom);
+			dummyList = galleryDAO.searchDummyGallery(chatroom, page);
+			chatList = galleryDAO.searchChatterGallery(chatroom, page);
 			for (chatVO vo : chatList) {
 				System.out.println(vo);
-			}
-			
-			if(chatList.size() > 6) {
-				chatList = chatList.subList(0, 6);
 			}
 		}
 		
 		testJson json = new testJson();
-		json.setChatData(chatList);
+		json.setDummyList(dummyList);
+		json.setHairCatList(chatList);
 		json.setUser(user);
 		return json;
 

@@ -73,6 +73,9 @@ public class MultiThreadEchoServer {
 				String name = getClientName(clientSocket);
 				hm.put(name, clientSocket);
 				System.out.println(name + "과" + clientSocket.toString() + "를 등록");
+				
+				EchoThread echoThread = new EchoThread(hm, clientSocket, name);
+				echoThread.start();
 			}
 			
 		} catch (Exception e) {
@@ -112,12 +115,12 @@ class EchoThread extends Thread {
 					System.out.println(inetAddr.getHostAddress() + " 클라이언트로부터 수신");
 					
 					if(name.equals("service")) {
-						Socket serviceSocket = (Socket) this.hm.get("hairStyle");
+						Socket serviceSocket = (Socket) this.hm.get("hairstyle");
 						OutputStream out = serviceSocket.getOutputStream();
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 						bos.write(buf, 0, len);
 						bos.flush();
-					}else if(name.equals("hairStyle")) {
+					}else if(name.equals("hairstyle")) {
 						Socket serviceSocket = (Socket) this.hm.get("service");
 						OutputStream out = serviceSocket.getOutputStream();
 						BufferedOutputStream bos = new BufferedOutputStream(out);
