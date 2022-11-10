@@ -1,13 +1,20 @@
 package com.project.biz.user.chatroom;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -21,7 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.biz.user.userVO;
+import com.project.biz.EchoClient;
+import com.project.biz.InputThread;
 import com.project.member.MemberVo;
 
 @Controller
@@ -84,7 +92,7 @@ public class ChatRoom {
 							.setChatData(userChat)
 							.setType(0);
 			int row = chatDAO.insertUserChat(vo);
-			System.out.println(row + " �࿡ �߰���");
+			System.out.println(row + " 행에 추가");
 			
 			String ai = "hi im Ai " + user.getID();
 			
@@ -100,7 +108,7 @@ public class ChatRoom {
 			}	
 			
 			int airow = chatDAO.insertChatterChat(aiVo);
-			
+			System.out.println(airow + " 행에 AI 추가");
 			
 			return ai;		
 		}
@@ -137,11 +145,113 @@ public class ChatRoom {
 							.setChatroomnum(chatroom)
 							.setType(1);
 			int row = chatDAO.insertUserChat(vo);
-			System.out.println(row+" �࿡ �߰�");
+			System.out.println(row+" 행에 추가");
 		}
 		
 		return fileName;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/chat/testAi.do", method = RequestMethod.POST)
+	public String testAi(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) {
+		
+		String uploadDir = session.getServletContext().getRealPath("resources/AiUploadImg");
+		String UserDir = session.getServletContext().getRealPath("resources/uploadImg");
+		
+		
+		File Folder = new File(uploadDir);
+		
+		if(!Folder.exists()) {
+			try {
+				Folder.mkdir();
+				System.out.println("False");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+		}else {
+			System.out.println("True");
+		}
+		
+		String hairStyle = (String) map.get("haristyle");
+		String haircolor = (String) map.get("hairColor");
+		String imgName = (String) map.get("img");
+		
+		
+//		UserDir+"/"+imgName
+		
+		System.out.println(hairStyle + ", " + haircolor + ", " + imgName);
+	
+		String ip = "192.168.0.34";
+		int PORT = 9400;
+		Socket clientSocket = null;
+		
+		EchoClient EC = new EchoClient();
+		
+		try {
+			clientSocket = new Socket(ip, PORT);
+			
+			OutputStream out = clientSocket.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			DataOutputStream filterOut = new DataOutputStream(bos);
+			
+			InputStream in = clientSocket.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(in);
+			DataInputStream filterIn = new DataInputStream(bis);
+			
+			String name = "service";
+			byte[] data = EC.makeStringBuf(name);
+			filterOut.write(data);
+			filterOut.flush();
+			
+			InputThread it = new InputThread(
+					clientSocket, 
+					filterOut, 
+					filterIn, 
+					uploadDir,
+					imgName
+					);
+			it.start();
+			
+			EC.sendStyleColor(filterOut, hairStyle, haircolor, imgName, UserDir);
+			
+			
+			
+			while(true) {
+				File aiImg = new File(uploadDir + "/" +imgName);
+				if(aiImg.exists()) {
+					break;
+				}
+			}
+			System.out.println("이미지 파일 저장 완료!");
+			
+			MemberVo user = (MemberVo) session.getAttribute("user");
+			
+			if(user != null) {
+				int chatroom = (int) session.getAttribute("chatroom");
+				chatVO vo = new chatVO()
+						.setType(2)
+						.setChatData(imgName)
+						.setChatroomnum(chatroom);
+				int row = chatDao.insertChatterChat(vo);
+				System.out.println(row + " 행에 AI 추가");
+			}
+			
+		}
+		catch (UnknownHostException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		catch (IOException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		finally {
+			EC.close();
+		}
+	
+		return imgName;
+	}
 	
 }

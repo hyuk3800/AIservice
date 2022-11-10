@@ -208,9 +208,10 @@
 }
 
 #testBtn{
+	display: flex;
 	padding: 0;
 	position: absolute;
-	width: 35px;
+	width: 70px;
 	height: 35px;
 	top: 50%;
     left: 1%;
@@ -246,12 +247,11 @@
 	position: relative;
 	width: 100%;
 	height: 100%;	
-	display:inline;
 }
 
 .plus{
 	position: absolute;
-	top: 63%;
+	top: 42%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 29px;
@@ -259,10 +259,20 @@
     color: rgba(119, 119, 119, 0.6);
 }
 
-#dummybtn{
+.dummy{
+	position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+#hand{
+	margin-left: 5px;
+	width: 20px;
 	position: absolute;
-    left: 36px;
-    bottom: -2.8px;
+    top: 51%;
+    left: 45%;
+    transform: translate(-50%, -50%);
 }
 
 #dbtn{
@@ -281,6 +291,8 @@
 	border: 1px solid rgb(148, 132, 132); 
 }
 */
+
+
 #testPop{
 	position: fixed;
 	top: 0;
@@ -291,9 +303,26 @@
     z-index: 9999;
     display: none;
 }
+
+#testPop2{
+	position: fixed;
+	top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(65, 79, 82, 0.607);
+    z-index: 9999;
+    display: none;
+}
+
 #testPop.on{
 	display: block;
 }
+
+#testPop2.on{
+	display: block;
+}
+
 .testPopbox{
 	position: relative;
 	width: 101%;
@@ -311,6 +340,17 @@
 	transform: translate(-50%, -50%);
 	/*border: 1px solid green;*/
 }
+
+#testPopForm2{
+	position: absolute;
+	width: 90%;
+	height: 85%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/*border: 1px solid green;*/
+}
+
 #testPopFormBox{
 	position: relative;
 	width: 100%;
@@ -318,6 +358,15 @@
 	margin: 0;
 	padding: 0;
 }
+
+#testPopFormBox2{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 .filters{
 	position: absolute;
 	width: 45px;
@@ -343,6 +392,18 @@
     transition: opacity .3s ease-in-out ;
 	color: black;
 }
+
+#filterBox2{
+	position: absolute;
+	font-size: 60px;
+	top: 35%;
+	left: 65%;
+	transform: translate(-50%, -50%);
+	opacity: .5;
+    transition: opacity .3s ease-in-out ;
+	color: black;
+}
+
 .Dbox{
 	/* content: ''; */
 	width: 45%;
@@ -354,6 +415,11 @@
 .filter:hover #filterBox{
 	opacity: 1;
 }
+
+.filter:hover #filterBox2{
+	opacity: 1;
+}
+
 .D1{
     top: 30%;
     left: 30%;
@@ -432,7 +498,26 @@
 	display: none;
 }
 
+#fileLabel2{
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	margin: 0;
+	width: 90%;
+	height: 70vh;
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 110px;
+	display: none;
+}
+
+
+
 #fileLabel.on{
+	display: block;
+}
+
+#fileLabel2.on{
 	display: block;
 }
 
@@ -444,9 +529,26 @@
     right: 13px;
 }
 
-
+#fileLabelInBox2 {
+    position: relative;
+    width: 108%;
+    height: 84%;
+    background-color: rgb(255, 255, 255);
+    right: 13px;
+}
 
 #fileLabelInBoxbox{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 44%;
+	left: 50%;	
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: gray;
+}
+
+#fileLabelInBoxbox2{
 	position: absolute;
 	margin: 0;
 	padding: 0;
@@ -472,6 +574,21 @@
 	color:black;
 }
 
+#fileBTN2{
+	position: absolute;
+	width: 65px;
+	height: 65px;	
+	bottom: 0;
+	right: -20px;
+	font-size: 45px;
+	color: #fff;
+	border: none;
+	outline: none;
+	background: none;
+	opacity: .5;
+	color:black;
+}
+
 #fileInput[type="file"] {  /* 파일 필드 숨기기 */
   position: absolute;
   width: 1px;
@@ -483,7 +600,28 @@
   border: 0;
 }
 
+#fileInput2[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+
 #uploadImgBox{
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	width: 100%;
+}
+
+#uploadImgBox2{
 	position: absolute;
 	top: 45%;
 	left: 50%;
@@ -496,13 +634,27 @@
 	margin-top: -30px;
 }
 
+#addnote2{
+	margin-top: -30px;
+}
+
 #uploadImg {
     width: 99%;
     max-height: 59vh;
     margin-top: -80px;
 }
 
+#uploadImg2 {
+    width: 99%;
+    max-height: 59vh;
+    margin-top: -80px;
+}
+
 #sendbtn{
+	vertical-align:middle;
+}
+
+#sendbtn2{
 	vertical-align:middle;
 }
 
@@ -516,7 +668,27 @@
     border-radius: 5px;
 }
 
+#pickhairstyle2{
+	background-color: #b9e1ff;
+	position: absolute;
+    top: 78%;
+    width:99%;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
+}
+
 #pickhaircolor{
+	background-color: rgb(255, 212, 218);
+	position: absolute;
+    top: 86%;
+    width: 99%;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#pickhaircolor2{
 	background-color: rgb(255, 212, 218);
 	position: absolute;
     top: 86%;
