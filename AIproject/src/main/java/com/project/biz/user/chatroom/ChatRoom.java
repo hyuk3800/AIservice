@@ -158,6 +158,23 @@ public class ChatRoom {
 		String uploadDir = session.getServletContext().getRealPath("resources/AiUploadImg");
 		String UserDir = session.getServletContext().getRealPath("resources/uploadImg");
 		
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		int chatroom = 0;
+		if(user != null) {
+			chatroom = (int) session.getAttribute("chatroom");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			chatVO aiVo = new chatVO()
+					.setChatData("잠시만 기다려주세요")
+					.setChatroomnum(chatroom)
+					.setType(0);
+			int row1 = chatDao.insertChatterChat(aiVo);
+			System.out.println(row1 + " 잠시만 기다려주세요");
+		}
 		
 		File Folder = new File(uploadDir);
 		
@@ -226,16 +243,17 @@ public class ChatRoom {
 			}
 			System.out.println("이미지 파일 저장 완료!");
 			
-			MemberVo user = (MemberVo) session.getAttribute("user");
+			
 			
 			if(user != null) {
-				int chatroom = (int) session.getAttribute("chatroom");
+				
+				
 				chatVO vo = new chatVO()
 						.setType(2)
 						.setChatData(imgName)
 						.setChatroomnum(chatroom);
-				int row = chatDao.insertChatterChat(vo);
-				System.out.println(row + " 행에 AI 추가");
+				int row2 = chatDao.insertChatterChat(vo);
+				System.out.println(row2 + " 행에 AI 추가");
 			}
 			
 		}

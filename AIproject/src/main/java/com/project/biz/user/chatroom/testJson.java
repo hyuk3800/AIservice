@@ -9,6 +9,8 @@ public class testJson {
 	private String web;
 	private int chatRoom;
 	private List<chatVO> chatData;
+	private List<chatVO> dummyList;
+	private List<chatVO> HairCatList;
 	
 	
 	public MemberVo getUser() {
@@ -35,7 +37,19 @@ public class testJson {
 	public void setChatData(List<chatVO> chatData) {
 		this.chatData = chatData;
 	}
-	
+	public List<chatVO> getDummyList() {
+		return dummyList;
+	}
+	public void setDummyList(List<chatVO> dummyList) {
+		this.dummyList = dummyList;
+	}
+	public List<chatVO> getHairCatList() {
+		return HairCatList;
+	}
+	public void setHairCatList(List<chatVO> hairCatList) {
+		HairCatList = hairCatList;
+	}
+
 	
 	
 	

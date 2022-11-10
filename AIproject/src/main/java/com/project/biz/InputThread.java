@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -34,7 +35,7 @@ public class InputThread extends Thread {
 	}
 	
 	public void run() {
-		while(true) {
+//		while(true) {
 			try {
 				byte[] imagename_size = new byte[4];
 				int len = this.fileterIn.read(imagename_size);				
@@ -72,11 +73,22 @@ public class InputThread extends Thread {
 				bos.close();
 				System.out.println("수신완료");
 				System.out.println("-------------------------------------------");			
+			
+				
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+			finally {
+				try {
+					if (sock != null) {
+						sock.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+//		}
 		
 	}
 }

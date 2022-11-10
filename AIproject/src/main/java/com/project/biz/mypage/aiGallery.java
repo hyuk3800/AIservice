@@ -39,9 +39,12 @@ public class aiGallery {
 		int chatRoom = (int) session.getAttribute("chatroom");
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		List<chatVO> chatList = null;
+		String page = "";
 		if (user != null) {
 			System.out.println("aigallery_json");
-
+			
+			chatList= galleryDAO.searchChatterGallery(chatRoom, page);
+			
 		}
 		
 		testJson json = new testJson();
