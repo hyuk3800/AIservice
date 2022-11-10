@@ -8,15 +8,29 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-public class InputThread {
+import javax.servlet.http.HttpSession;
+
+public class InputThread extends Thread {
+	
 	private Socket sock = null;
 	private DataOutputStream fileterOut = null;
 	private DataInputStream fileterIn = null;
+	private String uploadDir = null;
+	private String imgName = null;
 	
-	public InputThread(Socket sock, DataOutputStream fileterOut,DataInputStream fileterIn) {
+	public InputThread(
+			Socket sock, 
+			DataOutputStream fileterOut,
+			DataInputStream fileterIn,
+			String uploadDir,
+			String imgName
+			) {
+
 		this.sock = sock;
 		this.fileterOut = fileterOut;
 		this.fileterIn = fileterIn;
+		this.uploadDir = uploadDir;
+		this.imgName = imgName;
 	}
 	
 	public void run() {
@@ -52,17 +66,17 @@ public class InputThread {
 					System.out.println("수신 - 이미지 파일 : " + readLen);
 				}
 				
-				FileOutputStream fos = new FileOutputStream(sImage_name);
+				FileOutputStream fos = new FileOutputStream(uploadDir + "/" +imgName);
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
 				bos.write(image_file);
 				bos.close();
 				System.out.println("수신완료");
-				System.out.println("-------------------------------------------");
-				
+				System.out.println("-------------------------------------------");			
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 }

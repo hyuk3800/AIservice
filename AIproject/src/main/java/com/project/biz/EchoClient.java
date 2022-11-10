@@ -61,7 +61,7 @@ public class EchoClient {
 	}
 	
 	
-	public static void sendStyleColor(DataOutputStream fileterOut, String style, String color, String image) throws IOException
+	public static void sendStyleColor(DataOutputStream fileterOut, String style, String color, String image, String UserDir) throws IOException
 	{
 		byte[] styleBuf = makeStringBuf(style);
 		fileterOut.write(styleBuf);
@@ -75,12 +75,12 @@ public class EchoClient {
 		fileterOut.write(imageBuf);
 		fileterOut.flush();
 		
-		File file = new File(image);
+		File file = new File(UserDir + "/" + image);
 		long bytes = file.length();
 		byte[] fLenBuf = makeLongBuf(bytes);
 		fileterOut.write(fLenBuf);
 		
-		InputStream inFile = new FileInputStream(image);
+		InputStream inFile = new FileInputStream(UserDir + "/" + image);
 		BufferedInputStream bis = new BufferedInputStream(inFile);
 		int copyByte = 0;
 		int readLen = 0;
@@ -96,6 +96,9 @@ public class EchoClient {
 		}
 		System.out.println(copyByte + " 바이트를 전송했습니다");
 		inFile.close();
+	}
+	public void close() {
+		sc.close();
 	}
 	
 }
