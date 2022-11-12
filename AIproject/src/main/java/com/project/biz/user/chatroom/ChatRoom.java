@@ -153,7 +153,9 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/testAi.do", method = RequestMethod.POST)
-	public String testAi(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) {
+	public String testAi(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
+		
+		String result = null;
 		
 		String uploadDir = session.getServletContext().getRealPath("resources/AiUploadImg");
 		String UserDir = session.getServletContext().getRealPath("resources/uploadImg");
@@ -162,12 +164,9 @@ public class ChatRoom {
 		int chatroom = 0;
 		if(user != null) {
 			chatroom = (int) session.getAttribute("chatroom");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+			Thread.sleep(1000);
+			
 			chatVO aiVo = new chatVO()
 					.setChatData("잠시만 기다려주세요")
 					.setChatroomnum(chatroom)
@@ -190,15 +189,11 @@ public class ChatRoom {
 		}else {
 			System.out.println("True");
 		}
-		
 		String hairStyle = (String) map.get("haristyle");
 		String haircolor = (String) map.get("hairColor");
 		String imgName = (String) map.get("img");
-		
-		
 //		UserDir+"/"+imgName
-		
-		System.out.println(hairStyle + ", " + haircolor + ", " + imgName);
+//		System.out.println(hairStyle + ", " + haircolor + ", " + imgName);
 	
 		String ip = "192.168.0.34";
 		int PORT = 9400;
@@ -234,26 +229,41 @@ public class ChatRoom {
 			EC.sendStyleColor(filterOut, hairStyle, haircolor, imgName, UserDir);
 			
 			
-			
-			while(true) {
+			int count = 0;
+			while(count <= 30) {
 				File aiImg = new File(uploadDir + "/" +imgName);
 				if(aiImg.exists()) {
 					break;
 				}
+				count ++;
+				Thread.sleep(1000);
 			}
-			System.out.println("이미지 파일 저장 완료!");
 			
-			
-			
-			if(user != null) {
+			if(count > 30) {
 				
+				chatVO aiVo = new chatVO()
+						.setChatData("이미지 가 적절하지 않아요~")
+						.setChatroomnum(chatroom)
+						.setType(0);
+				chatDao.insertChatterChat(aiVo);
+
 				
-				chatVO vo = new chatVO()
-						.setType(2)
-						.setChatData(imgName)
-						.setChatroomnum(chatroom);
-				int row2 = chatDao.insertChatterChat(vo);
-				System.out.println(row2 + " 행에 AI 추가");
+				result = "image is not appropriate";
+				
+			}else {
+				System.out.println("이미지 파일 저장 완료!");				
+			
+				if(user != null) {
+					
+					
+					chatVO vo = new chatVO()
+							.setType(2)
+							.setChatData(imgName)
+							.setChatroomnum(chatroom);
+					int row2 = chatDao.insertChatterChat(vo);
+					System.out.println(row2 + " 행에 AI 추가");
+				}
+				result = imgName;			
 			}
 			
 		}
@@ -265,11 +275,84 @@ public class ChatRoom {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
-		finally {
-			EC.close();
-		}
+
+		System.out.println(result + " 이다");
+		return result;
+	}
 	
-		return imgName;
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/chat/dummy.do", method = RequestMethod.POST)
+	public void dummy(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
+		System.out.println("더미데이터");
+		String result = null;
+		
+		String uploadDir = session.getServletContext().getRealPath("resources/AiUploadImg");
+		String UserDir = session.getServletContext().getRealPath("resources/uploadImg");
+		
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		int chatroom = 0;
+		if(user != null) {
+			chatroom = (int) session.getAttribute("chatroom");
+		
+			Thread.sleep(1000);
+			
+			chatVO aiVo = new chatVO()
+					.setChatData("잠시만 기다려주세요")
+					.setChatroomnum(chatroom)
+					.setType(0);
+			int row1 = chatDao.insertChatterChat(aiVo);
+			System.out.println(row1 + " 잠시만 기다려주세요");
+		}
+		
+		File Folder = new File(uploadDir);
+		
+		if(!Folder.exists()) {
+			try {
+				Folder.mkdir();
+				System.out.println("False");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+		}else {
+			System.out.println("True");
+		}
+		
+		String imgName = (String) map.get("img");
+		
+		String ip = "192.168.0.34";
+		int PORT = 9400;
+		Socket clientSocket = null;
+		
+		EchoClient EC = new EchoClient();
+		
+		try {
+			clientSocket = new Socket(ip, PORT);
+			
+			OutputStream out = clientSocket.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			DataOutputStream filterOut = new DataOutputStream(bos);
+			
+			InputStream in = clientSocket.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(in);
+			DataInputStream filterIn = new DataInputStream(bis);
+			
+			String name = "dummy";
+			byte[] data = EC.makeStringBuf(name);
+			filterOut.write(data);
+			filterOut.flush();
+			
+			EC.sendDummy(filterOut, imgName, UserDir);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
 	}
 	
 }
