@@ -126,6 +126,18 @@ class EchoThread extends Thread {
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 						bos.write(buf, 0, len);
 						bos.flush();
+					}else if(name.equals("dummy")) {
+						Socket serviceSocket = (Socket) this.hm.get("dualstyle");
+						OutputStream out = serviceSocket.getOutputStream();
+						BufferedOutputStream bos = new BufferedOutputStream(out);
+						bos.write(buf, 0, len);
+						bos.flush();
+					}else if(name.equals("dualstyle")) {
+						Socket serviceSocket = (Socket) this.hm.get("dummy");
+						OutputStream out = serviceSocket.getOutputStream();
+						BufferedOutputStream bos = new BufferedOutputStream(out);
+						bos.write(buf, 0, len);
+						bos.flush();
 					}
 				}
 			}

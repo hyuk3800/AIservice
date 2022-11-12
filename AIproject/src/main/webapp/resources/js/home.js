@@ -93,8 +93,14 @@ const hairlist = [
 
 
 const scrollHeight = () => {
-	chbox.scrollTo(0,chbox.scrollHeight);
+	setTimeout(function(){
+		chbox.scrollTo(0,chbox.scrollHeight);		
+	}, 500);
 };
+
+const scrollHeight2 = () => {
+	chbox.scrollTo(0,chbox.scrollHeight);		
+}
 
 const entbtnkeyup = (e) => {
 	if(e.keyCode === 13){
@@ -305,7 +311,7 @@ const getreq = () => {
 									makeingUserFile(chatRow['chatData']);
 								}
 							}
-							scrollHeight();
+//							scrollHeight();
 						}					
 					}
 
@@ -314,7 +320,7 @@ const getreq = () => {
 					headcont.dataset.chatroom = null;
 					loginout.querySelector("#moveback").src = "resources/images/gologin.png";
 				}
-				scrollHeight();
+//				scrollHeight();
 				scrollHeight();
 			}
 		}
@@ -324,8 +330,8 @@ const getreq = () => {
 
 
 	xhr.send();	
-	scrollHeight();
-	scrollHeight();
+//	scrollHeight();
+//	scrollHeight();
 }
 
 const postreq = () => {
@@ -354,8 +360,8 @@ const postreq = () => {
 					
 					console.log(xhr);
 					makingAi(xhr.response);
-					scrollHeight();
-					scrollHeight();
+//					scrollHeight();
+//					scrollHeight();
 				}
 			}
 		}
@@ -386,8 +392,6 @@ const postImgHair = (hairStyle, hairColor, Iname) => {
 			img : Iname
 		};
 	
-	console.log(chatting)
-	
 	
 	let xhr;
 	if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
@@ -405,14 +409,20 @@ const postImgHair = (hairStyle, hairColor, Iname) => {
 				
 				
 				console.log(xhr);
+				if(xhr.response == "image is not appropriate"){
+					makingAi("이미지 가 적절하지 않아요~");
+				}else{
+					
+				
 				makeingAiFile(xhr.response);
-				scrollHeight();
-				scrollHeight();
-				scrollHeight();
-				scrollHeight();
-				scrollHeight();
-				scrollHeight();
-				scrollHeight();
+				}
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
 			}
 		}
 	}
@@ -423,6 +433,52 @@ const postImgHair = (hairStyle, hairColor, Iname) => {
 	
 	xhr.send(JSON.stringify(hair));	
 };
+
+const dummyimg = (Iname) => {
+	
+	
+	const imgName = {img : Iname};
+	
+	let xhr;
+	if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
+        xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) { // IE 6 이하
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	
+	xhr.onreadystatechange = function(){
+		console.log(xhr.readyState);
+		if(xhr.readyState == 4){
+			console.log(xhr.status);
+			// console.log("이거");
+			if(xhr.status == 200){
+				
+				
+				console.log(xhr);
+				if(xhr.response == "image is not appropriate"){
+					makingAi("이미지 가 적절하지 않아요~");
+				}else{
+				makeingAiFile(xhr.response);
+				}
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+//				scrollHeight();
+			}
+		}
+	}
+	
+	xhr.open("POST", "/biz/chat/dummy.do", true);
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	
+	xhr.send(JSON.stringify(imgName));	
+};
+
 
 const postImgTest = () => {
 // 	console.log("클릭");
@@ -460,12 +516,14 @@ const postImgTest = () => {
  		 		if(xhr.status == 200){
  		 			console.log(xhr);
  		 			makeingUserFile(xhr.responseText);
- 		 			makingAi("잠시만 기다려주세요");
+ 		 			setTimeout(function(){
+ 		 				makingAi("잠시만 기다려주세요"); 		 				
+ 		 			}, 500);
  		 			postImgHair(Hairstyle, color, xhr.responseText);
  		 			
  		 			
- 		 			scrollHeight();
- 		 			scrollHeight();
+// 		 			scrollHeight();
+// 		 			scrollHeight();
  		 		}
  		 	}
  		 }
@@ -485,12 +543,62 @@ const postImgTest = () => {
 
 const postImgTest2 = () => {
 	console.log("더미 전송")
+	
+	let fileInfo = fileInput2.files[0];
+// 	let reader = new FileReader();
+// 	reader.readAsDataURL(fileInfo);
+ 	if(!fileInfo){
+// 		console.log("없음");
+ 	}
+ 	else{
+
+ 		let formData = new FormData();
+ 		formData.append('files', fileInfo);
+
+
+
+ 		 let xhr;
+ 		 if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
+ 	         xhr = new XMLHttpRequest();
+ 	     } else if (window.ActiveXObject) { // IE 6 이하
+ 	         xhr = new ActiveXObject("Microsoft.XMLHTTP");
+ 	     }
+ 		 xhr.onreadystatechange = () => {
+ 		 	console.log(xhr.readyState);
+ 		 	if(xhr.readyState == 4){
+ 		 		console.log(xhr.status);
+ 		 		// console.log("이거");
+ 		 		if(xhr.status == 200){
+ 		 			console.log(xhr);
+ 		 			makeingUserFile(xhr.responseText);
+ 		 			dummyimg(xhr.responseText);
+ 		 			setTimeout(function(){
+ 		 				makingAi("잠시만 기다려주세요"); 		 				
+ 		 			}, 500);
+ 		 			
+// 		 			scrollHeight();
+// 		 			scrollHeight();
+ 		 		}
+ 		 	}
+ 		 }
+
+		
+		
+ 		 xhr.open("POST", "/biz/chat/uploadFile.do", true);
+// 		 xhr.setRequestHeader("Content-type", "multipart\/form-data;");
+		 
+		 
+ 		 xhr.send(formData);	
+ 		 
+ 	 	 testuploadButton2();
+ 	}
+	
 };
 
 getreq();
-scrollHeight();
+scrollHeight2();
 
-chatinput.addEventListener('focus', scrollHeight);
+chatinput.addEventListener('focus', scrollHeight2);
 chatinput.addEventListener('keydown', postBtnOn);
 testBtn.addEventListener('click', testuploadButton);
 uploadfilter.addEventListener('click', testuploadButton);
