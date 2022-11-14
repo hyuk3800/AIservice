@@ -95,3 +95,22 @@ dotsClass : "slick-dots",
 draggable : true,    
 });
 })
+$(function(){
+$('#sc2').slick({
+slide: 'div',       
+infinite : true,    
+slidesToShow : 2,        
+slidesToScroll : 1,        
+speed : 100,     
+arrows : true,        
+dots : true,        
+autoplay : true,           
+autoplaySpeed : 1200,         
+pauseOnHover : true,        
+vertical : false,      
+prevArrow : "<button type='button' class='slick-prev'>Previous</button>",    
+nextArrow : "<button type='button' class='slick-next'>Next</button>",      
+dotsClass : "slick-dots",     
+draggable : true,    
+});
+})

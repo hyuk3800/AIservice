@@ -1326,6 +1326,8 @@ ul.imgs li img{
   	outline: 1px solid #bfbfbf;
   }
  .gomygalleryA{
+    height: 100%;
+    display: block;
   	color: #000;
   	text-decoration: none;
  }

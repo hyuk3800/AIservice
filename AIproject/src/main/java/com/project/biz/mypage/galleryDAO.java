@@ -21,48 +21,48 @@ public class galleryDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	
-	private String SelectUser = "SELECT * FROM aiservice.userchatting "
+	private String SelectDummy = "SELECT * FROM aiservice.chatterchatting "
 	 	 					+ "WHERE chatroomnum=? AND chattype=1 "
-	 	 					+ "ORDER BY chatting_date ASC;";
+	 	 					+ "ORDER BY chatting_date DESC;";
 	
 	private String SelectChatter = "SELECT * FROM aiservice.chatterchatting " 
-		 					+ "WHERE chatroomnum=? AND chattype=1 "
-							+ "ORDER BY chatting_date ASC;";
+		 					+ "WHERE chatroomnum=? AND chattype=2 "
+							+ "ORDER BY chatting_date DESC;";
 
 	
-	public List<chatVO> searchChatterGallery(int chatroom) {
+	public List<chatVO> searchChatterGallery(int chatroom, String page) {
 		System.out.println("search ChatterGallery");
 		
 		List<chatVO> chatList = null;
-
+		System.out.println(chatroom);
 		conn = JDBCUtill.getConn();
 		try {
 			stmt = conn.prepareStatement(SelectChatter);
 			stmt.setInt(1, chatroom);
 			rs = stmt.executeQuery();
 			chatList = new ArrayList<chatVO>();		
-			if(!rs.next()) {
+
+			while (rs.next()) {
+				String chatter = rs.getString("chatter");
+				String chat= rs.getString("chattingrecord");
+				Date cre_date= rs.getDate("chatting_date");
+				int type = rs.getInt("chattype");
 				
-			}else {
-				while (rs.next()) {
-					String chatter = rs.getString("chatter");
-					String chat= rs.getString("chattingrecord");
-					Date cre_date= rs.getDate("chatting_date");
-					int type = rs.getInt("chattype");
-					
-					chatVO chatRS = new chatVO()
-							.setChatter(chatter)
-							.setChatData(chat)
-							.setCre_date(cre_date)
-							.setType(type);
-					
-					chatList.add(chatRS);
-					
-			
-				}
+				chatVO chatRS = new chatVO()
+						.setChatter(chatter)
+						.setChatData(chat)
+						.setCre_date(cre_date)
+						.setType(type);
+				
+				chatList.add(chatRS);
 			}
-			
-		} 
+			if(page.equals("mypage")) {
+				if(chatList.size() > 6) {
+					chatList = chatList.subList(0, 6);
+				}
+					
+			} 
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -75,12 +75,40 @@ public class galleryDAO {
 		return chatList;
 	}
 
-	public void searchUserGallery(testJson json) {
+	
+
+	public List<chatVO> searchDummyGallery(int chatroom, String page) {
+		List<chatVO> chatList = null;
 		System.out.println("search userGallery");
-		int chatroom = json.getChatRoom();
-		MemberVo user = json.getUser();
 		conn = JDBCUtill.getConn();
 		try {
+			stmt = conn.prepareStatement(SelectDummy);
+			stmt.setInt(1, chatroom);
+			rs = stmt.executeQuery();
+			chatList = new ArrayList<chatVO>();		
+
+			while (rs.next()) {
+				String chatter = rs.getString("chatter");
+				String chat= rs.getString("chattingrecord");
+				Date cre_date= rs.getDate("chatting_date");
+				int type = rs.getInt("chattype");
+				
+				chatVO chatRS = new chatVO()
+						.setChatter(chatter)
+						.setChatData(chat)
+						.setCre_date(cre_date)
+						.setType(type);
+				
+				chatList.add(chatRS);
+				
+			}
+			
+			if(page.equals("mypage")) {
+				if(chatList.size() > 6) {
+					chatList = chatList.subList(0, 6);
+				}
+			}
+			
 			
 		} 
 		catch (Exception e) {
@@ -91,6 +119,9 @@ public class galleryDAO {
 			// TODO: handle finally clause
 			JDBCUtill.close(rs, stmt, conn);
 		}
+		return chatList;
 	}
 
+	
+	
 }
