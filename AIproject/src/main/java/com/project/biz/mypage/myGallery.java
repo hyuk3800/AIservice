@@ -41,7 +41,7 @@ public class myGallery {
 		List<chatVO> chatList = null;
 		if (user != null) {
 			int chatroom = (int) session.getAttribute("chatroom");
-			chatList = galleryDAO.searchChatterGallery(chatroom, page);
+			chatList = galleryDAO.searchDummyGallery(chatroom, page);
 			for (chatVO vo : chatList) {
 				System.out.println(vo);
 			}

@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.biz.EchoClient;
 import com.project.biz.InputThread;
+import com.project.biz.InputThread2;
 import com.project.member.MemberVo;
 
 @Controller
@@ -285,7 +286,7 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/dummy.do", method = RequestMethod.POST)
-	public void dummy(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
+	public String dummy(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
 		System.out.println("더미데이터");
 		String result = null;
 		
@@ -346,13 +347,68 @@ public class ChatRoom {
 			filterOut.write(data);
 			filterOut.flush();
 			
+			InputThread2 it = new InputThread2(
+					clientSocket, 
+					filterOut, 
+					filterIn, 
+					uploadDir,
+					imgName
+					);
+			it.start();
+			
+			
 			EC.sendDummy(filterOut, imgName, UserDir);
+			
+			
+			int count = 0;
+			while(count <= 30) {
+				File aiImg = new File(uploadDir + "/" +"4" + imgName);
+				if(aiImg.exists()) {
+					break;
+				}
+				count ++;
+				Thread.sleep(1000);
+			}
+			
+			if(count > 30) {
+				
+				chatVO aiVo = new chatVO()
+						.setChatData("이미지 가 적절하지 않아요~")
+						.setChatroomnum(chatroom)
+						.setType(0);
+				chatDao.insertChatterChat(aiVo);
+
+				
+				result = "image is not appropriate";
+				
+			}else {
+				System.out.println("이미지 파일 저장 완료!");				
+			
+				if(user != null) {
+					chatVO vo = new chatVO();
+					for (int i = 0; i < 5; i++) {	
+						if(i == 0) {
+							vo.setType(3)
+							  .setChatData(i + imgName)
+						      .setChatroomnum(chatroom);	
+						}else {
+							vo.setType(1)
+							  .setChatData(i + imgName)
+						      .setChatroomnum(chatroom);							
+						}
+						int row2 = chatDao.insertChatterChat(vo);
+						System.out.println(row2 + " 행에 AI 추가");
+					}
+				}
+				result = "0" + imgName;			
+			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-	
+		return result;
 	}
 	
 }
