@@ -193,6 +193,7 @@
 
 #postChat{
 	height: 5.5vh;
+	min-height: 35px;
 }
 
 
@@ -697,3 +698,4 @@
     text-align: center;
     border-radius: 5px;
 }
+
