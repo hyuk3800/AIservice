@@ -1,6 +1,8 @@
 const changename = document.querySelector("#changename");
-const slidercont = document.querySelector(".slidercont");
+const slidercont = document.querySelector("#sc");
+const slidercont2 = document.querySelector("#sc2");
 const nomygallery = document.querySelector("#nomygallery");
+const catcatBox = document.querySelector(".catcatBox");
 const hvr_pulse_shrink = document.querySelector(".hvr-pulse-shrink");
 
 let nickname;
@@ -13,7 +15,7 @@ const makeImgBox = (srclink) => {
 	mygallery.href="mygallery.do";
 	
 	const imgBox = document.createElement("img");
-	imgBox.src = "resources/uploadImg/" + srclink;
+	imgBox.src = "resources/AiUploadImg/" + srclink;
 	imgBox.width = 130;
 	imgBox.height = 130;
 
@@ -21,7 +23,22 @@ const makeImgBox = (srclink) => {
 	hvr_pulse_shrink.appendChild(mygallery);
 	slidercont.appendChild(hvr_pulse_shrink);
 };
+const makeImgBox2 = (srclink) => {
+	const hvr_pulse_shrink = document.createElement("div");
+	hvr_pulse_shrink.className = "hvr-pulse-shrink";
+	
+	const mygallery = document.createElement("a");
+	mygallery.href="aigallery.do";
+	
+	const imgBox = document.createElement("img");
+	imgBox.src = "resources/AiUploadImg/" + srclink;
+	imgBox.width = 130;
+	imgBox.height = 130;
 
+	mygallery.appendChild(imgBox);
+	hvr_pulse_shrink.appendChild(mygallery);
+	slidercont2.appendChild(hvr_pulse_shrink);
+};
 
 
 const getJson = () => {
@@ -45,20 +62,28 @@ const getJson = () => {
 				const userID = document.querySelector("#userID");
 				nickname = user['nickname'];
 				userID.value = user['nickname'];
-				if(data["chatData"].length != 0){
-					for(let i=0; i < data["chatData"].length; i++){
-						const srclink = data["chatData"][i]["chatData"];
+				if(data["dummyList"].length != 0){
+					for(let i=0; i < data["dummyList"].length; i++){
+						const srclink = data["dummyList"][i]["chatData"];
+						makeImgBox(srclink);							
 						
-						makeImgBox(srclink);
+					}					
+				}else if(data["dummyList"].length == 0){
+					console.log("null");
+					nomygallery.classList = "on";
+				}
+				
+				if(data["hairCatList"].length != 0){
+					for(let i=0; i < data["hairCatList"].length; i++){
+						const srclink = data["hairCatList"][i]["chatData"];
+						makeImgBox2(srclink);							
+						
 					}					
 				}
-				else{
+				else if(data["hairCatList"].length == 0){
 					console.log("null");
-					nomygallery.className = "on";
+					catcatBox.classList = "on";
 				}
-				
-				const catcatBox = document.querySelector(".catcatBox");
-				
 			}
 		}
 	}

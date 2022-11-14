@@ -37,10 +37,11 @@ public class myGallery {
 	public testJson getMyGalleryJson(HttpSession session, galleryDAO galleryDAO) {
 		logger.info("GET_myGallery_json");
 		MemberVo user = (MemberVo) session.getAttribute("user");
+		String page = "";
 		List<chatVO> chatList = null;
 		if (user != null) {
 			int chatroom = (int) session.getAttribute("chatroom");
-			chatList = galleryDAO.searchChatterGallery(chatroom);
+			chatList = galleryDAO.searchChatterGallery(chatroom, page);
 			for (chatVO vo : chatList) {
 				System.out.println(vo);
 			}
