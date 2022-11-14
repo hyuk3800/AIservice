@@ -9,7 +9,6 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import javax.servlet.http.HttpSession;
 
 public class InputThread2 extends Thread {
 	
@@ -18,6 +17,7 @@ public class InputThread2 extends Thread {
 	private DataInputStream fileterIn = null;
 	private String uploadDir = null;
 	private String imgName = null;
+	private String result = null;
 	
 	public InputThread2(
 			Socket sock, 
@@ -34,6 +34,16 @@ public class InputThread2 extends Thread {
 		this.imgName = imgName;
 	}
 	
+	public String getResult() {
+		return result;
+	}
+
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+
 	public void run() {
 			try {
 //				int count = 0;
@@ -55,6 +65,7 @@ public class InputThread2 extends Thread {
 						
 						System.out.println("이미지 가 적절하지 않아요~");
 						
+						setResult("이미지 가 적절하지 않아요~");
 					}
 					else {
 						byte[] imagefile_size = new byte[8];
@@ -83,7 +94,8 @@ public class InputThread2 extends Thread {
 						 
 						bos.close();
 						System.out.println("수신완료");
-						System.out.println("-------------------------------------------");			
+						System.out.println("-------------------------------------------");	
+						setResult(i +imgName);
 					}
 				}
 				
