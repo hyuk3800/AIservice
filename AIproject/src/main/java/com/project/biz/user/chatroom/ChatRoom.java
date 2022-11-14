@@ -229,18 +229,19 @@ public class ChatRoom {
 			
 			EC.sendStyleColor(filterOut, hairStyle, haircolor, imgName, UserDir);
 			
+			it.join();
+//			int count = 0;
+//			while(count <= 30) {
+//				File aiImg = new File(uploadDir + "/" +imgName);
+//				if(aiImg.exists()) {
+//					break;
+//				}
+//				count ++;
+//				Thread.sleep(1000);
+//			}
+			result = it.getResult();
 			
-			int count = 0;
-			while(count <= 30) {
-				File aiImg = new File(uploadDir + "/" +imgName);
-				if(aiImg.exists()) {
-					break;
-				}
-				count ++;
-				Thread.sleep(1000);
-			}
-			
-			if(count > 30) {
+			if(result.equals("이미지 가 적절하지 않아요~")) {
 				
 				chatVO aiVo = new chatVO()
 						.setChatData("이미지 가 적절하지 않아요~")
@@ -359,27 +360,26 @@ public class ChatRoom {
 			
 			EC.sendDummy(filterOut, imgName, UserDir);
 			
+			it.join();
+//			int count = 0;
+//			while(count <= 30) {
+//				File aiImg = new File(uploadDir + "/" +"4" + imgName);
+//				if(aiImg.exists()) {
+//					break;
+//				}
+//				count ++;
+//				Thread.sleep(1000);
+//			}
+			result = it.getResult();
 			
-			int count = 0;
-			while(count <= 30) {
-				File aiImg = new File(uploadDir + "/" +"4" + imgName);
-				if(aiImg.exists()) {
-					break;
-				}
-				count ++;
-				Thread.sleep(1000);
-			}
-			
-			if(count > 30) {
+			if(result.equals("이미지 가 적절하지 않아요~")) {
 				
 				chatVO aiVo = new chatVO()
-						.setChatData("이미지 가 적절하지 않아요~")
+						.setChatData(result)
 						.setChatroomnum(chatroom)
 						.setType(0);
 				chatDao.insertChatterChat(aiVo);
 
-				
-				result = "image is not appropriate";
 				
 			}else {
 				System.out.println("이미지 파일 저장 완료!");				
