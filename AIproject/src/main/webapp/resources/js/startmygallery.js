@@ -4,11 +4,11 @@ const makeImgBox = (srclink) => {
 	const abox = document.createElement("a");
 	
 	abox.dataset.fancybox = "gallery";
-	abox.href = "resources/uploadImg/" + srclink;
+	abox.href = "resources/AiUploadImg/" + srclink;
 	abox.className = "myatags";
 	const imgBox = document.createElement("img");
 	imgBox.className = "rounded";
-	imgBox.src="resources/uploadImg/" + srclink;
+	imgBox.src="resources/AiUploadImg/" + srclink;
 	
 //	imgBox.width = 100;
 //	imgBox.height = 100;
