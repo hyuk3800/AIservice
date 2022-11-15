@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.biz.EchoClient;
 import com.project.biz.InputThread;
 import com.project.biz.InputThread2;
+import com.project.biz.InputThread3;
 import com.project.member.MemberVo;
 
 @Controller
@@ -79,12 +80,50 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/chatting.do", method = RequestMethod.POST)
-	public String chattingPost(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDAO) {
+	public chatVO chattingPost(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDAO) {
 		logger.info("POST_Chatting");
 		System.out.println(map);
 		String userChat = (String) map.get("chat");
 		System.out.println(userChat);
 		MemberVo user = (MemberVo) session.getAttribute("user");
+		
+		String ip = "192.168.0.34";
+		int PORT = 9400;
+		Socket clientSocket = null;
+		
+		String result = null;
+		
+		EchoClient EC = new EchoClient();
+		try {
+			clientSocket = new Socket(ip, PORT);
+			
+			OutputStream out = clientSocket.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			DataOutputStream filterOut = new DataOutputStream(bos);
+			
+			InputStream in = clientSocket.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(in);
+			DataInputStream filterIn = new DataInputStream(bis);
+			
+			String name = "user_chat";
+			byte[] data = EC.makeStringBuf(name);
+			filterOut.write(data);
+			filterOut.flush();
+			InputThread3 it = new InputThread3(clientSocket, filterOut, filterIn);
+			it.start();
+			
+			EC.sendChatBot(filterOut, userChat);
+			
+			it.join();
+			
+			result = it.getResult();
+			System.out.println(result);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		chatVO aiVo = new chatVO().setChatData(result);
 		if(user != null) {
 			int chatRoom = (int) session.getAttribute("chatroom");
 			chatVO vo = new chatVO()
@@ -95,12 +134,10 @@ public class ChatRoom {
 			int row = chatDAO.insertUserChat(vo);
 			System.out.println(row + " 행에 추가");
 			
-			String ai = "hi im Ai " + user.getID();
 			
-			chatVO aiVo = new chatVO()
-							.setChatData(ai)
-							.setChatroomnum(chatRoom)
-							.setType(0);
+			
+			aiVo.setChatroomnum(chatRoom)
+				.setType(0);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -111,7 +148,7 @@ public class ChatRoom {
 			int airow = chatDAO.insertChatterChat(aiVo);
 			System.out.println(airow + " 행에 AI 추가");
 			
-			return ai;		
+			return aiVo;		
 		}
 		else {
 			try {
@@ -120,7 +157,7 @@ public class ChatRoom {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
-			return "hi im Ai null";
+			return aiVo;
 		}
 		
 	}
@@ -371,11 +408,11 @@ public class ChatRoom {
 //				Thread.sleep(1000);
 //			}
 			result = it.getResult();
-			
-			if(result.equals("이미지 가 적절하지 않아요~")) {
+			System.out.println("result : " + result);
+			if(result.equals("image is not appropriate")) {
 				
 				chatVO aiVo = new chatVO()
-						.setChatData(result)
+						.setChatData("이미지 가 적절하지 않아요~")
 						.setChatroomnum(chatroom)
 						.setType(0);
 				chatDao.insertChatterChat(aiVo);
