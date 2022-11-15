@@ -1156,11 +1156,11 @@ p{
 }
 .slick-prev:before
 {
-    content: '\25CF';
+    content: '\2190';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '\25CF';
+    content: '\2190';
 }
 
 .slick-next
