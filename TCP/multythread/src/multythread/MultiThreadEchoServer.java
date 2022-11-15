@@ -138,6 +138,18 @@ class EchoThread extends Thread {
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 						bos.write(buf, 0, len);
 						bos.flush();
+					}else if(name.equals("chat_bot")) {
+						Socket serviceSocket = (Socket) this.hm.get("user_chat");
+						OutputStream out = serviceSocket.getOutputStream();
+						BufferedOutputStream bos = new BufferedOutputStream(out);
+						bos.write(buf, 0, len);
+						bos.flush();
+					}else if(name.equals("user_chat")) {
+						Socket serviceSocket = (Socket) this.hm.get("chat_bot");
+						OutputStream out = serviceSocket.getOutputStream();
+						BufferedOutputStream bos = new BufferedOutputStream(out);
+						bos.write(buf, 0, len);
+						bos.flush();
 					}
 				}
 			}
