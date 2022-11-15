@@ -7,7 +7,7 @@ const makeImgBox = (srclink) => {
 	abox.href = "resources/AiUploadImg/" + srclink;
 	abox.className = "myatags";
 	const imgBox = document.createElement("img");
-	imgBox.className = "rounded";
+	imgBox.className = "rounded recommend";
 	imgBox.src="resources/AiUploadImg/" + srclink;
 	
 //	imgBox.width = 100;
