@@ -28,6 +28,7 @@
     padding-top:2%;
     background-color: #ffffff;
     padding-bottom:1%;
+    width: 101%;
 }
 
 ul.container{
@@ -1062,6 +1063,7 @@ p{
 
   .slidercont img{
     border-radius:10px;
+    width:99%;
   }
 
 /* slick-theme */

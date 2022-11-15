@@ -49,7 +49,7 @@
   // add to gallery
 
   $(function () {
-
+	  console.log("실행")
     $(".recommend").click(function () {
       $(".modal").fadeIn();
     });
