@@ -357,9 +357,9 @@ const postreq = () => {
 				// console.log("이거");
 				if(xhr.status == 200){
 					
-					
-					console.log(xhr);
-					makingAi(xhr.response);
+					let data = JSON.parse(xhr.response);
+					console.log(data);
+					makingAi(data["chatData"]);
 //					scrollHeight();
 //					scrollHeight();
 				}

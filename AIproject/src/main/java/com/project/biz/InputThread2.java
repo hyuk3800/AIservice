@@ -64,8 +64,9 @@ public class InputThread2 extends Thread {
 					if(sImage_name.equals("image is not appropriate")) {
 						
 						System.out.println("이미지 가 적절하지 않아요~");
-						
-						setResult("이미지 가 적절하지 않아요~");
+						i = 10;
+						setResult("image is not appropriate");
+		
 					}
 					else {
 						byte[] imagefile_size = new byte[8];

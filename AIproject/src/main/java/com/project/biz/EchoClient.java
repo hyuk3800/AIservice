@@ -30,6 +30,25 @@ public class EchoClient {
 		return data;
 	}
 	
+	public static byte[] makeStringBuf2(String str) {
+		
+		int len = str.length();
+		byte[] lenBuf = new byte[4];
+		lenBuf[0] = (byte)((len&0xFF000000)>>24);
+		lenBuf[1] = (byte)((len&0x00FF0000)>>16);
+		lenBuf[2] = (byte)((len&0x0000FF00)>>8);
+		lenBuf[3] = (byte)((len&0x000000FF));
+		
+		byte[] strBuf = str.getBytes(StandardCharsets.UTF_8);
+		
+		byte[] data = new byte[lenBuf.length + strBuf.length];
+		System.arraycopy(lenBuf, 0, data, 0, lenBuf.length);
+		System.arraycopy(strBuf, 0, data, lenBuf.length, strBuf.length);
+		
+		return data;
+	}
+	
+	
 	public static byte[] makeLongBuf(long len) {
 		byte[] byterAttay = ByteBuffer.allocate(8).putLong(len).array();
 		return byterAttay;
@@ -100,5 +119,12 @@ public class EchoClient {
 		}
 		System.out.println(copyByte + " 바이트를 전송했습니다");
 		inFile.close();
+	}
+	
+	public void sendChatBot(DataOutputStream fileterOut, String chat) throws IOException {
+		byte[] chatBuf = makeStringBuf(chat);
+		fileterOut.write(chatBuf);
+		fileterOut.flush();
+		System.out.println(chat + ", 전송 완료");
 	}
 }
