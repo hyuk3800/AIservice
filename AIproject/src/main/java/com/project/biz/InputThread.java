@@ -18,6 +18,7 @@ public class InputThread extends Thread {
 	private DataInputStream fileterIn = null;
 	private String uploadDir = null;
 	private String imgName = null;
+	private String result = null;
 	
 	public InputThread(
 			Socket sock, 
@@ -34,6 +35,21 @@ public class InputThread extends Thread {
 		this.imgName = imgName;
 	}
 	
+	
+	
+	
+	public String getResult() {
+		return result;
+	}
+
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+
+
+
 	public void run() {
 			try {
 				byte[] imagename_size = new byte[4];
@@ -52,7 +68,7 @@ public class InputThread extends Thread {
 				if(sImage_name.equals("image is not appropriate")) {
 					
 					System.out.println("이미지 가 적절하지 않아요~");
-					
+					setResult("이미지 가 적절하지 않아요~");
 				}
 				else {
 					byte[] imagefile_size = new byte[8];
@@ -77,7 +93,8 @@ public class InputThread extends Thread {
 					bos.write(image_file);
 					bos.close();
 					System.out.println("수신완료");
-					System.out.println("-------------------------------------------");			
+					System.out.println("-------------------------------------------");	
+					setResult(imgName);
 				}
 			
 				

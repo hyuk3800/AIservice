@@ -298,7 +298,7 @@ const getreq = () => {
 								console.log("이건 AI", chatRow)
 								if(chatRow['type']==0){
 									makingAi(chatRow['chatData']);								
-								}else{
+								}else if(chatRow['type'] != 1){
 									makeingAiFile(chatRow['chatData']);
 								}
 							}
