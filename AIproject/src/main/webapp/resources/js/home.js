@@ -267,6 +267,26 @@ const makeingAiFile = (fileName) => {
 	scrollHeight()
 };
 
+const makeingAiFile2 = (fileName) => {
+	const AiDiv = document.createElement("div");
+	const icon = document.createElement("div");
+	const aiIcon = document.createElement("div");
+	const textbox = document.createElement("div");
+	const AiImg = document.createElement("img")
+	AiDiv.className = "chat ch1";
+	icon.className = "icon";
+	aiIcon.className = "ai icon";
+	textbox.className = "textbox";
+	AiImg.src = "resources/dummy/" + fileName;
+	textbox.appendChild(AiImg);
+	
+	icon.appendChild(aiIcon);
+	AiDiv.appendChild(icon);
+	AiDiv.appendChild(textbox);
+	chbox.appendChild(AiDiv);
+	scrollHeight()
+};
+
 const getreq = () => {
 	let xhr;
 	if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
@@ -296,8 +316,14 @@ const getreq = () => {
 							let chatRow = data['chatData'][i];
 							if(chatRow['chatter'] == 'AI'){
 								console.log("이건 AI", chatRow)
+								
 								if(chatRow['type']==0){
-									makingAi(chatRow['chatData']);								
+									if(!Number(chatRow['chatData'])){
+										makingAi(chatRow['chatData']);																		
+									}
+									else{
+										makeingAiFile2(chatRow['chatData'] + '.png');
+									}
 								}else if(chatRow['type'] != 1){
 									makeingAiFile(chatRow['chatData']);
 								}
@@ -359,7 +385,13 @@ const postreq = () => {
 					
 					let data = JSON.parse(xhr.response);
 					console.log(data);
-					makingAi(data["chatData"]);
+					console.log(Number(data['chatData']));
+					if(!Number(data["chatData"])){
+						makingAi(data["chatData"]);												
+					}
+					else{
+						makeingAiFile2(data["chatData"] + '.png');
+					}
 //					scrollHeight();
 //					scrollHeight();
 				}
