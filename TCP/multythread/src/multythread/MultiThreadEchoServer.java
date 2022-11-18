@@ -20,7 +20,7 @@ import java.util.List;
 public class MultiThreadEchoServer {
 	final static int PORT = 9400;
 	
-	// ÀÖ´Â ¼ÒÄÏÀÇ Á¾·ù
+	// ìˆëŠ” ì†Œì¼“ì˜ ì¢…ë¥˜
 	static HashMap hm = new HashMap();
 	
 
@@ -72,14 +72,14 @@ public class MultiThreadEchoServer {
 		
 			
 			while(true) {
-				System.out.println("Å¬¶óÀÌ¾ğÆ® Á¢¼Ó ´ë±â.....");
+				System.out.println("í´ë¼ì´ì–¸íŠ¸ ì ‘ì† ëŒ€ê¸°.....");
 			
 				Socket clientSocket = serverSocket.accept();
 				
 				String name = getClientName(clientSocket);
 				
 				hm.put(name, clientSocket);
-				System.out.println(name + "°ú" + clientSocket.toString() + "¸¦ µî·Ï");
+				System.out.println(name + "ê³¼" + clientSocket.toString() + "ë¥¼ ë“±ë¡");
 				EchoThread echoThread = new EchoThread(hm, clientSocket, name);
 				echoThread.start();
 				System.out.println();
@@ -93,7 +93,7 @@ public class MultiThreadEchoServer {
 }
 
 class EchoThread extends Thread {
-	// ÀÖ´Â ¼ÒÄÏ
+	// ìˆëŠ” ì†Œì¼“
 	private HashMap hm;
 
 	private Socket socket;
@@ -124,7 +124,7 @@ class EchoThread extends Thread {
 		try {
 
 			InetAddress inetAddr = socket.getInetAddress();  
-			System.out.println(inetAddr.getHostAddress() + "·ÎºÎÅÍ Á¢¼ÓÇß½À´Ï´Ù~");
+			System.out.println(inetAddr.getHostAddress() + "ë¡œë¶€í„° ì ‘ì†í–ˆìŠµë‹ˆë‹¤~");
 			
 			InputStream in = socket.getInputStream();
 			BufferedInputStream bis = new BufferedInputStream(in);
@@ -136,15 +136,15 @@ class EchoThread extends Thread {
 				
 				if (len <= 0) {
 					
-					System.out.println(this.name + " : Å¬¶óÀÌ¾ğÆ® Á¢¼Ó ´ÜÀı!");
+					System.out.println(this.name + " : í´ë¼ì´ì–¸íŠ¸ ì ‘ì† ë‹¨ì ˆ!");
 					break;
 					
 				}else {
 					
-					System.out.println(inetAddr.getHostAddress() + " Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍ ¼ö½Å");
+					System.out.println(inetAddr.getHostAddress() + " í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° ìˆ˜ì‹ ");
 					
 //					/////////////////////////////////////////////////////////////////////
-//					À¯Àú
+//					ìœ ì €
 					if(name.equals("service")) {
 						Socket serviceSocket = (Socket) this.hm.get("hairstyle");
 						OutputStream out = serviceSocket.getOutputStream();
@@ -152,7 +152,7 @@ class EchoThread extends Thread {
 						bos.write(buf, 0, len);
 						bos.flush();
 					}
-//					ÆÄÀÌ½ã
+//					íŒŒì´ì¬
 					else if(name.equals("hairstyle")) {
 						Socket serviceSocket = (Socket) this.hm.get("service");
 						OutputStream out = serviceSocket.getOutputStream();
@@ -161,7 +161,7 @@ class EchoThread extends Thread {
 						bos.flush();
 					}
 //					///////////////////////////////////////////////////////////////
-//					À¯Àú
+//					ìœ ì €
 					else if(name.equals("dummy")) {
 						Socket serviceSocket = (Socket) this.hm.get("dualstyle");
 						OutputStream out = serviceSocket.getOutputStream();
@@ -169,7 +169,7 @@ class EchoThread extends Thread {
 						bos.write(buf, 0, len);
 						bos.flush();
 					}
-//					ÆÄÀÌ½ã
+//					íŒŒì´ì¬
 					else if(name.equals("dualstyle")) {
 						Socket serviceSocket = (Socket) this.hm.get("dummy");
 						OutputStream out = serviceSocket.getOutputStream();
@@ -178,7 +178,7 @@ class EchoThread extends Thread {
 						bos.flush();
 					}
 //					/////////////////////////////////////////////////////////////////
-//					À¯Àú
+//					ìœ ì €
 					else if(name.equals("user_chat")) {
 						Socket serviceSocket = (Socket) this.hm.get("chat_bot");
 //						Socket serviceSocket = (Socket) this.chatbotL.get(0);
@@ -191,7 +191,7 @@ class EchoThread extends Thread {
 									
 						
 					}
-//					ÆÄÀÌ½ã
+//					íŒŒì´ì¬
 					else if(name.equals("chat_bot")) {
 						System.out.println(name);
 						Socket serviceSocket = (Socket) this.hm.get("user_chat");
@@ -207,7 +207,7 @@ class EchoThread extends Thread {
 
 				}
 			}
-			System.out.println(inetAddr.getHostAddress() + " Å¬¶óÀÌ¾ğÆ® Á¢¼Ó Á¾·á");
+			System.out.println(inetAddr.getHostAddress() + " í´ë¼ì´ì–¸íŠ¸ ì ‘ì† ì¢…ë£Œ");
 			System.out.println(this.hm);
 		} catch (Exception e) {
 			e.printStackTrace();
