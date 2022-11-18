@@ -16,8 +16,32 @@ import java.util.HashMap;
 import java.util.List;
 
 
+class ClientInfo{
+	String name;
+	Socket socket;
+	
+	ClientInfo(String name, Socket socket){
+		this.name = name;
+		this.socket = socket;
+	}
+}
+
+class MatchHairInfo{
+	ClientInfo service;
+	ClientInfo hairstyle;
+	
+	MatchHairInfo(ClientInfo service, ClientInfo hairstyle){
+		this.service = service;
+		this.hairstyle = hairstyle;
+	}
+}
 
 public class MultiThreadEchoServer {
+	static int serviceCnt = 0;
+	static int hairstyleCnt = 0;
+	static List<ClientInfo> freeEngineList = new ArrayList<ClientInfo>();
+	static List<MatchHairInfo> matchHairList = new ArrayList<MatchHairInfo>();
+	
 	final static int PORT = 9400;
 	
 	// 있는 소켓의 종류
@@ -76,11 +100,36 @@ public class MultiThreadEchoServer {
 			
 				Socket clientSocket = serverSocket.accept();
 				
+				clientSocket.setSoTimeout(1000*60*60*3);
+				System.out.println(clientSocket.getSoTimeout());
+				
 				String name = getClientName(clientSocket);
 				
-				hm.put(name, clientSocket);
+				if(name.equals("service")) {
+					if(freeEngineList.size() == 0) {
+						System.out.println("남은 엔진이 없어서 할당할 수 없음");
+						clientSocket.close();
+					}
+					name += serviceCnt++;
+					
+					ClientInfo hairstyle = freeEngineList.remove(0);
+					MatchHairInfo matchInfo = new MatchHairInfo(
+							new ClientInfo(name, clientSocket), 
+							hairstyle
+							);
+					matchHairList.add(matchInfo);
+					
+
+				}else if(name.equals("hairstyle")) {
+					name += hairstyleCnt++;
+					freeEngineList.add(new ClientInfo(name, clientSocket));
+				}else {
+					hm.put(name, clientSocket);
+				}
+				
+				
 				System.out.println(name + "과" + clientSocket.toString() + "를 등록");
-				EchoThread echoThread = new EchoThread(hm, clientSocket, name);
+				EchoThread echoThread = new EchoThread(matchHairList, freeEngineList, hm, clientSocket, name);
 				echoThread.start();
 				System.out.println();
 			}
@@ -93,6 +142,10 @@ public class MultiThreadEchoServer {
 }
 
 class EchoThread extends Thread {
+	
+	List<MatchHairInfo> matchHairList;
+	List<ClientInfo> freeEngineList;
+	
 	// 있는 소켓
 	private HashMap hm;
 
@@ -100,7 +153,9 @@ class EchoThread extends Thread {
 	
 	private String name;
 	
-	public EchoThread(HashMap hm, Socket socket, String name) {
+	public EchoThread(List<MatchHairInfo> matchHairList, List<ClientInfo> freeEngineList, HashMap hm, Socket socket, String name) {
+		this.matchHairList = matchHairList;
+		this.freeEngineList = freeEngineList;
 		this.hm = hm;
 		this.name = name;
 		this.socket = socket;	
@@ -119,7 +174,46 @@ class EchoThread extends Thread {
 //	public void setUsing(HashMap using) {
 //		this.using = using;
 //	}
-
+	
+	Socket getMatchSocket(String name, boolean isService) {
+		Socket socket = null;
+		for(int i=0;i<matchHairList.size();i++) {
+			MatchHairInfo mhi = matchHairList.get(i);
+			
+			if(isService) {
+				if(mhi.service.name.equals(name)) {
+					socket = mhi.hairstyle.socket;
+					break;
+				}			
+			}else {
+				if(mhi.hairstyle.name.equals(name)) {
+					socket = mhi.service.socket;
+					break;
+				}	
+			}
+		}
+		
+		return socket;
+	}
+	
+	boolean removeMatchHairList(String name) {
+		boolean isRemove = false;
+		for(int i=0;i<matchHairList.size();i++) {
+			MatchHairInfo mhi = matchHairList.get(i);
+			if(mhi.service.name.equals(name)) {
+				
+				ClientInfo hairstyle = mhi.hairstyle;
+				freeEngineList.add(hairstyle);
+				
+				matchHairList.remove(i);
+				isRemove = true;
+				break;
+			}
+		}
+		
+		return isRemove;		
+	}
+	
 	public void run() {
 		try {
 
@@ -137,6 +231,10 @@ class EchoThread extends Thread {
 				if (len <= 0) {
 					
 					System.out.println(this.name + " : 클라이언트 접속 단절!");
+					
+					if(name.substring(0, 7).equals("service")) {
+						removeMatchHairList(this.name);
+					}
 					break;
 					
 				}else {
@@ -145,20 +243,34 @@ class EchoThread extends Thread {
 					
 //					/////////////////////////////////////////////////////////////////////
 //					유저
-					if(name.equals("service")) {
-						Socket serviceSocket = (Socket) this.hm.get("hairstyle");
+//					if(name.equals("service")) {
+					if(name.substring(0, 7).equals("service")) {
+						//Socket serviceSocket = (Socket) this.hm.get("hairstyle");
+						Socket serviceSocket = getMatchSocket(name, true);
 						OutputStream out = serviceSocket.getOutputStream();
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 						bos.write(buf, 0, len);
 						bos.flush();
 					}
 //					파이썬
-					else if(name.equals("hairstyle")) {
-						Socket serviceSocket = (Socket) this.hm.get("service");
-						OutputStream out = serviceSocket.getOutputStream();
-						BufferedOutputStream bos = new BufferedOutputStream(out);
-						bos.write(buf, 0, len);
-						bos.flush();
+//					else if(name.equals("hairstyle")) {
+					else if(name.substring(0, 7).equals("hairsty")) {
+						//Socket serviceSocket = (Socket) this.hm.get("service");
+						Socket serviceSocket = getMatchSocket(name, false);
+						
+						// service와 hairstyle이 매칭되어 service소켓을 찾았을 때
+						if(serviceSocket != null) {
+							OutputStream out = serviceSocket.getOutputStream();
+							BufferedOutputStream bos = new BufferedOutputStream(out);
+							bos.write(buf, 0, len);
+							bos.flush();							
+						}else {
+							// ping = -1을 받고 다시 돌려준다
+							OutputStream out = socket.getOutputStream();
+							BufferedOutputStream bos = new BufferedOutputStream(out);
+							bos.write(buf, 0, len);
+							bos.flush();
+						}
 					}
 //					///////////////////////////////////////////////////////////////
 //					유저
