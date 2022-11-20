@@ -36,11 +36,25 @@ class MatchHairInfo{
 	}
 }
 
+class MatchDumyInfo{
+	ClientInfo dummy;
+	ClientInfo dualstyle;
+	
+	MatchDumyInfo(ClientInfo dummy, ClientInfo dualstyle){
+		this.dummy = dummy;
+		this.dualstyle = dualstyle;
+	}
+}
+
 public class MultiThreadEchoServer {
 	static int serviceCnt = 0;
 	static int hairstyleCnt = 0;
+	static int dummyCnt = 0;
+	static int dualstyleCnt = 0;
 	static List<ClientInfo> freeEngineList = new ArrayList<ClientInfo>();
+	static List<ClientInfo> freeEngineList2 = new ArrayList<ClientInfo>();
 	static List<MatchHairInfo> matchHairList = new ArrayList<MatchHairInfo>();
+	static List<MatchDumyInfo> matchDumyList = new ArrayList<MatchDumyInfo>();
 	
 	final static int PORT = 9400;
 	
@@ -123,13 +137,32 @@ public class MultiThreadEchoServer {
 				}else if(name.equals("hairstyle")) {
 					name += hairstyleCnt++;
 					freeEngineList.add(new ClientInfo(name, clientSocket));
-				}else {
+				}
+				else if(name.equals("dummy")) {
+					if(freeEngineList.size() == 0) {
+						System.out.println("남은 엔진이 없어서 할당할 수 없음");
+						clientSocket.close();
+					}
+					name += dummyCnt++;
+					
+					ClientInfo dualstyle = freeEngineList2.remove(0);
+					MatchDumyInfo matchDummy = new MatchDumyInfo(
+							new ClientInfo(name, clientSocket), 
+							dualstyle
+							);
+					
+				}
+				else if(name.equals("dualstyle")){
+					name += dualstyleCnt++;
+					freeEngineList2.add(new ClientInfo(name, clientSocket));
+				}
+				else {
 					hm.put(name, clientSocket);
 				}
 				
 				
 				System.out.println(name + "과" + clientSocket.toString() + "를 등록");
-				EchoThread echoThread = new EchoThread(matchHairList, freeEngineList, hm, clientSocket, name);
+				EchoThread echoThread = new EchoThread(matchHairList, matchDumyList, freeEngineList, freeEngineList2,  hm, clientSocket, name);
 				echoThread.start();
 				System.out.println();
 			}
@@ -144,7 +177,10 @@ public class MultiThreadEchoServer {
 class EchoThread extends Thread {
 	
 	List<MatchHairInfo> matchHairList;
+	List<MatchDumyInfo> matchDumyList;
+	
 	List<ClientInfo> freeEngineList;
+	List<ClientInfo> freeEngineList2;
 	
 	// 있는 소켓
 	private HashMap hm;
@@ -153,9 +189,19 @@ class EchoThread extends Thread {
 	
 	private String name;
 	
-	public EchoThread(List<MatchHairInfo> matchHairList, List<ClientInfo> freeEngineList, HashMap hm, Socket socket, String name) {
+	public EchoThread(
+			List<MatchHairInfo> matchHairList, 
+			List<MatchDumyInfo> matchDumyList,
+			
+			List<ClientInfo> freeEngineList, 
+			List<ClientInfo> freeEngineList2,
+			
+			HashMap hm, Socket socket, String name) {
+		
 		this.matchHairList = matchHairList;
+		this.matchDumyList = matchDumyList;
 		this.freeEngineList = freeEngineList;
+		this.freeEngineList2 = freeEngineList2;
 		this.hm = hm;
 		this.name = name;
 		this.socket = socket;	
@@ -196,6 +242,28 @@ class EchoThread extends Thread {
 		return socket;
 	}
 	
+	Socket getMatchSocket2(String name, boolean isService) {
+		Socket socket = null;
+		for(int i=0;i<matchDumyList.size();i++) {
+			MatchDumyInfo mhi = matchDumyList.get(i);
+			
+			if(isService) {
+				if(mhi.dummy.name.equals(name)) {
+					socket = mhi.dualstyle.socket;
+					break;
+				}			
+			}else {
+				if(mhi.dualstyle.name.equals(name)) {
+					socket = mhi.dummy.socket;
+					break;
+				}	
+			}
+		}
+		
+		return socket;
+	}
+	
+	
 	boolean removeMatchHairList(String name) {
 		boolean isRemove = false;
 		for(int i=0;i<matchHairList.size();i++) {
@@ -213,6 +281,25 @@ class EchoThread extends Thread {
 		
 		return isRemove;		
 	}
+	
+	boolean removeMatchDumyList(String name) {
+		boolean isRemove = false;
+		for(int i=0;i<matchDumyList.size();i++) {
+			MatchDumyInfo mhi = matchDumyList.get(i);
+			if(mhi.dummy.name.equals(name)) {
+				
+				ClientInfo dualstyle = mhi.dualstyle;
+				freeEngineList.add(dualstyle);
+				
+				matchHairList.remove(i);
+				isRemove = true;
+				break;
+			}
+		}
+		
+		return isRemove;		
+	}
+	
 	
 	public void run() {
 		try {
@@ -234,6 +321,9 @@ class EchoThread extends Thread {
 					
 					if(name.substring(0, 7).equals("service")) {
 						removeMatchHairList(this.name);
+					}
+					else if(name.substring(0, 5).equals("dummy")) {
+						removeMatchDumyList(this.name);
 					}
 					break;
 					
@@ -274,20 +364,33 @@ class EchoThread extends Thread {
 					}
 //					///////////////////////////////////////////////////////////////
 //					유저
-					else if(name.equals("dummy")) {
-						Socket serviceSocket = (Socket) this.hm.get("dualstyle");
+//					else if(name.equals("dummy")) {
+					else if(name.substring(0, 5).equals("dummy")) {
+//						Socket serviceSocket = (Socket) this.hm.get("dualstyle");
+						Socket serviceSocket = getMatchSocket2(name, true);
 						OutputStream out = serviceSocket.getOutputStream();
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 						bos.write(buf, 0, len);
 						bos.flush();
 					}
 //					파이썬
-					else if(name.equals("dualstyle")) {
-						Socket serviceSocket = (Socket) this.hm.get("dummy");
-						OutputStream out = serviceSocket.getOutputStream();
-						BufferedOutputStream bos = new BufferedOutputStream(out);
-						bos.write(buf, 0, len);
-						bos.flush();
+//					else if(name.equals("dualstyle")) {
+					else if(name.substring(0, 5).equals("duals")) {
+//						Socket serviceSocket = (Socket) this.hm.get("dummy");
+						Socket serviceSocket = getMatchSocket2(name, false);
+						if(serviceSocket != null) {
+							OutputStream out = serviceSocket.getOutputStream();
+							BufferedOutputStream bos = new BufferedOutputStream(out);
+							bos.write(buf, 0, len);
+							bos.flush();
+						}
+						else {
+							// ping = -1을 받고 다시 돌려준다
+							OutputStream out = socket.getOutputStream();
+							BufferedOutputStream bos = new BufferedOutputStream(out);
+							bos.write(buf, 0, len);
+							bos.flush();
+						}
 					}
 //					/////////////////////////////////////////////////////////////////
 //					유저
