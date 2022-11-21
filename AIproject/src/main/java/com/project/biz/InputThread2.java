@@ -96,7 +96,9 @@ public class InputThread2 extends Thread {
 						bos.close();
 						System.out.println("수신완료");
 						System.out.println("-------------------------------------------");	
-						setResult(i +imgName);
+						if (i == 0) {
+							setResult(i +imgName);							
+						}
 					}
 				}
 				
