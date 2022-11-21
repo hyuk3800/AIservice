@@ -485,12 +485,12 @@ const dummyimg = (Iname) => {
 			// console.log("이거");
 			if(xhr.status == 200){
 				
-				
+				let data = JSON.parse(xhr.response);
 				console.log(xhr);
-				if(xhr.response == "image is not appropriate"){
+				if(data["chatData"] == "image is not appropriate"){
 					makingAi("이미지 가 적절하지 않아요~");
 				}else{
-				makeingAiFile(xhr.response);
+				makeingAiFile(data["chatData"]);
 				}
 //				scrollHeight();
 //				scrollHeight();
