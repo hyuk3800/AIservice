@@ -114,6 +114,7 @@ const handleToDoSubmit = (event) => {
 };
 
 
+// 업로드할 이미지가 보이도록 
 const testFile = (e) => {
 	console.log(e.target);
 	let fileInfo;
@@ -123,6 +124,7 @@ const testFile = (e) => {
 	let fileLabel1;
 	
 	if(e.target == fileInput){
+		// 다중 선택해도 첫번째만 선택되도록
 		fileInfo = fileInput.files[0];
 		uploadImg = document.getElementById("uploadImg");
 		fileLabel1 = fileLabel;
@@ -351,6 +353,7 @@ const getreq = () => {
 			}
 		}
 	}
+	// 동기, 작동 안하게 
 	xhr.open("GET", "/biz/chat/json.do", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 

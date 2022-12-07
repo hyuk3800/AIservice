@@ -98,6 +98,7 @@ public class chatDAO {
 		int chatroom = json.getChatRoom();
 		conn = JDBCUtill.getConn();
 		List<chatVO> chatList = new ArrayList<chatVO>();
+		// chatList = []
 		try {
 			stmt = conn.prepareStatement(allchat);
 			stmt.setInt(1, chatroom);

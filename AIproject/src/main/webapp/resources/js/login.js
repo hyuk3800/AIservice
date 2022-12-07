@@ -4,12 +4,15 @@ const FormDo = document.querySelectorAll(".formDo")
 
 const userid = document.querySelector("#loginID");
 const userPassword = document.querySelector("#loginPassword");
+//페이지에서 찾아서 btn으로 지정할 것이다
 const loginBTN = document.querySelector("#loginBTN");
 
+// 로그인 정보 일치 않을시,
 const loginMSG = document.querySelector("#loginMSG");
 const singUpMSGI = document.querySelector("#singUpMSGI");
 const singUpMSGP = document.querySelector("#singUpMSGP");
 
+// 회원가입
 const singUpID = document.querySelector("#singUpID");
 const singUpName = document.querySelector("#singUpName");
 const singUpPwd = document.querySelector("#singUpPwd");
@@ -74,6 +77,7 @@ const postreq = () => {
 	    }
 		xhr.onreadystatechange = function(){
 			console.log(xhr.readyState);
+			// 통신완료 : 4단계
 			if(xhr.readyState == 4){
 				console.log(xhr.status);
 				// console.log("이거");
@@ -93,6 +97,7 @@ const postreq = () => {
 		const id = userid.value;
 		const pwd = userPassword.value;
 		xhr.open("POST", "/biz/login.do", true);
+		// json 타입으로 데이터 전송
 		xhr.setRequestHeader("Content-type", "application/json");
 		let user = {
 			userid : id,
@@ -108,6 +113,7 @@ const postreq = () => {
 
 const postSearch = () => {
 	console.log("Blur");
+	// id 공백이 아닐때
 	if(singUpID.value != ""){
 		console.log("Blur2");
 		singUpMSGI.innerText = "";
@@ -204,6 +210,7 @@ for (let i=0 ; i < FormDo.length; i++){
 	FormDo[i].addEventListener('submit', handleToDoSubmit)
 }
 
+// 커서가 떼졌을때 실행
 singUpID.addEventListener('blur', postSearch);
 singUpCPwd.addEventListener('blur', testPWDSelect);
 loginBTN.addEventListener('click', postreq);
