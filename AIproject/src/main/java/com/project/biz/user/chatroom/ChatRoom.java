@@ -45,6 +45,7 @@ public class ChatRoom {
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String getChathome(HttpSession session, chatDAO chatDAO) {
 		logger.info("GET_ChatRoomPage");
+		// user 있으면,
 		MemberVo user = (MemberVo) session.getAttribute("user");
 		if(user != null) {
 			int chatRoom = chatDAO.searchChatRoom((MemberVo) session.getAttribute("user"));
@@ -56,6 +57,7 @@ public class ChatRoom {
 
 	}
 	
+	// 로그인 유무에 따라 데이터 저장 여부 나눔
 	@ResponseBody
 	@RequestMapping(value = "/chat/json.do", method = RequestMethod.GET)
 	public testJson testGetJson(HttpSession session, chatDAO chatDAO) {

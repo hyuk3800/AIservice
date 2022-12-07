@@ -22,6 +22,7 @@ public class JDBCUtill {
 		return null;
 	}
 	
+	// 열어서 사용하여 닫아야 한다
 	public static void close(PreparedStatement stmt, Connection conn) {
 		if (stmt != null) {
 			try {
@@ -44,6 +45,7 @@ public class JDBCUtill {
 		
 	}
 	
+	// 함수와 동일한 순서로 설정
 	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
 		if (rs != null) {
 			try {
