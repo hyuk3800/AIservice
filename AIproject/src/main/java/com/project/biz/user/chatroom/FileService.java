@@ -22,7 +22,7 @@ public class FileService {
 	public String fileUpload(MultipartFile multipartFile, HttpSession session) {
 
 		String uploadDir = session.getServletContext().getRealPath("resources/uploadImg");
-		
+		String AiloadDir = session.getServletContext().getRealPath("resources/AiUploadImg");
 		
 		
 		File Folder = new File(uploadDir);
@@ -43,7 +43,12 @@ public class FileService {
 		String fileName = multipartFile.getOriginalFilename();
 		fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 		File file = new File(uploadDir+"/"+fileName);
+		File file2 = new File(AiloadDir+"/"+fileName);
 		if(file.exists()) {
+			String num_16 = Integer.toHexString((int) System.currentTimeMillis());
+			fileName = num_16 + fileName;
+		}
+		else if(file2.exists()) {
 			String num_16 = Integer.toHexString((int) System.currentTimeMillis());
 			fileName = num_16 + fileName;
 		}

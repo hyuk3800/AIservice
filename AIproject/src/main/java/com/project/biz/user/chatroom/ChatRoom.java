@@ -326,7 +326,7 @@ public class ChatRoom {
 	
 	@ResponseBody
 	@RequestMapping(value = "/chat/dummy.do", method = RequestMethod.POST)
-	public String dummy(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
+	public chatVO dummy(@RequestBody HashMap<String, Object> map, HttpSession session, chatDAO chatDao) throws InterruptedException {
 		System.out.println("더미데이터");
 		String result = null;
 		
@@ -382,7 +382,7 @@ public class ChatRoom {
 			BufferedInputStream bis = new BufferedInputStream(in);
 			DataInputStream filterIn = new DataInputStream(bis);
 			
-			String name = "dummy";
+			String name = "dummydata";
 			byte[] data = EC.makeStringBuf(name);
 			filterOut.write(data);
 			filterOut.flush();
@@ -446,8 +446,9 @@ public class ChatRoom {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		chatVO reS = new chatVO().setChatData(result);
 		
-		return result;
+		return reS;
 	}
 	
 }
